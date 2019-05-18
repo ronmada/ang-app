@@ -1,9 +1,16 @@
 <form [formGroup]="nameForm" (ngSubmit)="onSubmit()">
 
  <label>
-    Course ID:
-    <input type="text" formControlName="firstName"  required>
+    Single Course ID:
+    <input type="text" formControlName="add_single_course"  >
   </label>
+
+   <label>
+    Group: Course ID:
+    <input type="text" formControlName="sm_group"  >
+  </label>
+
+ <button type="button" (click)= "push_one_to_sm()">add one</button>
 
 
 
