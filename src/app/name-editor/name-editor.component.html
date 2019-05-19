@@ -28,21 +28,9 @@
   courses in current cluster:
 </h2>
 <div *ngFor ="let course of smgroup ">
-    <div *ngFor ="let cor of course |async ">
-      <h2>
-      name of the course: {{cor.__Course__.course_name }}    <br>
-      </h2>
-</div>
-<br> <br> <br>
-
-<h2>
-    courses in courses:
-</h2>
-<div *ngFor ="let course of courses ">
-      <div *ngFor ="let cor of course |async ">
-        <h2>
-        name of the course: {{cor.__Course__.course_name }}    <br>
-        </h2>
+    <h2>
+    name of the course: {{course.__Course__.course_name }}    <br>
+    </h2>
 </div>
 <br> <br> <br>
 <br> <br> <br>
@@ -51,22 +39,21 @@
       cluster
     </h2>
     <div *ngFor ="let course of cluster ">
-
-        <div *ngFor ="let cor of course |async ">
       <h2>
-      name of the course: {{cor.__Course__.course_name }}    <br>
+      name of the course: {{course.__Course__.course_name }}    <br>
       </h2>
+    </div>
+</div>
+<h2>
+    courses in courses:
+</h2>
+<div *ngFor ="let course of courses ">
+      <div *ngFor ="let cor of course |async ">
+        <h2>
+        name of the course: {{cor.__Course__.course_name }}    <br>
+        </h2>
+  </div>
 </div>
 <br> <br> <br>
+<br> <br> <br>
 
-<!--
-<div *ngFor ="let course of courses | async">
-  <h2>
-   name of the course: {{course.__Course__.course_name}}    <br>
-   example class: <br>
-   day of the week: {{course.__Course__.groups[0].__Course_Group__.lectures[0].__Kita__.lectures[0].__Lect__.day_in_week| json}}    <br>
-   the course starts at: {{course.__Course__.groups[0].__Course_Group__.lectures[0].__Kita__.lectures[0].__Lect__.start_time| json}} <br>
-   the course ends at: {{course.__Course__.groups[0].__Course_Group__.lectures[0].__Kita__.lectures[0].__Lect__.end_time| json}}    <br>
-   </h2>
-</div>
--->

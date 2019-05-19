@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 export class NameEditorComponent {
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   courses : any[] =[]
-  
+  temp : any
   somecourse : any
   couresy: Observable<String>
   smgroup: any[] = []
@@ -37,8 +37,8 @@ export class NameEditorComponent {
   getOneCourse(){
     let courseid = this.nameForm.value.add_single_course
     let params= new HttpParams().set('courseid' , courseid)
-    let course = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
     this.courses.push(this.http.get(this.ROOT_URL_local + '/getcorjs', {params}))
+    
   }
   push_one_to_sm(){
     let acourse = this.nameForm.value.sm_group
@@ -54,9 +54,25 @@ export class NameEditorComponent {
   }
 
   getOne(courseid){
-    let params= new HttpParams().set('courseid' , courseid)
-    this.somecourse = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
-    this.smgroup.push(this.somecourse)
+    
+    let promise = new Promise((resolve, reject) => {
+      let params= new HttpParams().set('courseid' , courseid)
+      this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+        .toPromise()
+        .then(
+          res => { // Success
+            this.temp = <JSON>res;
+            resolve();
+          }
+        );
+    });
+    console.log(this.temp);
+    this.smgroup.push(this.temp)
+
+
+    //let params= new HttpParams().set('courseid' , courseid)
+    //this.somecourse = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+    //this.smgroup.push(this.somecourse)
 
   }
 }
