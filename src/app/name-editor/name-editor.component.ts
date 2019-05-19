@@ -19,6 +19,7 @@ export class NameEditorComponent {
   couresy: Observable<String>
   smgroup: any[] = []
   clusters: any[] = []
+  result : any
   nameForm = this.fb.group({
     add_single_course: ['11004'],
     sm_group: ['11005']
@@ -34,10 +35,24 @@ export class NameEditorComponent {
     return this.nameForm.get('firstName') as FormArray;
   }
   */
-  getOneCourse(){
-    let courseid = this.nameForm.value.add_single_course
-    let params= new HttpParams().set('courseid' , courseid)
-    this.courses.push(this.http.get(this.ROOT_URL_local + '/getcorjs', {params}))
+  async getOneCourse(){
+    
+
+    let promise = new Promise((resolve, reject) => {
+      let courseid = this.nameForm.value.add_single_course
+      let params= new HttpParams().set('courseid' , courseid)
+      this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+        .toPromise()
+        .then(
+          res => { // Success
+            this.result = <JSON>res;
+            resolve();
+            
+          }
+        );
+    });
+    await promise
+    this.courses.push (this.result)
     
   }
   push_one_to_sm(){
@@ -51,9 +66,10 @@ export class NameEditorComponent {
     this.clusters.push(this.smgroup)
     //empty current cluster
     this.smgroup=[]
+    console.log(this.clusters);
   }
 
-  getOne(courseid){
+  async getOne(courseid){
     
     let promise = new Promise((resolve, reject) => {
       let params= new HttpParams().set('courseid' , courseid)
@@ -61,13 +77,15 @@ export class NameEditorComponent {
         .toPromise()
         .then(
           res => { // Success
-            this.temp = <JSON>res;
+            this.result = <JSON>res;
             resolve();
+            
           }
         );
     });
-    console.log(this.temp);
-    this.smgroup.push(this.temp)
+    await promise
+    console.log(this.result);
+    this.smgroup.push(this.result)
 
 
     //let params= new HttpParams().set('courseid' , courseid)
