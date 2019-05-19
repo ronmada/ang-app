@@ -6,6 +6,7 @@ import { Validators } from '@angular/forms';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Struct } from "../../models/Struct";
+import { CourseService } from "../../Services/course.service"
 
 @Component({
   selector: 'app-add-course',
@@ -14,7 +15,6 @@ import { Struct } from "../../models/Struct";
 })
 
 export class AddCourseComponent {
-  @Input() course: Struct;
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   temp : any
   somecourse : any
@@ -23,7 +23,7 @@ export class AddCourseComponent {
     add_single_course: ['11004']
   })
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private courseService : CourseService) { }
 
  async onSubmit() {
     let promise = new Promise((resolve, reject) => {
@@ -41,9 +41,7 @@ export class AddCourseComponent {
   });
   await promise
   console.log(this.result)
-  console.log(this.course)
-  this.course.courses.push(this.result)
-  console.log(this.course)
+  this.courseService.addStructerCourses(this.result)
   }
 }
 

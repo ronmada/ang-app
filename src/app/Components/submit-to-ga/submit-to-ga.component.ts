@@ -10,7 +10,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./submit-to-ga.component.css']
 })
 export class SubmitToGAComponent implements OnInit{
-  result:Struct;
+  result:any;
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   result__ : any
   aform = this.fb.group({
@@ -18,7 +18,7 @@ export class SubmitToGAComponent implements OnInit{
   constructor(private http: HttpClient , private courseService:CourseService , private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.result = this.courseService.getCourse()
+    this.result = this.courseService.getCourses()
   }
 
   async onSubmit() {

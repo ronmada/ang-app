@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { Struct } from "./models/Struct";
+
 
 export type EditorType = 'name';
 
@@ -10,6 +12,7 @@ export type EditorType = 'name';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   title = 'ang-app-test';
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
@@ -25,5 +28,6 @@ export class AppComponent {
   toggleEditor(type: EditorType) {
     this.editor = type;
   }
+
 
 }
