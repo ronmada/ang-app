@@ -1,14 +1,14 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <h1>InfoPlus+</h1>
-
+<!--
 <nav>
   <a (click)="toggleEditor('name')">Search by Course ID</a>
 </nav>
-
-<app-name-editor *ngIf="showNameEditor"></app-name-editor>
-
-
-
+-->
+<!--<app-name-editor *ngIf="showNameEditor"></app-name-editor>-->
+<!--<app-name-editor></app-name-editor>-->
+<app-add-course></app-add-course>
+<app-add-self-made></app-add-self-made>
+<app-submit-to-ga></app-submit-to-ga>
 <!--
 <button (click)= "getAllCors()">Get alll courses</button>
 <div *ngFor ="let course of courses | async">
@@ -46,3 +46,24 @@
 
 <router-outlet></router-outlet>
 -->
+
+
+
+
+<!--
+async onSubmit() {
+    let params= new HttpParams()
+    for (let cluster of this.clusters){
+      let clus =''
+      for (let course of cluster){
+        if (clus ==''){
+          clus = clus + course.Course.id
+        }
+        else{
+          clus = clus + ' ' + course.Course.id
+        }
+
+      }
+      params = params.append('cluster',clus)
+    }
+    -->

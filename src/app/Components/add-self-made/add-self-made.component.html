@@ -1,0 +1,33 @@
+<form [formGroup]="selfmadeForm" (ngSubmit)="onSubmit()">
+
+   <label>
+    Group: Course ID:
+    <input type="text" formControlName="add_selfmade_course"  >
+  </label>
+
+ <button type="button" (click)= "push_one_to_sm()">add to cluster</button>
+
+<p> <button type="submit" [disabled]="!selfmadeForm.valid">submit cluster</button> </p>
+
+</form>
+<br> <br> <br>
+<h2>
+    courses in current cluster:
+  </h2>
+  <div *ngFor ="let course of smgroup ">
+      <h2>
+      name of the course: {{course.__Course__.course_name }}    <br>
+      </h2>
+  </div>
+
+  <br> <br> <br>
+  <div *ngFor ="let cluster of clusters ">
+      <h2>
+        cluster
+      </h2>
+      <div *ngFor ="let course of cluster ">
+        <h2>
+        name of the course: {{course.__Course__.course_name }}    <br>
+        </h2>
+      </div>
+  </div>
