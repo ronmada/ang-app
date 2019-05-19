@@ -5,14 +5,16 @@
     <input type="text" formControlName="add_single_course"  >
   </label>
 
+  <button type="button" (click)= "getOneCourse()">add course</button>
+
    <label>
     Group: Course ID:
     <input type="text" formControlName="sm_group"  >
   </label>
 
- <button type="button" (click)= "push_one_to_sm()">add one</button>
+ <button type="button" (click)= "push_one_to_sm()">add to cluster</button>
 
-
+ <button type="button" (click)= "submit_cluster()">submit cluster</button>
 
 
 
@@ -21,14 +23,42 @@
 </p>
 </form>
 <br> <br> <br>
-<div *ngFor ="let course of smgroup">
 
-  <h2>
-   name of the course: {{course.__Course__.course_name }}    <br>
-   example class: <br>
-   </h2>
+<h2>
+  courses in current cluster:
+</h2>
+<div *ngFor ="let course of smgroup ">
+    <div *ngFor ="let cor of course |async ">
+      <h2>
+      name of the course: {{cor.__Course__.course_name }}    <br>
+      </h2>
 </div>
 <br> <br> <br>
+
+<h2>
+    courses in courses:
+</h2>
+<div *ngFor ="let course of courses ">
+      <div *ngFor ="let cor of course |async ">
+        <h2>
+        name of the course: {{cor.__Course__.course_name }}    <br>
+        </h2>
+</div>
+<br> <br> <br>
+<br> <br> <br>
+<div *ngFor ="let cluster of clusters ">
+    <h2> 
+      cluster
+    </h2>
+    <div *ngFor ="let course of cluster ">
+
+        <div *ngFor ="let cor of course |async ">
+      <h2>
+      name of the course: {{cor.__Course__.course_name }}    <br>
+      </h2>
+</div>
+<br> <br> <br>
+
 <!--
 <div *ngFor ="let course of courses | async">
   <h2>

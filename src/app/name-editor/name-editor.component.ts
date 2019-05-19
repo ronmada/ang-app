@@ -13,11 +13,12 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NameEditorComponent {
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
-  courses : any
-  courseid : any
+  courses : any[] =[]
+  
   somecourse : any
   couresy: Observable<String>
   smgroup: any[] = []
+  clusters: any[] = []
   nameForm = this.fb.group({
     add_single_course: ['11004'],
     sm_group: ['11005']
@@ -27,9 +28,6 @@ export class NameEditorComponent {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    this.courseid = this.nameForm.value.add_single_course
-    this.getOneCourse()
-    console.warn(this.nameForm.value.add_single_course);
   }
   /*
   get aliases() {
@@ -37,18 +35,28 @@ export class NameEditorComponent {
   }
   */
   getOneCourse(){
-    let params= new HttpParams().set('courseid' , this.courseid)
-    this.courses = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+    let courseid = this.nameForm.value.add_single_course
+    let params= new HttpParams().set('courseid' , courseid)
+    let course = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+    this.courses.push(this.http.get(this.ROOT_URL_local + '/getcorjs', {params}))
   }
   push_one_to_sm(){
     let acourse = this.nameForm.value.sm_group
     //console.log(this.smgroup)
     this.getOne(acourse)
   }
+
+  submit_cluster(){
+    //push the current cluster to the clusters
+    this.clusters.push(this.smgroup)
+    //empty current cluster
+    this.smgroup=[]
+  }
+
   getOne(courseid){
     let params= new HttpParams().set('courseid' , courseid)
-    this.somecourse = this.http.get(this.ROOT_URL_local + '/getcorjs', {params}).subscribe()
-    this.smgroup.push(this.somecourse[0])
+    this.somecourse = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+    this.smgroup.push(this.somecourse)
 
   }
 }
