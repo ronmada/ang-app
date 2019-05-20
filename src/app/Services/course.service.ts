@@ -11,6 +11,7 @@ export class CourseService implements OnInit{
   clusters: any[] = [];
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
+
   constructor(private http:HttpClient)  {}
 
   ngOnInit(){
@@ -32,9 +33,10 @@ export class CourseService implements OnInit{
 
   addStructerCluster(cluster){
     this.clusters.push(cluster)
+    console.log('clusters looks like this:' ,this.clusters);
   }
 
-   async submitSingleCourse(courseid){
+  async getoneCourse(courseid){
     let courseres : any
     let promise = new Promise((resolve, reject) => {
       let params= new HttpParams().set('courseid' , courseid)
@@ -54,22 +56,48 @@ export class CourseService implements OnInit{
     await promise
     return courseres
   }
-  /*
+
+  async submitGA( courseres, clusterres){
+    let params= new HttpParams()
+    for (let cluster of clusterres){
+      let clus =''
+      for (let course of cluster){
+        if (clus ==''){
+          clus = clus + course.Course.id
+        }
+        else{
+          clus = clus + ' ' + course.Course.id
+        }
+
+      }
+      params = params.append('cluster',clus)
+    }
+
+    let courses = ''
+    for (let course of courseres){
+      if (courses ==''){
+        courses = courses + course.Course.id
+      }
+      else{
+        courses = courses + ' ' + course.Course.id
+      }
+    }
+    params = params.append('courses',courses)
+    console.log(params.getAll('cluster') )
+    console.log(params.getAll('courses') )
+    let someresult
     let promise = new Promise((resolve, reject) => {
-      let params= new HttpParams().set('courseid' , courseid)
-      this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
+      this.http.get(this.ROOT_URL_local + '/start_ga', {params})
         .toPromise()
         .then(
           res => { // Success
-            this.courseres = <JSON>res;
+            someresult = <JSON>res;
             resolve();
-          }
-        )
-    })
-    await promise
-    console.log(this.courseres)
-    return this.courseres
-  }
-  */
 
+          }
+        );
+    });
+    await promise
+    console.log(someresult)
+  }
 }

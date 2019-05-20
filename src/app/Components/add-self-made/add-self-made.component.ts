@@ -4,8 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { Struct } from "../../models/Struct";
+import { CourseService } from "../../Services/course.service"
 
 @Component({
   selector: 'app-add-self-made',
@@ -15,24 +15,31 @@ import { Struct } from "../../models/Struct";
 export class AddSelfMadeComponent {
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   smgroup: any[] = []
-  clusters : Struct
-  result : any
   selfmadeForm = this.fb.group({
     add_selfmade_course: ['11005'],
   })
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder , private courseService : CourseService) { }
 
   onSubmit(){
     //push the current cluster to the clusters
-    this.clusters.clusters.push(this.smgroup)
+    this.courseService.addStructerCluster(this.smgroup)
     //empty current cluster
     this.smgroup=[]
-    console.log(this.clusters);
   }
 
   async push_one_to_sm(){
+    console.log("\nTrying to add a single course TO CLUSTER")
+    this.courseService.getoneCourse(this.selfmadeForm.value.add_selfmade_course)
+    .then(
+      singleCourse_cluster => {
+      //this.courseService.addStructerCourses(singleCourse_cluster)
+      this.smgroup.push(singleCourse_cluster)
+      console.log('added one course to CLUTSER was successful... ID:  ', singleCourse_cluster.__Course__.id,
+      'Coursename:  ' , singleCourse_cluster.__Course__.course_name , )
+      })
+/*
     let courseid = this.selfmadeForm.value.add_selfmade_course
     let promise = new Promise((resolve, reject) => {
       let params= new HttpParams().set('courseid' , courseid)
@@ -47,8 +54,7 @@ export class AddSelfMadeComponent {
         );
     });
     await promise
-    console.log(this.result);
-    this.smgroup.push(this.result)
+*/
 
     //let params= new HttpParams().set('courseid' , courseid)
     //this.somecourse = this.http.get(this.ROOT_URL_local + '/getcorjs', {params})

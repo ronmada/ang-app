@@ -10,18 +10,22 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./submit-to-ga.component.css']
 })
 export class SubmitToGAComponent implements OnInit{
-  result:any;
-  readonly ROOT_URL_local = 'http://127.0.0.1:5000'
+  result:any
+  courseres : any
+  clusterres : any
   result__ : any
   aform = this.fb.group({
   })
-  constructor(private http: HttpClient , private courseService:CourseService , private fb: FormBuilder) { }
+  constructor(private courseService:CourseService , private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.result = this.courseService.getCourses()
+    this.courseres = this.courseService.getCourses()
+    this.clusterres = this.courseService.getClusters()
   }
 
-  async onSubmit() {
+  onSubmit() {
+  this.courseService.submitGA(this.courseres ,  this.clusterres)
+  /*
     let params= new HttpParams()
     for (let cluster of this.result.clusters){
       let clus =''
@@ -68,6 +72,6 @@ export class SubmitToGAComponent implements OnInit{
 
     await promise
     console.log(this.result__)
-
+*/
   }
 }

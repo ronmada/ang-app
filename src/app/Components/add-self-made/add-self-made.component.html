@@ -11,23 +11,15 @@
 
 </form>
 <br> <br> <br>
-<h2>
-    courses in current cluster:
-  </h2>
-  <div *ngFor ="let course of smgroup ">
-      <h2>
-      name of the course: {{course.__Course__.course_name }}    <br>
-      </h2>
-  </div>
+   <b> courses in current cluster: </b>
+<div *ngFor ="let course of smgroup ">
+  <p> name of the course: {{course.__Course__.course_name }}   </p> <br>
+</div>
 
-  <br> <br> <br>
-  <div *ngFor ="let cluster of clusters ">
-      <h2>
-        cluster
-      </h2>
-      <div *ngFor ="let course of cluster ">
-        <h2>
-        name of the course: {{course.__Course__.course_name }}    <br>
-        </h2>
-      </div>
-  </div>
+<br> <br> <br>
+<div *ngFor ="let cluster of courseService.getClusters() ">
+  <b> Cluster: </b>
+    <div *ngFor ="let course of cluster ">
+      <p> name of the course: {{course.__Course__.course_name }} </p>   <br>
+    </div>
+</div>

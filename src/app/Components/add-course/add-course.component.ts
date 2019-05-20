@@ -22,7 +22,7 @@ export class AddCourseComponent {
 
   onSubmit() {
     console.log("\nTrying to add a single course")
-    this.courseService.submitSingleCourse(this.addsingleCourseForm.value.add_single_course)
+    this.courseService.getoneCourse(this.addsingleCourseForm.value.add_single_course)
     .then(
       singleCourse => {
       this.courseService.addStructerCourses(singleCourse)
