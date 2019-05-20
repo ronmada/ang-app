@@ -17,7 +17,7 @@
 </div>
 
 <br> <br> <br>
-<div *ngFor ="let cluster of courseService.getClusters() ">
+<div *ngFor ="let cluster of courseService.getstruct().clusters ">
   <b> Cluster: </b>
     <div *ngFor ="let course of cluster ">
       <p> name of the course: {{course.__Course__.course_name }} </p>   <br>

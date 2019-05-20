@@ -10,21 +10,17 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./submit-to-ga.component.css']
 })
 export class SubmitToGAComponent implements OnInit{
-  result:any
-  courseres : any
-  clusterres : any
-  result__ : any
+  struct : Struct
   aform = this.fb.group({
   })
 
   constructor(private courseService:CourseService , private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.courseres = this.courseService.getCourses()
-    this.clusterres = this.courseService.getClusters()
+    this.struct = this.courseService.getstruct()
   }
 
   onSubmit() {
-  this.courseService.submitGA(this.courseres ,  this.clusterres)
+  this.courseService.submitGA(this.struct)
   }
 }

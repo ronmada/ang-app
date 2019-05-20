@@ -8,40 +8,30 @@ import 'rxjs/add/operator/toPromise';
 
 
 export class CourseService implements OnInit{
-  courses : any[] =[];
-  clusters: any[] = [];
+  //courses : any[] =[];
+  //clusters: any[] = [];
   struct : Struct
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
   constructor(private http:HttpClient)  {
-     this.struct = new Struct()
+    this.struct = new Struct()
   }
 
-  ngOnInit(){
-    this.courses = []
-    this.clusters = []
-  }
+  ngOnInit(){}
 
-  getCourses() {
-    return this.struct.courses
-  }
-  getClusters(){
-    return this.struct.clusters
+  getstruct(){
+    return this.struct
   }
 
   addStructerCourses(course){
       this.struct.courses.push(course)
-      console.log('STRUCT: ' , this.struct.courses)
-      //this.courses.push(course)
-      //console.log('Single courses list: ' , this.courses)
+      console.log('Single courses list: ' , this.struct.courses)
   }
 
   addStructerCluster(cluster){
     this.struct.clusters.push(cluster)
     console.log('clusters looks like this:' ,this.struct.clusters);
-    //this.clusters.push(cluster)
-    //console.log('clusters looks like this:' ,this.clusters);
   }
 
   async getoneCourse(courseid){
@@ -53,8 +43,8 @@ export class CourseService implements OnInit{
         .then(
           res => { // Success
             courseres = res;
-          console.log('course object to be inserted: ' , courseres)
-          resolve();
+            console.log('course object to be inserted: ' , courseres)
+            resolve();
           },
           msg => { // Error
           reject(msg);
@@ -65,9 +55,9 @@ export class CourseService implements OnInit{
     return courseres
   }
 
-  async submitGA(courseres, clusterres){
+  async submitGA(struct : Struct){
     let params= new HttpParams()
-    for (let cluster of clusterres){
+    for (let cluster of struct.clusters){
       let clus =''
       for (let course of cluster){
         if (clus ==''){
@@ -82,7 +72,7 @@ export class CourseService implements OnInit{
     }
 
     let courses = ''
-    for (let course of courseres){
+    for (let course of struct.courses){
       if (courses ==''){
         courses = courses + course.__Course__.id
       }
@@ -106,6 +96,7 @@ export class CourseService implements OnInit{
         );
     });
     await promise
+    console.log('Struct looks like this after submit:  ' ,this.struct)
     console.log(someresult)
     console.log(someresult.classes[1]["Class type"])
   }
