@@ -9,7 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NameEditorComponent } from './junk/name-editor/name-editor.component';
 import { AddSelfMadeComponent } from './Components/add-self-made/add-self-made.component';
 import { SubmitToGAComponent } from './Components/submit-to-ga/submit-to-ga.component';
-import {CourseService} from './Services/course.service'
+import {CourseService} from './Services/course.service';
+import { GaResultComponent } from './Components/ga-result/ga-result.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {CourseService} from './Services/course.service'
     NameEditorComponent,
     AddCourseComponent,
     AddSelfMadeComponent,
-    SubmitToGAComponent  ],
+    SubmitToGAComponent,
+    GaResultComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

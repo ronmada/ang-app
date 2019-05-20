@@ -1,5 +1,4 @@
 import { Component , OnInit } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Struct } from "../../models/Struct";
 import { CourseService } from '../../Services/course.service';
 import { FormBuilder } from '@angular/forms';
@@ -20,7 +19,18 @@ export class SubmitToGAComponent implements OnInit{
     this.struct = this.courseService.getstruct()
   }
 
-  onSubmit() {
-  this.courseService.submitGA(this.struct)
+  async onSubmit() {
+
+    this.courseService.submitGA(this.struct)
+    .then(
+      ga_result => {
+        this.courseService.putGAresults(ga_result)
+        console.log('GA_RESULT: ' , ga_result)
+        console.log('GA_RESULT2: ' , ga_result.classes[0])
+      })
+
+
+  //this.ga_result = this.courseService.submitGA(this.struct)
+  //console.log('GA_RESULT: ' , this.ga_result)
   }
 }

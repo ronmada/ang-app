@@ -11,6 +11,7 @@ export class CourseService implements OnInit{
   //courses : any[] =[];
   //clusters: any[] = [];
   struct : Struct
+  ga_result : any
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
@@ -53,6 +54,14 @@ export class CourseService implements OnInit{
     });
     await promise
     return courseres
+  }
+
+  getGAresults(){
+    return this.ga_result
+  }
+
+  putGAresults(ga_result){
+    this.ga_result = ga_result
   }
 
   async submitGA(struct : Struct){
@@ -99,6 +108,7 @@ export class CourseService implements OnInit{
     console.log('Struct looks like this after submit:  ' ,this.struct)
     console.log(someresult)
     console.log(someresult.classes[1]["Class type"])
+    return someresult
   }
 
 }
