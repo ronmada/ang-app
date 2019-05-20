@@ -63,10 +63,10 @@ export class CourseService implements OnInit{
       let clus =''
       for (let course of cluster){
         if (clus ==''){
-          clus = clus + course.Course.id
+          clus = clus + course.__Course__.id
         }
         else{
-          clus = clus + ' ' + course.Course.id
+          clus = clus + ' ' + course.__Course__.id
         }
 
       }
@@ -76,10 +76,10 @@ export class CourseService implements OnInit{
     let courses = ''
     for (let course of courseres){
       if (courses ==''){
-        courses = courses + course.Course.id
+        courses = courses + course.__Course__.id
       }
       else{
-        courses = courses + ' ' + course.Course.id
+        courses = courses + ' ' + course.__Course__.id
       }
     }
     params = params.append('courses',courses)
