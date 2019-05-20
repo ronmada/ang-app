@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Struct } from "../models/Struct";
 import 'rxjs/add/operator/toPromise';
@@ -6,13 +6,17 @@ import 'rxjs/add/operator/toPromise';
   providedIn: 'root'
 })
 
+
 export class CourseService implements OnInit{
   courses : any[] =[];
   clusters: any[] = [];
+  struct : Struct
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
-  constructor(private http:HttpClient)  {}
+  constructor(private http:HttpClient)  {
+     this.struct = new Struct()
+  }
 
   ngOnInit(){
     this.courses = []
@@ -20,20 +24,24 @@ export class CourseService implements OnInit{
   }
 
   getCourses() {
-    return this.courses
+    return this.struct.courses
   }
   getClusters(){
-    return this.clusters
+    return this.struct.clusters
   }
 
   addStructerCourses(course){
-      this.courses.push(course)
-      console.log('Single courses list: ' , this.courses)
+      this.struct.courses.push(course)
+      console.log('STRUCT: ' , this.struct.courses)
+      //this.courses.push(course)
+      //console.log('Single courses list: ' , this.courses)
   }
 
   addStructerCluster(cluster){
-    this.clusters.push(cluster)
-    console.log('clusters looks like this:' ,this.clusters);
+    this.struct.clusters.push(cluster)
+    console.log('clusters looks like this:' ,this.struct.clusters);
+    //this.clusters.push(cluster)
+    //console.log('clusters looks like this:' ,this.clusters);
   }
 
   async getoneCourse(courseid){
@@ -57,7 +65,7 @@ export class CourseService implements OnInit{
     return courseres
   }
 
-  async submitGA( courseres, clusterres){
+  async submitGA(courseres, clusterres){
     let params= new HttpParams()
     for (let cluster of clusterres){
       let clus =''
@@ -99,5 +107,7 @@ export class CourseService implements OnInit{
     });
     await promise
     console.log(someresult)
+    console.log(someresult.classes[1]["Class type"])
   }
+
 }
