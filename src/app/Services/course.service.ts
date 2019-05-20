@@ -83,8 +83,8 @@ export class CourseService implements OnInit{
       }
     }
     params = params.append('courses',courses)
-    console.log(params.getAll('cluster') )
-    console.log(params.getAll('courses') )
+    console.log('clusters:', params.getAll('cluster') )
+    console.log('single courses', params.getAll('courses') )
     let someresult
     let promise = new Promise((resolve, reject) => {
       this.http.get(this.ROOT_URL_local + '/start_ga', {params})
