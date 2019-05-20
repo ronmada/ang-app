@@ -3,10 +3,9 @@ import { FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { Struct } from "../../models/Struct";
 import { CourseService } from "../../Services/course.service"
+import 'rxjs/add/operator/toPromise'
 
 @Component({
   selector: 'app-add-course',
@@ -15,33 +14,21 @@ import { CourseService } from "../../Services/course.service"
 })
 
 export class AddCourseComponent {
-  readonly ROOT_URL_local = 'http://127.0.0.1:5000'
-  temp : any
-  somecourse : any
-  result : any
   addsingleCourseForm = this.fb.group({
     add_single_course: ['11004']
   })
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private courseService : CourseService) { }
+  constructor(private fb: FormBuilder,  private courseService : CourseService) { }
 
- async onSubmit() {
-    let promise = new Promise((resolve, reject) => {
-    let courseid = this.addsingleCourseForm.value.add_single_course
-    let params= new HttpParams().set('courseid' , courseid)
-    this.http.get(this.ROOT_URL_local + '/getcorjs', {params})
-      .toPromise()
-      .then(
-        res => { // Success
-          this.result = <JSON>res;
-          resolve();
-
-        }
-      );
-  });
-  await promise
-  console.log(this.result)
-  this.courseService.addStructerCourses(this.result)
+  onSubmit() {
+    console.log("\nTrying to add a single course")
+    this.courseService.submitSingleCourse(this.addsingleCourseForm.value.add_single_course)
+    .then(
+      singleCourse => {
+      this.courseService.addStructerCourses(singleCourse)
+      console.dir('added one course to single courselist was successful... ID:  ', singleCourse.__Course__.id,
+      'Coursename:  ' , singleCourse.__Course__.course_name , )
+      })
   }
 }
 

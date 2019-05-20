@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NameEditorComponent } from './junk/name-editor/name-editor.component';
 import { AddSelfMadeComponent } from './Components/add-self-made/add-self-made.component';
 import { SubmitToGAComponent } from './Components/submit-to-ga/submit-to-ga.component';
-
+import {CourseService} from './Services/course.service'
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { SubmitToGAComponent } from './Components/submit-to-ga/submit-to-ga.comp
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
