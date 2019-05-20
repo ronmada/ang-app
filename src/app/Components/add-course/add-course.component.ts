@@ -26,7 +26,7 @@ export class AddCourseComponent {
     .then(
       singleCourse => {
       this.courseService.addStructerCourses(singleCourse)
-      console.dir('added one course to single courselist was successful... ID:  ', singleCourse.__Course__.id,
+      console.log('added one course to single courselist was successful... ID:  ', singleCourse.__Course__.id,
       'Coursename:  ' , singleCourse.__Course__.course_name , )
       })
   }

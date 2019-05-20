@@ -27,7 +27,7 @@ export class CourseService implements OnInit{
 
   addStructerCourses(course){
       this.courses.push(course)
-      console.dir('Single courses list: ' , this.courses)
+      console.log('Single courses list: ' , this.courses)
   }
 
   addStructerCluster(cluster){
@@ -43,7 +43,7 @@ export class CourseService implements OnInit{
         .then(
           res => { // Success
             courseres = res;
-          console.dir('course object to be inserted: ' , courseres)
+          console.log('course object to be inserted: ' , courseres)
           resolve();
           },
           msg => { // Error
