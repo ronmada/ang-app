@@ -6,10 +6,26 @@
 -->
 <!--<app-name-editor *ngIf="showNameEditor"></app-name-editor>-->
 <!--<app-name-editor></app-name-editor>-->
+
 <app-add-course></app-add-course>
 <app-add-self-made></app-add-self-made>
 <app-submit-to-ga></app-submit-to-ga>
-<app-ga-result></app-ga-result>
+
+<app-ga-results *ngIf="showMe">
+    <h1> this part will be toggled by the parent component button</h1>
+   showGA()
+
+</app-ga-results>
+
+
+ <!--
+<app-ga-results *ngIf="showMePartially">
+
+</app-ga-results>
+
+
+
+
 <!--
 <button (click)= "getAllCors()">Get alll courses</button>
 <div *ngFor ="let course of courses | async">

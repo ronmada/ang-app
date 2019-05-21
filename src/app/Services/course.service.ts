@@ -12,6 +12,7 @@ export class CourseService implements OnInit{
   //clusters: any[] = [];
   struct : Struct
   ga_result : any
+  show_ga : boolean
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
@@ -57,11 +58,12 @@ export class CourseService implements OnInit{
   }
 
   getGAresults(){
+    console.log('returner:' ,this.ga_result )
     return this.ga_result
   }
-
-  putGAresults(ga_result){
-    this.ga_result = ga_result
+  putGAresult(garesult){
+    this.ga_result = garesult
+    console.log('PUTGARESULT' , this.ga_result)
   }
 
   async submitGA(struct : Struct){
@@ -92,23 +94,29 @@ export class CourseService implements OnInit{
     params = params.append('courses',courses)
     console.log('clusters:', params.getAll('cluster') )
     console.log('single courses', params.getAll('courses') )
-    let someresult
     let promise = new Promise((resolve, reject) => {
       this.http.get(this.ROOT_URL_local + '/start_ga', {params})
         .toPromise()
         .then(
           res => { // Success
-            someresult = <JSON>res;
+            this.putGAresult(res)
             resolve();
 
           }
         );
     });
     await promise
+    console.log('ga_result 0:  ' , this.getGAresults())
+    console.log('ga_result 1 :  ' ,this.ga_result)
     console.log('Struct looks like this after submit:  ' ,this.struct)
-    console.log(someresult)
-    console.log(someresult.classes[1]["Class type"])
-    return someresult
+    //console.log(someresult)
+    //console.log(someresult.classes[1]["Class type"])
+    return this.getGAresults()
   }
-
+  get_show_ga_result(){
+    return this.show_ga
+  }
+  set_show_ga_result(show_ga : boolean){
+    this.show_ga = show_ga
+  }
 }

@@ -10,6 +10,8 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SubmitToGAComponent implements OnInit{
   struct : Struct
+  ga_result : any
+  show_ga : boolean = false
   aform = this.fb.group({
   })
 
@@ -19,18 +21,16 @@ export class SubmitToGAComponent implements OnInit{
     this.struct = this.courseService.getstruct()
   }
 
-  async onSubmit() {
-
-    this.courseService.submitGA(this.struct)
-    .then(
-      ga_result => {
-        this.courseService.putGAresults(ga_result)
-        console.log('GA_RESULT: ' , ga_result)
-        console.log('GA_RESULT2: ' , ga_result.classes[0])
+   onSubmit() {
+    this.courseService.submitGA(this.struct).then(
+      garesult => {
+        this.ga_result=garesult
+        console.log('GA_RESULTje: ' , this.ga_result)
+        this.toggle_ga_results_view()
       })
+  }
 
-
-  //this.ga_result = this.courseService.submitGA(this.struct)
-  //console.log('GA_RESULT: ' , this.ga_result)
+  toggle_ga_results_view(){
+    this.courseService.set_show_ga_result(!(this.show_ga))
   }
 }
