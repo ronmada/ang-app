@@ -1,6 +1,7 @@
 import { Injectable, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Struct } from "../models/Struct";
+import { GAresult } from "../models/GAresult";
 import 'rxjs/add/operator/toPromise';
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,14 @@ export class CourseService implements OnInit{
   //clusters: any[] = [];
   struct : Struct
   ga_result : any
-  show_ga : boolean
+  ga : GAresult
+  @Input ()show_ga : boolean = false
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
   constructor(private http:HttpClient)  {
-    this.struct = new Struct()
+    this.struct = new Struct();
+    this.ga = new GAresult();
   }
 
   ngOnInit(){}

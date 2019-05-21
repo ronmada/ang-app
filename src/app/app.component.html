@@ -10,13 +10,33 @@
 <app-add-course></app-add-course>
 <app-add-self-made></app-add-self-made>
 <app-submit-to-ga></app-submit-to-ga>
+<div *ngIf="courseService.get_show_ga_result(); then clickedsubmit">
+</div>
+<ng-template #clickedsubmit>
+    <app-ga-results></app-ga-results>
+</ng-template>
 
+<!--
+<app-submit-to-ga *ngIf="courseService.get_show_ga_result(); then loggedIn; else loggedOut"> </app-submit-to-ga>
+
+<ng-template #loggedIn>
+  <div>
+    Welcome back, friend.
+  </div>
+</ng-template>
+<ng-template #loggedOut>
+  <div>
+    Please friend, login.
+  </div>
+</ng-template>
+-->
+<!--
 <app-ga-results *ngIf="showMe">
     <h1> this part will be toggled by the parent component button</h1>
    showGA()
 
 </app-ga-results>
-
+-->
 
  <!--
 <app-ga-results *ngIf="showMePartially">

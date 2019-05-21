@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , OnInit, Input } from '@angular/core';
 import { Struct } from "../../models/Struct";
 import { CourseService } from '../../Services/course.service';
 import { FormBuilder } from '@angular/forms';
@@ -11,7 +11,7 @@ import { FormBuilder } from '@angular/forms';
 export class SubmitToGAComponent implements OnInit{
   struct : Struct
   ga_result : any
-  show_ga : boolean = false
+  @Input() show_ga : boolean = false
   aform = this.fb.group({
   })
 

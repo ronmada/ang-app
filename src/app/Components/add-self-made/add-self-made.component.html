@@ -1,3 +1,4 @@
+<div class="container">
 <form [formGroup]="selfmadeForm" (ngSubmit)="onSubmit()">
 
    <label>
@@ -10,6 +11,7 @@
 <p> <button type="submit" [disabled]="!selfmadeForm.valid">submit cluster</button> </p>
 
 </form>
+
 <br> <br> <br>
    <b> courses in current cluster: </b>
 <div *ngFor ="let course of smgroup ">
@@ -22,4 +24,5 @@
     <div *ngFor ="let course of cluster ">
       <p> name of the course: {{course.__Course__.course_name }} </p>   <br>
     </div>
+</div>
 </div>

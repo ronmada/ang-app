@@ -10,7 +10,7 @@ import { NameEditorComponent } from './junk/name-editor/name-editor.component';
 import { AddSelfMadeComponent } from './Components/add-self-made/add-self-made.component';
 import { SubmitToGAComponent } from './Components/submit-to-ga/submit-to-ga.component';
 import {CourseService} from './Services/course.service';
-import { GaResultsComponent } from './Components/submit-to-ga/ga-results/ga-results.component'
+import { GaResultsComponent } from './Components/ga-results/ga-results.component'
 
 @NgModule({
   declarations: [
