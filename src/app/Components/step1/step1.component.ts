@@ -58,7 +58,9 @@ export class Step1Component implements OnInit {
   next_step(){
     this.router.navigate(['/step-2']);
   }
-
+  step_1(){
+    this.router.navigate(['/step-1']);
+  }
   ngOnInit() {
   }
 

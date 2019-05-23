@@ -8,8 +8,8 @@ import { Step2Component } from './Components/step2/step2.component';
 const routes: Routes = [
   //{ path: 'courses' , component: AddCourseComponent},
   //{ path: 'selfmadecourses' , component: AddSelfMadeComponent},
-  { path: '',   redirectTo: 'step-1', pathMatch: 'full' },
   { path : 'step-1' , component: Step1Component},
+  { path: '',   redirectTo: 'step-1', pathMatch: 'full' },
   { path : 'step-2' , component: Step2Component},
   { path : 'ga-results' , component: GaResultsComponent},
   { path: '**', component: PageNotFoundComponent }
