@@ -13,7 +13,7 @@ export class Step2Component implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private courseService : CourseService,
+    public courseService : CourseService,
     private route: ActivatedRoute,
     private router: Router,
     ) { }

@@ -14,7 +14,8 @@ export class CourseService implements OnInit{
   ga_result : any
   ga : GAresult
   ga_ready : boolean = false
-  readonly ROOT_URL_local = 'http://127.0.0.1:5000'
+  //readonly ROOT_URL_local = 'http://127.0.0.1:5000'
+  readonly ROOT_URL_local = 'https://infoplus.azurewebsites.net'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
   constructor(private http:HttpClient)  {

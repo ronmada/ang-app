@@ -15,7 +15,7 @@ export class AppComponent {
   title = 'ang-app-test';
   editor: EditorType = 'name';
 
-  constructor(private courseService: CourseService) { }
+  constructor(public courseService: CourseService) { }
 
   get showNameEditor() {
     return this.editor === 'name';

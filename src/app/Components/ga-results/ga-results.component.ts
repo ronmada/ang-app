@@ -14,7 +14,7 @@ export class GaResultsComponent implements OnInit {
   @Input() ga_ready : boolean = false
 
   constructor(
-    private courseService: CourseService,
+    public courseService: CourseService,
     private route: ActivatedRoute,
     private router: Router
     ) { }

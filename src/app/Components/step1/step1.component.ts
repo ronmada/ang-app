@@ -18,14 +18,14 @@ export class Step1Component implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private courseService : CourseService,
+    public courseService : CourseService,
     private route: ActivatedRoute,
     private router: Router,
     ) { }
 
   onSubmitoneCourseform() {
     console.log("\nTrying to add a single course")
-    this.courseService.getoneCourse(this.chooseCourseForm.value.add_single_course)
+    this.courseService.getoneCourse(this.chooseCourseForm.get('add_single_course').value)
     .then(
       singleCourse => {
       this.courseService.addStructerCourses(singleCourse)
@@ -42,7 +42,7 @@ export class Step1Component implements OnInit {
 
   push_one_to_sm(){
     console.log("\nTrying to add a single course TO CLUSTER")
-    this.courseService.getoneCourse(this.chooseCourseForm.value.add_selfmade_course)
+    this.courseService.getoneCourse(this.chooseCourseForm.get('add_selfmade_course').value)
     .then(
       singleCourse_cluster => {
       //this.courseService.addStructerCourses(singleCourse_cluster)
