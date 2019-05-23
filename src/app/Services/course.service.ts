@@ -3,18 +3,17 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Struct } from "../models/Struct";
 import { GAresult } from "../models/GAresult";
 import 'rxjs/add/operator/toPromise';
+
 @Injectable({
   providedIn: 'root'
 })
 
 
 export class CourseService implements OnInit{
-  //courses : any[] =[];
-  //clusters: any[] = [];
   struct : Struct
   ga_result : any
   ga : GAresult
-  @Input ()show_ga : boolean = false
+  ga_ready : boolean = false
   readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
@@ -58,6 +57,10 @@ export class CourseService implements OnInit{
     });
     await promise
     return courseres
+  }
+
+  get_ga_ready(){
+    return this.ga_ready
   }
 
   getGAresults(){
@@ -114,12 +117,6 @@ export class CourseService implements OnInit{
     console.log('Struct looks like this after submit:  ' ,this.struct)
     //console.log(someresult)
     //console.log(someresult.classes[1]["Class type"])
-    return this.getGAresults()
-  }
-  get_show_ga_result(){
-    return this.show_ga
-  }
-  set_show_ga_result(show_ga : boolean){
-    this.show_ga = show_ga
+    this.ga_ready = true
   }
 }

@@ -1,0 +1,43 @@
+<p>
+  step1-works
+</p>
+<form [formGroup]="chooseCourseForm" (ngSubmit)="onSubmit()">
+
+  <label>
+      Single Course ID:
+      <input type="text" formControlName="add_single_course"  >
+    </label>
+  <button type="button" (click)= "onSubmitoneCourseform()">add course</button>
+
+
+    <div *ngFor ="let course of courseService.getstruct().courses ">
+    <b> courses in courses:</b>
+      name of the course: {{course.__Course__.course_name }}
+    </div>
+<div>
+    <label>
+      Group: Course ID:
+      <input type="text" formControlName="add_selfmade_course"  >
+    </label>
+</div>
+<p>  <button type="button" (click)= "push_one_to_sm()">add to cluster</button>
+
+    <div *ngFor ="let course of smgroup ">
+     <b> courses in current cluster: </b>
+  <p> name of the course: {{course.__Course__.course_name }}  <br>
+    </div>
+
+<div *ngFor ="let cluster of courseService.getstruct().clusters ">
+  <b> Cluster: </b>
+    <div *ngFor ="let course of cluster ">
+      <p> name of the course: {{course.__Course__.course_name }} </p>   <br>
+    </div>
+</div>
+<p>  <button type="button" (click)= "onSubmit_selfmadeform()">submit cluster</button>
+
+<p>  <button type="button" (click)= "next_step()">step-2</button>
+
+<p>  <button type="submit" [disabled]="!chooseCourseForm.valid">Submit to GA</button>
+
+</form>
+

@@ -1,7 +1,16 @@
 
-<h1> this part will be toggled by the parent component button</h1>
+<h2>ga-results page</h2>
+<div *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"> </div>
+<!--true statement-->
+<ng-template #ga_ready>
+  <div *ngFor ='let result of courseService.getGAresults().classes'>
+    result1: {{ result.lecturer }}   <br>
+  </div>
+</ng-template>
+<!--else statement-->
+<ng-template #ga_not_ready>
+  <div> GA is not ready</div>
+</ng-template>
 
 
-<div *ngFor ='let result of ga_result.classes'>
-  result1: {{ result.lecturer }}   <br>
-</div>
+

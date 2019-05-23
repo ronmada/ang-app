@@ -26,11 +26,8 @@ export class SubmitToGAComponent implements OnInit{
       garesult => {
         this.ga_result=garesult
         console.log('GA_RESULTje: ' , this.ga_result)
-        this.toggle_ga_results_view()
       })
   }
 
-  toggle_ga_results_view(){
-    this.courseService.set_show_ga_result(!(this.show_ga))
-  }
+  
 }

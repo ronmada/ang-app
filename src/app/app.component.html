@@ -6,15 +6,21 @@
 -->
 <!--<app-name-editor *ngIf="showNameEditor"></app-name-editor>-->
 <!--<app-name-editor></app-name-editor>-->
-
-<app-add-course></app-add-course>
-<app-add-self-made></app-add-self-made>
-<app-submit-to-ga></app-submit-to-ga>
+<nav>
+  <a routerLink="step-1" routerLinkActive="active">Step 1</a>
+  <a routerLink="step-2" routerLinkActive="active">Step 2</a>
+  <a routerLink="step-3" routerLinkActive="active">Step 3</a>
+  <a routerLink="step-4" routerLinkActive="active">Step 4</a>
+  <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
+</nav>
+<router-outlet></router-outlet>
+<!--
 <div *ngIf="courseService.get_show_ga_result(); then clickedsubmit">
 </div>
 <ng-template #clickedsubmit>
     <app-ga-results></app-ga-results>
 </ng-template>
+-->
 
 <!--
 <app-submit-to-ga *ngIf="courseService.get_show_ga_result(); then loggedIn; else loggedOut"> </app-submit-to-ga>
