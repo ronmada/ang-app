@@ -4,7 +4,11 @@
 <!--true statement-->
 <ng-template #ga_ready>
   <div *ngFor ='let result of courseService.getGAresults().classes'>
-    result1: {{ result.lecturer }}   <br>
+      result: id:{{result.c_ID}} lecturer: {{ result.lecturer }}   <br>
+      <div *ngFor ='let lect of result.lectures'>
+         start time: {{ lect.Start_time }} <br>
+         end time: {{ lect.End_time}} <br>
+        </div>
   </div>
 </ng-template>
 <!--else statement-->
