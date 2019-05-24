@@ -112,17 +112,26 @@ export class CourseService implements OnInit{
           dayoff = false
       }
       if (dayoff== true){
-        daysoff= daysoff +' '+ i
+        if(daysoff == '')
+        {
+          daysoff= daysoff+ i
+        }
+        else
+          daysoff= daysoff +' '+ i
       }
       else{
         for (var j =0; j<13;j++){
-          if (this.clicked[i*13+j]==true)
-          windows = windows +' ' + "("+i+","+j+")"
+          if (this.clicked[i*13+j]==true){
+            if (windows = '')
+              windows = windows + "("+i+","+j+")"
+            else
+              windows = windows +' ' + "("+i+","+j+")"
+          }
+         
         }
       }
     }
-    params = params.append('specific_windows',windows)
-    params = params.append('specific_windows',daysoff)
+    
 
     let courses = ''
     for (let course of struct.courses){
@@ -134,8 +143,12 @@ export class CourseService implements OnInit{
       }
     }
     params = params.append('courses',courses)
+    params = params.append('specific_windows',windows)
+    params = params.append('specific_days_off',daysoff)
     console.log('clusters:', params.getAll('cluster') )
     console.log('single courses', params.getAll('courses') )
+    console.log('specific_windows', params.getAll('specific_windows') )
+    console.log('specific_days_off', params.getAll('specific_days_off') )
     let promise = new Promise((resolve, reject) => {
       this.http.get(this.ROOT_URL_local + '/start_ga', {params})
         .toPromise()
