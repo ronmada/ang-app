@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { GaResultsComponent } from './Components/ga-results/ga-results.component';
 import { Step1Component } from './Components/step1/step1.component';
 import { Step2Component } from './Components/step2/step2.component';
+import { Step3Component } from './Components/step3/step3.component';
 
 const routes: Routes = [
   //{ path: 'courses' , component: AddCourseComponent},
@@ -12,7 +13,9 @@ const routes: Routes = [
   { path: '',   redirectTo: 'step-1', pathMatch: 'full' },
   { path : 'step-2' , component: Step2Component},
   { path : 'ga-results' , component: GaResultsComponent},
+  { path : 'step-3' , component: Step3Component},
   { path: '**', component: PageNotFoundComponent }
+ 
 
 ];
 
@@ -21,4 +24,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [Step1Component , Step2Component , GaResultsComponent  , PageNotFoundComponent]
+export const routingComponents = [Step1Component , Step2Component , GaResultsComponent  , PageNotFoundComponent,Step3Component]

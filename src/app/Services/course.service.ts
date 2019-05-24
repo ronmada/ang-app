@@ -14,6 +14,7 @@ export class CourseService implements OnInit{
   ga_result : any
   ga : GAresult
   ga_ready : boolean = false
+  clicked: boolean[] = new Array(64)
   //readonly ROOT_URL_local = 'http://127.0.0.1:5000'
   readonly ROOT_URL_local = 'https://infoplus.azurewebsites.net'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
@@ -23,7 +24,20 @@ export class CourseService implements OnInit{
     this.ga = new GAresult();
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    for(var i = 0;i<this.clicked.length;i++) { 
+      this.clicked[i] = false 
+    }
+  }
+  get_window(id){
+    return (this.clicked[id])
+  }
+  set_window(id){
+    this.clicked[id]=!this.clicked[id]
+  }
+  set_window_bool(id,bool){
+    this.clicked[id]=bool
+  }
 
   getstruct(){
     return this.struct

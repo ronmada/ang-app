@@ -12,6 +12,7 @@ import {CourseService} from './Services/course.service';
   declarations: [
     AppComponent,
     routingComponents,
+  
   ],
   imports: [
     BrowserModule,
