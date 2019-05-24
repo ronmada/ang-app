@@ -15,8 +15,8 @@ export class CourseService implements OnInit{
   ga : GAresult
   ga_ready : boolean = false
   clicked: boolean[] = new Array(64)
-  //readonly ROOT_URL_local = 'http://127.0.0.1:5000'
-  readonly ROOT_URL_local = 'https://infoplus.azurewebsites.net'
+  readonly ROOT_URL_local = 'http://127.0.0.1:5000'
+  //readonly ROOT_URL_local = 'https://infoplus.azurewebsites.net'
   readonly ROOT_URL = 'https://infoplus.azurewebsites.net'
 
   constructor(private http:HttpClient)  {
@@ -42,6 +42,7 @@ export class CourseService implements OnInit{
   getstruct(){
     return this.struct
   }
+  
 
   addStructerCourses(course){
       this.struct.courses.push(course)
@@ -102,6 +103,26 @@ export class CourseService implements OnInit{
       }
       params = params.append('cluster',clus)
     }
+    var daysoff = ''
+    var windows = ''
+    for (var i = 0; i < 5 ; i++){
+      var dayoff=true
+      for (var j =0; j<13;j++){
+        if (this.clicked[i*13+j]==false)
+          dayoff = false
+      }
+      if (dayoff== true){
+        daysoff= daysoff +' '+ i
+      }
+      else{
+        for (var j =0; j<13;j++){
+          if (this.clicked[i*13+j]==true)
+          windows = windows +' ' + "("+i+","+j+")"
+        }
+      }
+    }
+    params = params.append('specific_windows',windows)
+    params = params.append('specific_windows',daysoff)
 
     let courses = ''
     for (let course of struct.courses){
