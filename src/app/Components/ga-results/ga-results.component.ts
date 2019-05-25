@@ -24,7 +24,7 @@ export class GaResultsComponent implements OnInit {
     private router: Router
     ) { }
 
-  ngOnInit() {
+     ngOnInit() {
     var ga_json = this.courseService.getGAresults()
     var cos = this.courseService
     var rows = new Array()
@@ -41,17 +41,18 @@ export class GaResultsComponent implements OnInit {
           end_min = 50
       }
       var row = ['','','','','',''+row_hour + ':' + start_min + ' - ' + (row_hour+1)+ ':' + end_min]
-      ga_json.classes.forEach(function(clas) {
-        clas.lectures.forEach(async function(lect) {
+      ga_json.classes.forEach( function(clas) {
+        clas.lectures.forEach( function(lect) {
 
            if ((lect.Start_time -8) <= hour &&  (lect.End_time -8) > hour ){
             var c_name='no name'
             cos.getoneCourse(clas.c_ID)
             .then(
               singleCourse => {
-                c_name = singleCourse.course_name
+                c_name = singleCourse.__Course__.course_name
               })
-            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' +' ' +' '+ clas.Class_type + ' ' + lect.Lecturer_name
+              c_name
+            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' +c_name +' '+ clas.Class_type + ' ' + lect.Lecturer_name 
           }
         });
       });
