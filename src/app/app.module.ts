@@ -6,6 +6,8 @@ import { AppRoutingModule , routingComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CourseService} from './Services/course.service';
+import { MatTableModule } from  '@angular/material';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {CourseService} from './Services/course.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]
