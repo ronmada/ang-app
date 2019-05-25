@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Struct } from "../models/Struct";
 import { GAresult } from "../models/GAresult";
 import 'rxjs/add/operator/toPromise';
+import { zip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class CourseService implements OnInit{
   struct : Struct
+  clicked_was_set : boolean = false
   ga_result : any
   ga : GAresult
   ga_ready : boolean = false
@@ -30,8 +32,12 @@ export class CourseService implements OnInit{
     }
   }
   set_clicked_array_to_false(){
-    for(var i = 0;i<this.clicked.length;i++) { 
-      this.clicked[i] = false 
+    if (this.clicked_was_set == false)
+    {
+      for(var i = 0;i<this.clicked.length;i++) { 
+        this.clicked[i] = false 
+      }
+      this.clicked_was_set = true
     }
   }
   get_window(id){
@@ -118,17 +124,17 @@ export class CourseService implements OnInit{
       }
       if (dayoff== true){
         if(daysoff == '')
-          daysoff= daysoff+ i
+          daysoff= daysoff+ (4-i)
         else
-          daysoff= daysoff +' '+ i
+          daysoff= daysoff +' '+ (4-i)
       }
       else{
         for (var j =0; j<13;j++){
           if (this.clicked[i*13+j]==true){
             if (windows == '')
-              windows = windows + "("+i+","+j+")"
+              windows = windows + "("+(4-i)+","+j+")"
             else
-              windows = windows +' ' + "("+i+","+j+")"
+              windows = windows +' ' + "("+(4-i)+","+j+")"
           }
          
         }
@@ -146,11 +152,14 @@ export class CourseService implements OnInit{
       }
     }
     params = params.append('courses',courses)
-    params = params.append('specific_windows',windows)
-    params = params.append('specific_days_off',daysoff)
+    if (windows!= '')
+      params = params.append('specific_windows',windows)
+    if (daysoff!= '')
+      params = params.append('specific_days_off',daysoff)
     console.log('array of clicked ', this.clicked )
     console.log('clusters:', params.getAll('cluster') )
     console.log('single courses', params.getAll('courses') )
+    
     console.log('specific_windows', params.getAll('specific_windows') )
     console.log('specific_days_off', params.getAll('specific_days_off') )
     let promise = new Promise((resolve, reject) => {
