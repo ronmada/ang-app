@@ -16,10 +16,24 @@
 
   <button type="button" (click)= "push_one_to_sm()">add to cluster</button>
 
+<table class="table-success">
+  <tbody>
+    <tr *ngFor ="let course of smgroup; let n = index ">
+      {{course.__Course__.id }}
+      {{course.__Course__.course_name }}
+        <button type="button" (click)= "remove_temp_course_from_cluster(n)" class="btn btn-danger">Remove Course</button>
+
+        </tr>
+  </tbody>
+</table>
+
+
     <div *ngFor ="let course of smgroup ">
      <b> courses in current cluster: </b>
   <p> name of the course: {{course.__Course__.course_name }}  <br>
     </div>
+
+
 
 <div *ngFor ="let cluster of courseService.getstruct().clusters ">
   <b> Cluster: </b>
@@ -27,6 +41,8 @@
       <p> name of the course: {{course.__Course__.course_name }} </p>   <br>
     </div>
 </div>
+
+
 <p>  <button type="button" (click)= "onSubmit_selfmadeform()">submit cluster</button>
 
 <p>  <button type="button" (click)= "step_1()">step-1 (test)</button>
