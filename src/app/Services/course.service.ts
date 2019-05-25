@@ -29,6 +29,11 @@ export class CourseService implements OnInit{
       this.clicked[i] = false 
     }
   }
+  set_clicked_array_to_false(){
+    for(var i = 0;i<this.clicked.length;i++) { 
+      this.clicked[i] = false 
+    }
+  }
   get_window(id){
     return (this.clicked[id])
   }
@@ -113,16 +118,14 @@ export class CourseService implements OnInit{
       }
       if (dayoff== true){
         if(daysoff == '')
-        {
           daysoff= daysoff+ i
-        }
         else
           daysoff= daysoff +' '+ i
       }
       else{
         for (var j =0; j<13;j++){
           if (this.clicked[i*13+j]==true){
-            if (windows = '')
+            if (windows == '')
               windows = windows + "("+i+","+j+")"
             else
               windows = windows +' ' + "("+i+","+j+")"
@@ -145,6 +148,7 @@ export class CourseService implements OnInit{
     params = params.append('courses',courses)
     params = params.append('specific_windows',windows)
     params = params.append('specific_days_off',daysoff)
+    console.log('array of clicked ', this.clicked )
     console.log('clusters:', params.getAll('cluster') )
     console.log('single courses', params.getAll('courses') )
     console.log('specific_windows', params.getAll('specific_windows') )

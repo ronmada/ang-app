@@ -18,7 +18,7 @@ export class Step3Component implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.courseService.set_clicked_array_to_false()
   }
 
   clicked(id){
