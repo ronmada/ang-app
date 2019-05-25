@@ -25,6 +25,7 @@ export class Step1Component implements OnInit {
     ) {   }
 
   ngOnInit() {
+    this.courseService.set_clicked_array_to_false()
 
   }
 
