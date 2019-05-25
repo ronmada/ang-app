@@ -27,15 +27,15 @@ export class CourseService implements OnInit{
   }
 
   ngOnInit(){
-    for(var i = 0;i<this.clicked.length;i++) { 
-      this.clicked[i] = false 
+    for(var i = 0;i<this.clicked.length;i++) {
+      this.clicked[i] = false
     }
   }
   set_clicked_array_to_false(){
     if (this.clicked_was_set == false)
     {
-      for(var i = 0;i<this.clicked.length;i++) { 
-        this.clicked[i] = false 
+      for(var i = 0;i<this.clicked.length;i++) {
+        this.clicked[i] = false
       }
       this.clicked_was_set = true
     }
@@ -53,7 +53,7 @@ export class CourseService implements OnInit{
   getstruct(){
     return this.struct
   }
-  
+
 
   addStructerCourses(course){
       this.struct.courses.push(course)
@@ -136,11 +136,11 @@ export class CourseService implements OnInit{
             else
               windows = windows +' ' + "("+(4-i)+","+j+")"
           }
-         
+
         }
       }
     }
-    
+
 
     let courses = ''
     for (let course of struct.courses){
@@ -159,7 +159,7 @@ export class CourseService implements OnInit{
     console.log('array of clicked ', this.clicked )
     console.log('clusters:', params.getAll('cluster') )
     console.log('single courses', params.getAll('courses') )
-    
+
     console.log('specific_windows', params.getAll('specific_windows') )
     console.log('specific_days_off', params.getAll('specific_days_off') )
     let promise = new Promise((resolve, reject) => {
@@ -181,4 +181,18 @@ export class CourseService implements OnInit{
     //console.log(someresult.classes[1]["Class type"])
     this.ga_ready = true
   }
+
+
+  remove_single_Course(index){
+    this.struct.courses.splice(index,1)
+  }
+
+  remove_one_cluster(index){
+    this.struct.clusters.splice(index,1)
+  }
+  remove_one_course_from_cluster(index,course){
+    this.struct.clusters[index].splice(course,1)
+  }
+
+
 }

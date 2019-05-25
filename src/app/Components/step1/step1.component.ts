@@ -15,13 +15,18 @@ export class Step1Component implements OnInit {
     add_selfmade_course: ['11005']
   })
   smgroup: any[] = []
+  cluster_show_booly : boolean [] =[]
 
   constructor(
     private fb: FormBuilder,
     public courseService : CourseService,
     private route: ActivatedRoute,
     private router: Router,
-    ) { }
+    ) {   }
+
+  ngOnInit() {
+
+  }
 
   onSubmitoneCourseform() {
     console.log("\nTrying to add a single course")
@@ -36,6 +41,7 @@ export class Step1Component implements OnInit {
   onSubmit_selfmadeform(){
     //push the current cluster to the clusters
     this.courseService.addStructerCluster(this.smgroup)
+    this.cluster_show_booly.push(false)
     //empty current cluster
     this.smgroup=[]
   }
@@ -61,7 +67,32 @@ export class Step1Component implements OnInit {
   step_1(){
     this.router.navigate(['/step-1']);
   }
-  ngOnInit() {
+  remove_singlecourse_fromlist(index){
+    console.log("i is:" , index)
+    console.log("Before: " , this.courseService.getstruct().courses)
+    this.courseService.remove_single_Course(index)
+    console.log("after: " , this.courseService.getstruct().courses)
+  }
+
+  remove_clusterfromlist(index){
+    this.cluster_show_booly.pop()
+    console.log("j is:" , index)
+    console.log("Before: " , this.courseService.getstruct().clusters)
+    this.courseService.remove_one_cluster(index)
+    console.log("after: " , this.courseService.getstruct().clusters)
+  }
+
+  remove_coursefromcluster(index , course){
+    console.log("Before: " , this.courseService.getstruct().clusters)
+    this.courseService.remove_one_course_from_cluster(index,course)
+    console.log("after: " , this.courseService.getstruct().clusters)
+    if ( !this.courseService.getstruct().clusters[index].length){
+      this.cluster_show_booly.pop()
+      this.courseService.remove_one_cluster(index)
+    }
+  }
+  toggleshowcluster(index){
+  this.cluster_show_booly[index] = !this.cluster_show_booly[index]
   }
 
 }

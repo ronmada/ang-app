@@ -14,7 +14,7 @@ import { MatTableModule } from  '@angular/material';
   declarations: [
     AppComponent,
     routingComponents,
-  
+
   ],
   imports: [
     BrowserModule,

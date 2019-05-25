@@ -1,6 +1,3 @@
-<p>
-  step1-works
-</p>
 <form [formGroup]="chooseCourseForm" (ngSubmit)="onSubmit()">
 
   <label>
@@ -9,26 +6,15 @@
     </label>
   <button type="button" class="btn btn-warning" (click)= "onSubmitoneCourseform()">add a wanker course</button>
 
-
-    <div *ngFor ="let course of courseService.getstruct().courses ">
-    <b> courses in courses:</b>
-      name of the course: {{course.__Course__.course_name }}
-    </div>
 <div>
     <label>
       Group: Course ID:
-      <input type="text" formControlName="add_selfmade_course"  >
+      <input type="text" formControlName="add_selfmade_course">
     </label>
 </div>
 
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h4 class="card-title">Primary card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>
-<p>  <button type="button" (click)= "push_one_to_sm()">add to cluster</button>
+
+  <button type="button" (click)= "push_one_to_sm()">add to cluster</button>
 
     <div *ngFor ="let course of smgroup ">
      <b> courses in current cluster: </b>
@@ -50,26 +36,31 @@
 <p>  <button type="submit" [disabled]="!chooseCourseForm.valid">Submit to GA</button>
 
 </form>
+
 <table class="table table-hover">
-  <thead>
-  </thead>
   <tbody>
-<tr>
+    <tr *ngFor ="let course of courseService.getstruct().courses; let i = index ">
+      <td>
+      {{course.__Course__.id }}
+      {{course.__Course__.course_name }}
+      <button type="button" (click)= "remove_singlecourse_fromlist(i)" class="btn btn-danger">Remove course</button>
+      </td>
+    </tr>
 
-  <div *ngFor ="let course of courseService.getstruct().courses ">
-  <td type="button" class="btn btn-danger">-</td>
-     <td>   {{course.__Course__.id }} </td>
-     <td>{{course.__Course__.course_name }}<td>
-
-    </div>
-<!--
-    <td> <div *ngFor ="let course of courseService.getstruct().courses ">
-       {{course.__Course__.course_name }}
-          <button type="button" class="btn btn-danger">-</button>
-    </div></td>
-    -->
-       </tr>
-     </tbody>
+    <tr *ngFor ="let cluster of courseService.getstruct().clusters; let j = index ">
+      <td>
+        <button type="button" (click)= "toggleshowcluster(j)" class="btn btn-info">Cluster {{ j + 1 }} </button>
+        <button type="button" (click)= "remove_clusterfromlist(j)" class="btn btn-danger">Remove cluster</button>
+          <div *ngIf ="cluster_show_booly[j]">
+            <div *ngFor ="let course of cluster; let k = index">
+              {{course.__Course__.id }}
+              {{course.__Course__.course_name }}
+              <button type="button" (click)= "remove_coursefromcluster(j,k)" class="btn btn-danger">Remove course</button>
+            </div>
+          </div>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 
