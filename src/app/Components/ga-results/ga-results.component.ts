@@ -41,9 +41,16 @@ export class GaResultsComponent implements OnInit {
       }
       var row = ['','','','','',''+row_hour + ':' + start_min + ' - ' + (row_hour+1)+ ':' + end_min]
       ga_json.classes.forEach(function(clas) {
-        clas.lectures.forEach(function(lect) {
-          if ((lect.Start_time -8) <= hour &&  (lect.End_time -8) > hour ){
-            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' + clas.Class_type + ' ' + lect.Day + ' ' + lect.Start_time + ' ' + lect.End_time
+        clas.lectures.forEach(async function(lect) {
+
+           if ((lect.Start_time -8) <= hour &&  (lect.End_time -8) > hour ){
+            var c_name='no name'
+            this.courseService.getoneCourse(clas.c_ID)
+            .then(
+              singleCourse => {
+                c_name = singleCourse.course_name
+              })
+            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' +' ' +' '+ clas.Class_type + ' ' + lect.Lecturer_name
           }
         });
       });
