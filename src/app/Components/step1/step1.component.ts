@@ -30,7 +30,6 @@ export class Step1Component implements OnInit {
   }
 
   onSubmitoneCourseform() {
-    console.log("\nTrying to add a single course")
     this.courseService.getoneCourse(this.chooseCourseForm.get('add_single_course').value)
     .then(
       singleCourse => {
@@ -48,7 +47,6 @@ export class Step1Component implements OnInit {
   }
 
   push_one_to_sm(){
-    console.log("\nTrying to add a single course TO CLUSTER")
     this.courseService.getoneCourse(this.chooseCourseForm.get('add_selfmade_course').value)
     .then(
       singleCourse_cluster => {
@@ -69,25 +67,21 @@ export class Step1Component implements OnInit {
     this.router.navigate(['/step-1']);
   }
   remove_singlecourse_fromlist(index){
-    console.log("i is:" , index)
-    console.log("Before: " , this.courseService.getstruct().courses)
     this.courseService.remove_single_Course(index)
     console.log("after: " , this.courseService.getstruct().courses)
   }
 
   remove_clusterfromlist(index){
     this.cluster_show_booly.pop()
-    console.log("j is:" , index)
-    console.log("Before: " , this.courseService.getstruct().clusters)
     this.courseService.remove_one_cluster(index)
     console.log("after: " , this.courseService.getstruct().clusters)
   }
 
   remove_coursefromcluster(index , course){
-    console.log("Before: " , this.courseService.getstruct().clusters)
     this.courseService.remove_one_course_from_cluster(index,course)
     console.log("after: " , this.courseService.getstruct().clusters)
-    if ( !this.courseService.getstruct().clusters[index].length){
+    if ( !this.courseService.getstruct().clusters[index].length)
+    {
       this.cluster_show_booly.pop()
       this.courseService.remove_one_cluster(index)
     }
@@ -95,5 +89,7 @@ export class Step1Component implements OnInit {
   toggleshowcluster(index){
   this.cluster_show_booly[index] = !this.cluster_show_booly[index]
   }
-
+  remove_temp_course_from_cluster(index){
+    this.smgroup.splice(index,1)
+  }
 }
