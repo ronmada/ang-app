@@ -26,6 +26,7 @@ export class GaResultsComponent implements OnInit {
 
   ngOnInit() {
     var ga_json = this.courseService.getGAresults()
+    var cos = this.courseService
     var rows = new Array()
     for(var hour = 0 ; hour<13;hour++){
       var row_hour=hour+8
@@ -45,7 +46,7 @@ export class GaResultsComponent implements OnInit {
 
            if ((lect.Start_time -8) <= hour &&  (lect.End_time -8) > hour ){
             var c_name='no name'
-            this.courseService.getoneCourse(clas.c_ID)
+            cos.getoneCourse(clas.c_ID)
             .then(
               singleCourse => {
                 c_name = singleCourse.course_name
