@@ -1,5 +1,47 @@
 
 <h2>ga-results page</h2>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+
+<ng-container  matColumnDef="0">
+    <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson[0]}}</mat-cell>
+</ng-container>
+
+<ng-container  matColumnDef="1">
+    <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson[1]}}</mat-cell>
+</ng-container>
+
+<ng-container  matColumnDef="2">
+    <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson[2]}}</mat-cell>
+</ng-container>
+
+<ng-container  matColumnDef="3">
+    <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson[3]}}</mat-cell>
+</ng-container>
+
+<ng-container  matColumnDef="4">
+    <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson[4]}}</mat-cell>
+</ng-container>
+
+<ng-container  matColumnDef="hour">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson[5]}}</mat-cell>
+</ng-container>
+
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+
+
 <div *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"> </div>
 <!--true statement-->
 <ng-template #ga_ready>
