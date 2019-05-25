@@ -151,7 +151,8 @@ export class CourseService implements OnInit{
         courses = courses + ' ' + course.__Course__.id
       }
     }
-    params = params.append('courses',courses)
+    if (courses !='')
+      params = params.append('courses',courses)
     if (windows!= '')
       params = params.append('specific_windows',windows)
     if (daysoff!= '')
