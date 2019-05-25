@@ -50,4 +50,28 @@
 <p>  <button type="submit" [disabled]="!chooseCourseForm.valid">Submit to GA</button>
 
 </form>
+<table class="table table-hover">
+  <thead>
+  </thead>
+  <tbody>
+<tr>
+
+  <div *ngFor ="let course of courseService.getstruct().courses ">
+  <td type="button" class="btn btn-danger">-</td>
+     <td>   {{course.__Course__.id }} </td>
+     <td>{{course.__Course__.course_name }}<td>
+
+    </div>
+<!--
+    <td> <div *ngFor ="let course of courseService.getstruct().courses ">
+       {{course.__Course__.course_name }}
+          <button type="button" class="btn btn-danger">-</button>
+    </div></td>
+    -->
+       </tr>
+     </tbody>
+</table>
+
+
+
 
