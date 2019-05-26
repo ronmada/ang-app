@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GaResultsComponent } from './ga-results.component';
+import { Step3Component } from '../Components/step3/step3.component';
 
-describe('GaResultsComponent', () => {
-  let component: GaResultsComponent;
-  let fixture: ComponentFixture<GaResultsComponent>;
+describe('Step3Component', () => {
+  let component: Step3Component;
+  let fixture: ComponentFixture<Step3Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GaResultsComponent ]
+      declarations: [ Step3Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GaResultsComponent);
+    fixture = TestBed.createComponent(Step3Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
