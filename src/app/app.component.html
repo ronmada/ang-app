@@ -1,4 +1,22 @@
 <h1>InfoPlus+</h1>
+
+<div class="grid-container">
+  <div class="item1">Header</div>
+
+  <div class="item3">
+    <nav>
+  <a routerLink="step-1" routerLinkActive="active">Step 1</a>
+  <a routerLink="step-2" routerLinkActive="active">Step 2</a>
+  <a routerLink="step-3" routerLinkActive="active">Step 3</a>
+  <a routerLink="step-4" routerLinkActive="active">Step 4</a>
+  <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
+    </nav>
+  </div>
+  <div class="item4">
+    <router-outlet></router-outlet>
+    </div>
+</div>
+
 <!--
 <nav>
   <a (click)="toggleEditor('name')">Search by Course ID</a>
@@ -6,14 +24,7 @@
 -->
 <!--<app-name-editor *ngIf="showNameEditor"></app-name-editor>-->
 <!--<app-name-editor></app-name-editor>-->
-<nav>
-  <a routerLink="step-1" routerLinkActive="active">Step 1</a>
-  <a routerLink="step-2" routerLinkActive="active">Step 2</a>
-  <a routerLink="step-3" routerLinkActive="active">Step 3</a>
-  <a routerLink="step-4" routerLinkActive="active">Step 4</a>
-  <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
-</nav>
-<router-outlet></router-outlet>
+
 <!--
 <div *ngIf="courseService.get_show_ga_result(); then clickedsubmit">
 </div>
@@ -36,77 +47,7 @@
   </div>
 </ng-template>
 -->
-<!--
-<app-ga-results *ngIf="showMe">
-    <h1> this part will be toggled by the parent component button</h1>
-   showGA()
-
-</app-ga-results>
--->
-
- <!--
-<app-ga-results *ngIf="showMePartially">
-
-</app-ga-results>
 
 
 
 
-<!--
-<button (click)= "getAllCors()">Get alll courses</button>
-<div *ngFor ="let course of courses | async">
-   {{course.__Course__.id | json}}
-</div>
-<br>
-<form>
-    <div>
-    <label>CourseID:</label>
-    <input type="text" name="CourseID"/>
-  </div>
-  <div>
-    <button type="submit">Search</button>
-    <button type="button">Print to console</button>
-  </div>
-</form>
-<br>
-<button (click)= "getOneCourse()">one course</button>
-<div *ngFor ="let acourse of bb | async">
-   {{acourse.__Course__.groups[0].__Course_Group__.lectures[0].__Kita__.lectures[0].__Lect__.end_time| json}}
-</div>
-<br>
-<button (click)= "testconnection()">TESTER AZURE BUTTON</button>
-<div>
-
-</div>
-<button (click)= "testconnectionlocal()">TESTER LOCAL BUTTON</button>
-<div>
-
-</div>
-<button (click)= "testor()">Testor</button>
-<div>
-
-</div>
-
-<router-outlet></router-outlet>
--->
-
-
-
-
-<!--
-async onSubmit() {
-    let params= new HttpParams()
-    for (let cluster of this.clusters){
-      let clus =''
-      for (let course of cluster){
-        if (clus ==''){
-          clus = clus + course.Course.id
-        }
-        else{
-          clus = clus + ' ' + course.Course.id
-        }
-
-      }
-      params = params.append('cluster',clus)
-    }
-    -->

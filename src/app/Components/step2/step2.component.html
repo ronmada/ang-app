@@ -1,3 +1,100 @@
-<p>
-  step2 works!
-</p>
+<h1>Grid Layout</h1>
+
+<p>This grid layout contains six columns and three rows:</p>
+
+<div class="grid-container">
+  <div class="item1">Header</div>
+
+  <div class="item3">Main</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!--
+<form [formGroup]="chooseCourseForm" (ngSubmit)="onSubmit()">
+  <div class="item1">
+    <label>
+      Single Course ID:
+      <input type="text" formControlName="add_single_course">
+    </label>
+      <button type="button" class="btn btn-warning" (click)="onSubmitoneCourseform()">add a wanker course</button>
+  </div>
+-->
+<!--
+    <label>
+        Single Course ID:
+        <input type="text" formControlName="add_single_course">
+    </label>
+    <button type="button" class="btn btn-warning" (click)="onSubmitoneCourseform()">add a wanker course</button>
+-->
+<!--
+  <div class="item2">
+
+        <label>
+            Group: Course ID:
+            <input type="text" formControlName="add_selfmade_course">
+        </label>
+
+
+    <button type="button" (click)="push_one_to_sm()">add to cluster</button>
+
+    <table class="table-success">
+        <tbody>
+            <tr *ngFor="let course of smgroup; let n = index ">
+                {{course.__Course__.id }} {{course.__Course__.course_name }}
+                <button type="button" (click)="remove_temp_course_from_cluster(n)" class="btn btn-danger">Remove Course</button>
+
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+
+
+
+
+    <p>
+        <button type="button" (click)="onSubmit_selfmadeform()">submit cluster</button>
+
+        <p>
+            <button type="button" (click)="step_1()">step-1 (test)</button>
+
+            <p>
+                <button type="button" (click)="next_step()">step-2</button>
+
+                <p>
+                    <button type="submit" [disabled]="!chooseCourseForm.valid">Submit to GA</button>
+
+</form>
+
+<table class="table table-hover">
+    <tbody>
+        <tr *ngFor="let course of courseService.getstruct().courses; let i = index ">
+            <td>
+                {{course.__Course__.id }} {{course.__Course__.course_name }}
+                <button type="button" (click)="remove_singlecourse_fromlist(i)" class="btn btn-danger">Remove course</button>
+            </td>
+        </tr>
+
+        <tr *ngFor="let cluster of courseService.getstruct().clusters; let j = index ">
+            <td>
+                <button type="button" (click)="toggleshowcluster(j)" class="btn btn-info">Cluster {{ j + 1 }} </button>
+                <button type="button" (click)="remove_clusterfromlist(j)" class="btn btn-danger">Remove cluster</button>
+                <div *ngIf="cluster_show_booly[j]">
+                    <div *ngFor="let course of cluster; let k = index">
+                        {{course.__Course__.id }} {{course.__Course__.course_name }}
+                        <button type="button" (click)="remove_coursefromcluster(j,k)" class="btn btn-danger">Remove course</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+-->

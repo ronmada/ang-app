@@ -1,6 +1,45 @@
-/*
-.card text-white bg-primary mb-3{
-  right : 50px;
-  border: 10px;
+
+form {
+  /*grid-template-columns: 200px 1fr;*/
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    'single_course_form group_form group_form'
+    'single_course_form group_form_temp group_form_temp_button'
+    'results_form results_form results_form';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
 }
-*/
+form > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px;
+  font-size: auto;
+}
+
+form .item1 {
+  grid-area: single_course_form;
+}
+form .item2 {
+   grid-area: group_form;
+   background-color: red;
+  }
+form .item3 {
+  grid-area: group_form_temp;
+}
+form .item4 button {
+  background-color: yellow;
+
+  padding: 20px;
+  grid-gap: 0px;
+  grid-area: group_form_temp_button;
+}
+form .item5 {
+  grid-area: results_form;
+}
+
+.butt{
+  float : right;
+}

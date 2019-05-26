@@ -1,0 +1,29 @@
+.item1 {
+  grid-area: header;
+}
+.item3 {
+   grid-area: main;
+  }
+.item4 {
+  grid-area: _content_;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 5% 5% auto;
+  grid-template-areas:
+    'header'
+    'main'
+    '_content_';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: auto;
+}

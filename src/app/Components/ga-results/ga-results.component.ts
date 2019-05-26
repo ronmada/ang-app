@@ -13,7 +13,7 @@ export class GaResultsComponent implements OnInit {
   ga_result : any
   ga : GAresult
   displayedColumns  :  string[] = ['0', '1', '2', '3', '4','hour'];
-  
+
   test = ['8:30','sagi','','sagiiii','sasa','a','']
   dataSource = new MatTableDataSource(this.test)
   @Input() ga_ready : boolean = false
@@ -24,7 +24,7 @@ export class GaResultsComponent implements OnInit {
     private router: Router
     ) { }
 
-     ngOnInit() {
+  ngOnInit() {
     var ga_json = this.courseService.getGAresults()
     var cos = this.courseService
     var rows = new Array()
@@ -52,7 +52,7 @@ export class GaResultsComponent implements OnInit {
                 c_name = singleCourse.__Course__.course_name
               })
               c_name
-            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' +c_name +' '+ clas.Class_type + ' ' + lect.Lecturer_name 
+            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' +c_name +' '+ clas.Class_type + ' ' + lect.Lecturer_name
           }
         });
       });

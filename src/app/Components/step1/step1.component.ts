@@ -16,7 +16,7 @@ export class Step1Component implements OnInit {
   })
   smgroup: any[] = []
   cluster_show_booly : boolean [] =[]
-
+  group_submit_button_booly :boolean = false
   constructor(
     private fb: FormBuilder,
     public courseService : CourseService,
@@ -44,14 +44,15 @@ export class Step1Component implements OnInit {
     this.cluster_show_booly.push(false)
     //empty current cluster
     this.smgroup=[]
+    this.group_submit_button_booly=false
   }
 
   push_one_to_sm(){
     this.courseService.getoneCourse(this.chooseCourseForm.get('add_selfmade_course').value)
     .then(
       singleCourse_cluster => {
-      //this.courseService.addStructerCourses(singleCourse_cluster)
       this.smgroup.push(singleCourse_cluster)
+      this.group_submit_button_booly = true
       console.log('added one course to CLUTSER was successful... ID:  ', singleCourse_cluster.__Course__.id,
       'Coursename:  ' , singleCourse_cluster.__Course__.course_name)
       })
@@ -91,5 +92,7 @@ export class Step1Component implements OnInit {
   }
   remove_temp_course_from_cluster(index){
     this.smgroup.splice(index,1)
+    if ( !this.smgroup.length)
+      this.group_submit_button_booly=false
   }
 }
