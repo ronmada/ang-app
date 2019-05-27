@@ -35,6 +35,7 @@ form .item3 {
 form .item4  {
   grid-area: group_form_temp_button;
   place-self: center;
+  justify-self: start;
 }
 form .item5 {
   grid-area: results_form;
@@ -52,16 +53,46 @@ form .btn-info{
   margin-right: 1rem;
 }
 form .btn-danger{
-  font-size: 0.8rem;
+  font-size: 0.6rem;
 }
 
+.item5 .btn-danger{
+  margin-left: 10px;
+}
 
-form .table-hover td{
-
+form .table-hover{
   width: 1px;
   white-space: nowrap;
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+  border: 0.2rem solid rgba(223, 223, 37, 0.89);
+  background-color: rgb(255, 255, 0);
+
+}
+form .item3 .table-success{
+  border:0.2rem solid rgba(42, 165, 42, 0.568);
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 [hidden] {
   display: none !important;
