@@ -87,9 +87,7 @@ export class Step1Component implements OnInit {
       this.courseService.remove_one_cluster(index)
     }
   }
-  toggleshowcluster(index){
-  this.cluster_show_booly[index] = !this.cluster_show_booly[index]
-  }
+
   remove_temp_course_from_cluster(index){
     this.smgroup.splice(index,1)
     if ( !this.smgroup.length)
