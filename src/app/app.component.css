@@ -1,3 +1,6 @@
+
+@media(min-width: 768px){
+
 .item1 {
   grid-area: header;
 }
@@ -17,13 +20,14 @@
     'main'
     '_content_';
   grid-gap: 10px;
-  background-color: #2196F3;
+  /* background-color: #2196F3; */
   padding: 10px;
 }
 
 .grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  /* background-color: rgba(255, 255, 255, 0.8); */
   text-align: center;
   padding: 20px 0;
   font-size: auto;
+}
 }
