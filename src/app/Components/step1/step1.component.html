@@ -11,7 +11,9 @@
 
     <div class="item2">
         <div class="form-group">
-            <label class="col-form-label col-form-label-lg" for="inputLarge">Cluster course ID:</label>
+            <label class="col-form-label col-form-label-lg" for="inputLarge">Cluster course ID:
+               
+            </label>
             <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" formControlName="add_selfmade_course">
             <button type="button" class="btn btn-secondary" (click)="push_one_to_sm()">add to cluster</button>
         </div>
@@ -64,3 +66,6 @@
         <button type="submit" class="btn btn-primary btn-lg" [disabled]="!chooseCourseForm.valid">Submit to GA</button>
     </div>
 </form>
+<!--
+<app-combo-box [list]="itemList"></app-combo-box>
+-->

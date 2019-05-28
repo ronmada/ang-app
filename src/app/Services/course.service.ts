@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Struct } from "../models/Struct";
 import { GAresult } from "../models/GAresult";
 import 'rxjs/add/operator/toPromise';
-import { zip } from 'rxjs';
+import { StructDB } from "../models/StructDB";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import { zip } from 'rxjs';
 
 export class CourseService implements OnInit{
   struct : Struct
+  structDB : StructDB
   clicked_was_set : boolean = false
   ga_result : any
   ga : GAresult
@@ -23,6 +24,7 @@ export class CourseService implements OnInit{
 
   constructor(private http:HttpClient)  {
     this.struct = new Struct();
+    this.structDB = new StructDB();
     this.ga = new GAresult();
   }
 
@@ -31,6 +33,7 @@ export class CourseService implements OnInit{
       this.clicked[i] = false
     }
   }
+
   set_clicked_array_to_false(){
     if (this.clicked_was_set == false)
     {
@@ -40,6 +43,7 @@ export class CourseService implements OnInit{
       this.clicked_was_set = true
     }
   }
+
   get_window(id){
     return (this.clicked[id])
   }
@@ -63,6 +67,32 @@ export class CourseService implements OnInit{
   addStructerCluster(cluster){
     this.struct.clusters.push(cluster)
     console.log('clusters looks like this:' ,this.struct.clusters);
+  }
+
+  async get__all_courses(){
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(this.ROOT_URL_local + '/getallcor')
+        .toPromise()
+        .then(
+          res => { // Success
+           this.setStructDB(res);
+            resolve();
+          },
+          msg => { // Error
+          reject(msg);
+          }
+        );
+     });
+     await promise 
+  }
+
+  setStructDB(result : Object){
+    Array.prototype.push.apply(this.structDB , result)
+    console.log('array of all courses in struct DB ' , this.structDB)
+  }
+
+  getStructDB(){
+    return this.structDB
   }
 
   async getoneCourse(courseid){

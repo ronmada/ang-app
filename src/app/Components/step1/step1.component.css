@@ -10,7 +10,7 @@ form {
     'results_form results_form results_form results_form'
     'sub_button sub_button sub_button sub_button';
   grid-gap: 5px;
-
+  /* background-color: rgb(11, 224, 239); */
   padding: 10px;
 }
 form > div {
@@ -67,7 +67,7 @@ form .table-hover{
   margin-left:auto;
   margin-right:auto;
   border: 0.2rem solid rgba(223, 223, 37, 0.89);
-  background-color: rgb(255, 255, 0);
+  /* background-color: rgb(255, 255, 0); */
 
 }
 form .item3 .table-success{
@@ -97,3 +97,10 @@ form .item3 .table-success{
 [hidden] {
   display: none !important;
 }
+
+
+
+
+
+
+
