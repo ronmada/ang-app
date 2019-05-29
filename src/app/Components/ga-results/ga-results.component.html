@@ -44,16 +44,7 @@
 
 <div *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"> </div>
 <!--true statement-->
-score : {courseService.getGAresults().Score}
-<ng-template #ga_ready>
-  <div *ngFor ='let result of courseService.getGAresults().classes'>
-      result: id:{{result.c_ID}} lecturer: {{ result.lecturer }}   <br>
-      <div *ngFor ='let lect of result.lectures'>
-         start time: {{ lect.Start_time }} <br>
-         end time: {{ lect.End_time}} <br>
-        </div>
-  </div>
-</ng-template>
+score : {{courseService.getGAresults().Score}}
 <!--else statement-->
 <ng-template #ga_not_ready>
   <div> GA is not ready</div>
