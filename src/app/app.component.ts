@@ -2,6 +2,7 @@ import { Component , OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Struct } from "./models/Struct";
 import { CourseService } from './Services/course.service';
+import { Router, ActivatedRoute } from "@angular/router";
 
 
 export type EditorType = 'name';
@@ -14,11 +15,14 @@ export type EditorType = 'name';
 export class AppComponent implements OnInit  {
   title = 'ang-app-test';
   editor: EditorType = 'name';
+  constructor(
+    public courseService: CourseService,
+    private route: ActivatedRoute,
+    private router: Router
+    ) { }
 
-  constructor(public courseService: CourseService) { }
-
-  ngOnInit(){
-    this.courseService.get__all_courses()
+   ngOnInit(){
+    console.log("Server running on IP: " , this.courseService.ROOT_URL_local)
   }
   get showNameEditor() {
     return this.editor === 'name';
@@ -26,8 +30,10 @@ export class AppComponent implements OnInit  {
 
   toggleEditor(type: EditorType) {
     this.editor = type;
-    console.log( 'structDB' , this.courseService.structDB.course_arr)
   }
-
+  async onSubmitGA() {
+    await this.courseService.submitGA(this.courseService.getstruct());
+    this.router.navigate(["/ga-results"]);
+  }
 
 }

@@ -1,77 +1,101 @@
-
 form {
   /*grid-template-columns: 200px 1fr;*/
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: auto;
-  grid-template-areas:
-    'single_course_form single_course_form group_form group_form'
-    'single_course_form single_course_form group_form_temp group_form_temp_button'
-    'results_form results_form results_form results_form'
-    'sub_button sub_button sub_button sub_button';
+  /* grid-template-columns: 15% 25% 10% ;
+  grid-template-rows: 5% 50% 20% 10%; */
+  /* grid-template-areas:
+    "editors editors editors editors editors"
+    "single_course_form single_course_form single_course_form group_form group_form"
+    "single_course_form single_course_form single_course_form group_form_temp group_form_temp_button"
+    "results_form results_form results_form results_form results_form"
+    "sub_button sub_button sub_button sub_button sub_button"; */
+   grid-template-areas:
+    "editors editors editors"
+    "course_cluster cluster_group results_form"
+    "cluster_group_button cluster_group_button cluster_group_button"
+    "next_button next_button next_button";
   grid-gap: 5px;
   /* background-color: rgb(11, 224, 239); */
   padding: 10px;
+  /* align-items: center; */
 }
 form > div {
-  text-align: center;
+  /* text-align: center; */
   /* padding: 20px; */
   font-size: auto;
 }
 
+form .item9{
+  grid-area: next_button;
+}
+
+form .item10{
+  grid-area: editors;
+  /* justify-self: start; */
+  /* place-self: start; */
+}
 form .item1 {
-  grid-area: single_course_form;
+  grid-area: course_cluster;
+
   place-self: center;
+  /* display: none; */
 }
 form .item2 {
-   grid-area: group_form;
-   place-self: center;
-  }
-form .item3 {
-  grid-area: group_form_temp;
-  justify-self: end;
-  align-self: start;
-}
-form .item4  {
-  grid-area: group_form_temp_button;
+  grid-area: course_cluster;
   place-self: center;
-  justify-self: start;
+}
+form .item3 {
+  grid-area: cluster_group;
+  /* justify-self: end;
+  align-self: start; */
+}
+form .item4 {
+  grid-area: cluster_group_button;
+   align-self: center;
+   justify-self: start;
 }
 form .item5 {
   grid-area: results_form;
+  justify-self: start;
 }
 form .item6 {
   grid-area: sub_button;
   justify-self: center;
 }
-form .btn-primary{
+form .btn-primary {
   width: 300px;
 }
 
-form .btn-info{
+form .btn-info {
   font-size: 1rem;
   margin-right: 1rem;
 }
-form .btn-danger{
+form .btn-danger {
   font-size: 0.6rem;
 }
 
-.item5 .btn-danger{
+.item5 .btn-danger {
   margin-left: 10px;
 }
+.alignright{
+  justify-items: end;
+  align-items: end;
+  justify-self: end;
+  justify-content: flex-end
 
-form .table-hover{
+}
+form .table-hover {
   width: 1px;
   white-space: nowrap;
   text-align: center;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
   border: 0.2rem solid rgba(223, 223, 37, 0.89);
   /* background-color: rgb(255, 255, 0); */
-
 }
-form .item3 .table-success{
-  border:0.2rem solid rgba(42, 165, 42, 0.568);
+form .item3 .table-success {
+  border: 0.2rem solid rgba(42, 165, 42, 0.568);
 }
 
 .dropdown {
@@ -84,10 +108,9 @@ form .item3 .table-success{
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
-
 }
 
 .dropdown:hover .dropdown-content {
@@ -97,10 +120,3 @@ form .item3 .table-success{
 [hidden] {
   display: none !important;
 }
-
-
-
-
-
-
-

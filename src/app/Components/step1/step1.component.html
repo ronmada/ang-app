@@ -1,71 +1,162 @@
 <form [formGroup]="chooseCourseForm" (ngSubmit)="onSubmit()">
+  <div class="item10">
+    <nav>
+      <a (click)=toggle_editor()>{{ editor }}</a>
+    </nav>
+  </div>
 
+  <div *ngIf="editorbooly == 'single'">
     <div class="item1">
+      <div class="form-group">
+        <label class="col-form-label col-form-label-lg" style="color:rgb(102, 0, 255)" for="inputLarge"
+          >Single Course ID:</label
+        >
+        <app-combo-box [list]="courseitem"></app-combo-box>
 
-        <div class="form-group">
-            <label class="col-form-label col-form-label-lg" for="inputLarge">Single Course ID:</label>
-            <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" formControlName="add_single_course">
-            <button type="button" class="btn btn-warning" (click)="onSubmitoneCourseform()">add a course</button>
-        </div>
+        <!-- <input
+        class="form-control form-control-lg"
+        type="text"
+        placeholder=".form-control-lg"
+        formControlName="add_single_course"
+      /> -->
+        <!-- <button
+          type="button"
+          class="btn btn-warning"
+          (click)="onSubmitoneCourseform()"
+        >
+          add a course
+        </button> -->
+      </div>
     </div>
-
+  </div>
+  <div *ngIf="editorbooly == 'cluster'">
     <div class="item2">
-        <div class="form-group">
-            <label class="col-form-label col-form-label-lg" for="inputLarge">Cluster course ID:
-               
-            </label>
-            <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" formControlName="add_selfmade_course">
-            <button type="button" class="btn btn-secondary" (click)="push_one_to_sm()">add to cluster</button>
-        </div>
-    </div>
+      <div class="form-group">
+        <label class="col-form-label col-form-label-lg" style="color:rgb(168, 36, 36)" for="inputLarge"
+          >Cluster course ID:
+        </label>
+        <!-- <input
+          class="form-control form-control-lg"
+          type="text"
+          placeholder=".form-control-lg"
+          formControlName="add_selfmade_course"
+        /> -->
+        <app-combo-box [list]="courseitem"></app-combo-box>
 
+        <!-- <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="push_one_to_sm()"
+        >
+          add to cluster
+        </button> -->
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editorbooly == 'cluster'">
     <div class="item3">
-        <table class="table-success">
-            <tbody>
-                <tr *ngFor="let course of smgroup; let n = index">
-                    {{course.__Course__.id }} {{course.__Course__.course_name }}
-                    <button type="button" (click)="remove_temp_course_from_cluster(n)" class="btn btn-danger">-</button>
-                </tr>
-            </tbody>
-        </table>
+      <table class="table-success">
+        <tbody>
+          <tr *ngFor="let course of courseService.smgroup; let n = index">
+
+            {{
+              course.__Course__.id
+            }}
+            {{
+              course.__Course__.course_name
+            }}
+            <button
+              type="button"
+              (click)="remove_temp_course_from_cluster(n)"
+              class="btn btn-danger"
+            >
+              -
+            </button>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
+  </div>
+  <div *ngIf="editorbooly == 'cluster'">
     <div class="item4">
-        <button type="button" class="btn btn-success" [hidden]="!group_submit_button_booly" (click)="onSubmit_selfmadeform()">submit cluster</button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        [hidden]="!courseService.group_submit_button_booly"
+        (click)="onSubmit_selfmadeform()"
+      >
+        submit cluster
+      </button>
     </div>
+  </div>
+  <div class="item5">
+    <table class="table table-hover">
+      <tbody>
+        <tr
+          *ngFor="
+            let course of courseService.getstruct().courses;
+            let i = index
+          "
+        >
+          <td>
+            {{ course.__Course__.id }} {{ course.__Course__.course_name }}
+            <button
+              type="button"
+              (click)="remove_singlecourse_fromlist(i)"
+              class="btn btn-danger"
+            >
+              -
+            </button>
+          </td>
+        </tr>
 
-    <div class="item5">
-        <table class="table table-hover">
-            <tbody>
-                <tr *ngFor="let course of courseService.getstruct().courses; let i = index ">
-                    <td>
-                        {{course.__Course__.id }} {{course.__Course__.course_name }}
-                        <button type="button" (click)="remove_singlecourse_fromlist(i)" class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-
-                <tr *ngFor="let cluster of courseService.getstruct().clusters; let j = index ">
-                    <td>
-                        <div class="dropdown">
-                            <span class="btn btn-success dropdown-toggle">Cluster {{ j + 1 }}</span>
-                            <button type="button" (click)="remove_clusterfromlist(j)" class="btn btn-danger">-</button>
-                            <div class="dropdown-content">
-                                <div *ngFor="let course of cluster; let k = index">
-                                    {{course.__Course__.id }} {{course.__Course__.course_name }}
-                                    <button type="button" (click)="remove_coursefromcluster(j,k)" class="btn btn-danger">-</button>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--<button type="button" (click)="next_step()">step-2</button>-->
-    <div class="item6">
-        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!chooseCourseForm.valid">Submit to GA</button>
-    </div>
+        <tr
+          *ngFor="
+            let cluster of courseService.getstruct().clusters;
+            let j = index
+          "
+        >
+          <td>
+            <div class="dropdown">
+              <span class="btn btn-info dropdown-toggle"
+                >Cluster {{ j + 1 }}</span
+              >
+              <button
+                type="button"
+                (click)="remove_clusterfromlist(j)"
+                class="btn btn-danger"
+              >
+                -
+              </button>
+              <div class="dropdown-content">
+                <div *ngFor="let course of cluster; let k = index">
+                  {{ course.__Course__.id }} {{ course.__Course__.course_name }}
+                  <button
+                    type="button"
+                    (click)="remove_coursefromcluster(j, k)"
+                    class="btn btn-danger"
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="item6">
+    <button
+      type="submit"
+      class="btn btn-primary btn-lg"
+      [disabled]="!chooseCourseForm.valid"
+    >
+      Submit to GA
+    </button>
+  </div> -->
+  <div class ="item9">
+  <button type="button" class="btn btn-success" (click)="next_step()">Next</button>
+</div>
 </form>
-<!--
-<app-combo-box [list]="itemList"></app-combo-box>
--->

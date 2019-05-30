@@ -4,21 +4,24 @@
 .item1 {
   grid-area: header;
 }
-.item3 {
+.item2 {
    grid-area: main;
   }
-.item4 {
+.item3 {
   grid-area: _content_;
 }
-
+.item4 {
+  grid-area: sub_button;
+}
 
 .grid-container {
   display: grid;
-  grid-template-rows: 5% 5% auto;
+  grid-template-rows: 5% 5% auto auto;
   grid-template-areas:
     'header'
     'main'
-    '_content_';
+    '_content_'
+    'sub_button';
   grid-gap: 10px;
   /* background-color: #2196F3; */
   padding: 10px;

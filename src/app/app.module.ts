@@ -1,21 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms'
-import { AppRoutingModule , routingComponents} from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import {CourseService} from './Services/course.service';
-import { MatTableModule } from  '@angular/material';
-
-
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule  , CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { AppRoutingModule, routingComponents } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { CourseService } from "./Services/course.service";
+import { MatTableModule } from "@angular/material";
+import { ComboBoxComponent } from './Components/combo-box/combo-box.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    routingComponents,
-
-  ],
+  declarations: [AppComponent, routingComponents, ComboBoxComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +20,8 @@ import { MatTableModule } from  '@angular/material';
     MatTableModule
   ],
   providers: [CourseService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
-export class AppModule { }
+export class AppModule {}
