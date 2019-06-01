@@ -4,13 +4,8 @@ form {
   grid-template-rows: auto;
   /* grid-template-columns: 15% 25% 10% ;
   grid-template-rows: 5% 50% 20% 10%; */
-  /* grid-template-areas:
-    "editors editors editors editors editors"
-    "single_course_form single_course_form single_course_form group_form group_form"
-    "single_course_form single_course_form single_course_form group_form_temp group_form_temp_button"
-    "results_form results_form results_form results_form results_form"
-    "sub_button sub_button sub_button sub_button sub_button"; */
-   grid-template-areas:
+
+  grid-template-areas:
     "editors editors editors"
     "course_cluster cluster_group results_form"
     "cluster_group_button cluster_group_button cluster_group_button"
@@ -26,25 +21,22 @@ form > div {
   font-size: auto;
 }
 
-form .item9{
+form .item9 {
   grid-area: next_button;
 }
 
-form .item10{
+form .item10 {
   grid-area: editors;
-  /* justify-self: start; */
-  /* place-self: start; */
+  position: relative;
+  right: 27%;
 }
 form .item1 {
   grid-area: course_cluster;
 
-  place-self: center;
+  /* place-self: center; */
   /* display: none; */
 }
-form .item2 {
-  grid-area: course_cluster;
-  place-self: center;
-}
+
 form .item3 {
   grid-area: cluster_group;
   /* justify-self: end;
@@ -52,8 +44,12 @@ form .item3 {
 }
 form .item4 {
   grid-area: cluster_group_button;
-   align-self: center;
-   justify-self: start;
+  align-self: center;
+  justify-self: start;
+}
+.item4 button {
+  position: relative;
+  left: 100%;
 }
 form .item5 {
   grid-area: results_form;
@@ -78,13 +74,7 @@ form .btn-danger {
 .item5 .btn-danger {
   margin-left: 10px;
 }
-.alignright{
-  justify-items: end;
-  align-items: end;
-  justify-self: end;
-  justify-content: flex-end
 
-}
 form .table-hover {
   width: 1px;
   white-space: nowrap;
@@ -117,6 +107,9 @@ form .item3 .table-success {
   display: block;
 }
 
+nav a.active {
+  color: #039be5;
+}
 [hidden] {
   display: none !important;
 }

@@ -48,3 +48,13 @@ list-item:hover {
 .error {
   border: 1px solid red;
 }
+mat-radio-button {
+  margin: 5px 20px;
+}
+
+.tp-radio-button {
+  margin: 5px;
+}
+.tp-selected-value {
+  margin: 15px 0;
+}

@@ -1,56 +1,25 @@
-<form [formGroup]="chooseCourseForm" (ngSubmit)="onSubmit()">
+<form  (ngSubmit)="onSubmit()">
   <div class="item10">
     <nav>
-      <a (click)=toggle_editor()>{{ editor }}</a>
+      <a (click)="toggle_editor()">{{ editor }}</a>
     </nav>
   </div>
-
-  <div *ngIf="editorbooly == 'single'">
+  <div *ngIf="courseService.finished_fetch_booly">
     <div class="item1">
-      <div class="form-group">
-        <label class="col-form-label col-form-label-lg" style="color:rgb(102, 0, 255)" for="inputLarge"
-          >Single Course ID:</label
-        >
-        <app-combo-box [list]="courseitem"></app-combo-box>
-
-        <!-- <input
-        class="form-control form-control-lg"
-        type="text"
-        placeholder=".form-control-lg"
-        formControlName="add_single_course"
-      /> -->
-        <!-- <button
-          type="button"
-          class="btn btn-warning"
-          (click)="onSubmitoneCourseform()"
-        >
-          add a course
-        </button> -->
+      <label
+        class="col-form-label col-form-label-lg"
+        style="color:rgb(102, 0, 255)"
+        for="inputLarge"
+        >Search Course by:</label
+      >
+      <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
+        <app-combo-box [list]="courseitem_ID"></app-combo-box>
       </div>
-    </div>
-  </div>
-  <div *ngIf="editorbooly == 'cluster'">
-    <div class="item2">
-      <div class="form-group">
-        <label class="col-form-label col-form-label-lg" style="color:rgb(168, 36, 36)" for="inputLarge"
-          >Cluster course ID:
-        </label>
-        <!-- <input
-          class="form-control form-control-lg"
-          type="text"
-          placeholder=".form-control-lg"
-          formControlName="add_selfmade_course"
-        /> -->
-        <app-combo-box [list]="courseitem"></app-combo-box>
-
-        <!-- <button
-          type="button"
-          class="btn btn-secondary"
-          (click)="push_one_to_sm()"
-        >
-          add to cluster
-        </button> -->
-      </div>
+      <ng-template #elseBlock>
+        <div *ngIf="courseService.search_option === 'Name'">
+          <app-combo-box [list]="courseitem_Name"></app-combo-box>
+        </div>
+      </ng-template>
     </div>
   </div>
   <div *ngIf="editorbooly == 'cluster'">
@@ -58,7 +27,6 @@
       <table class="table-success">
         <tbody>
           <tr *ngFor="let course of courseService.smgroup; let n = index">
-
             {{
               course.__Course__.id
             }}
@@ -76,7 +44,6 @@
         </tbody>
       </table>
     </div>
-
   </div>
   <div *ngIf="editorbooly == 'cluster'">
     <div class="item4">
@@ -156,7 +123,9 @@
       Submit to GA
     </button>
   </div> -->
-  <div class ="item9">
-  <button type="button" class="btn btn-success" (click)="next_step()">Next</button>
-</div>
+  <div class="item9">
+    <button type="button" class="btn btn-success" (click)="next_step()">
+      Next
+    </button>
+  </div>
 </form>

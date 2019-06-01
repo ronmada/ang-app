@@ -23,6 +23,8 @@ export class AppComponent implements OnInit  {
 
    ngOnInit(){
     console.log("Server running on IP: " , this.courseService.ROOT_URL_local)
+
+    this.courseService.get__all_courses()
   }
   get showNameEditor() {
     return this.editor === 'name';

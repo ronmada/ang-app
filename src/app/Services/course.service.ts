@@ -8,16 +8,19 @@ import "rxjs/add/operator/toPromise";
   providedIn: "root"
 })
 export class CourseService implements OnInit {
-  editor : String = 'single'
+  editor: String = "single";
+  search_option: string = "ID";
   smgroup: any[] = [];
   group_submit_button_booly: boolean = false;
   cluster_show_booly: boolean[] = [];
-
   struct: Struct;
-  courseDB: any[]= []
+  finished_fetch_booly: boolean = false;
+  courseDB: any[] = [];
   clicked_was_set: boolean = false;
   ga_result: any;
-  course_id_name : any[]= []
+  course_id_name: any[] = [];
+  courseitem_ID: any[] = [];
+  courseitem_Name: any[] = [];
   ga: GAresult;
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
@@ -35,40 +38,60 @@ export class CourseService implements OnInit {
       this.clicked[i] = false;
     }
   }
-
-  define_editor(editor){
-    this.editor=editor
+  send_search_option(id, name) {
+    console.log("option ID:", id);
+    this.courseitem_ID = id;
+    this.courseitem_Name = name;
   }
-  pop_cluster_booly(index){
+  define_editor(editor) {
+    this.editor = editor;
+  }
+  remove_cluster_from_list(index) {
     this.struct.clusters.splice(index, 1);
     this.cluster_show_booly.pop();
   }
-  add_singl_cor_to_struct(single_course){
-    single_course = single_course.split(' ' ,1)[0]
-    // console.log("after split ", single_course)
-    let result = this.courseDB.filter(courseIter => courseIter.__Course__.id == single_course)[0];
-    // console.log("result?" , result)
+  add_singl_cor_to_struct(single_course) {
+    console.log("the single course:", single_course);
+    let result = this.search_Course(single_course);
     this.struct.courses.push(result);
-    // console.log("Single courses list: ", this.struct.courses);
   }
 
-  add_single_course_to_cluster_struct(item){
-    item = item.split(' ' ,1)[0]
-    let result = this.courseDB.filter(courseIter => courseIter.__Course__.id == item)[0];
+  search_Course(single_course) {
+    if (!isNaN(single_course.split(" ", 1)[0])) {
+      single_course = single_course.split(" ", 1)[0];
+      let result = this.courseDB.filter(
+        courseIter => courseIter.__Course__.id == single_course
+      )[0];
+      return result;
+    } else {
+      single_course = single_course.slice(-5);
+      let result = this.courseDB.filter(
+        courseIter => courseIter.__Course__.id == single_course
+      )[0];
+      return result;
+    }
+  }
+
+  add_single_course_to_cluster_struct(item) {
+    let result = this.search_Course(item);
     this.smgroup.push(result);
     this.group_submit_button_booly = true;
-    console.log("smgroup looks like this: " , this.smgroup)
+    console.log("smgroup looks like this: ", this.smgroup);
   }
 
   add_cluster_to_struct() {
     //push the current cluster to the clusters
-    console.log("smgroup looks like this just before post: " , this.smgroup)
+    console.log("smgroup looks like this just before post: ", this.smgroup);
     this.struct.clusters.push(this.smgroup);
     console.log("clusters looks like this:", this.struct.clusters);
     this.cluster_show_booly.push(false);
     //empty current cluster
     this.smgroup = [];
     this.group_submit_button_booly = false;
+  }
+
+  setSearch_Option(option) {
+    this.search_option = option;
   }
 
   set_clicked_array_to_false() {
@@ -94,20 +117,6 @@ export class CourseService implements OnInit {
     return this.struct;
   }
 
-  addStructerCourses(course) {
-    this.struct.courses.push(course);
-    console.log("Single courses list: ", this.struct.courses);
-  }
-
-  addStructerCluster(cluster) {
-    this.struct.clusters.push(cluster);
-    this.cluster_show_booly.push(false);
-    //empty current cluster
-    this.smgroup = [];
-    this.group_submit_button_booly = false;
-    console.log("clusters looks like this:", this.struct.clusters);
-  }
-
   async get__all_courses() {
     let promise = new Promise((resolve, reject) => {
       this.http
@@ -117,8 +126,8 @@ export class CourseService implements OnInit {
           res => {
             // Success
             Array.prototype.push.apply(this.courseDB, res);
-            console.log("all courses: " , this.courseDB)
-            this.course_id_name = this.fill_course_id_name()
+            console.log("all courses: ", this.courseDB);
+            this.fill_course_id_name();
             resolve();
           },
           msg => {
@@ -128,22 +137,21 @@ export class CourseService implements OnInit {
         );
     });
     await promise;
-    return this.course_id_name
+    this.finished_fetch_booly = true;
+    // return this.course_id_name
   }
 
-  fill_course_id_name(){
-    for (let course_arr of this.courseDB){
+  fill_course_id_name() {
+    for (let course_arr of this.courseDB) {
       this.course_id_name.push({
-        id : course_arr.__Course__.id,
-        course_name : course_arr.__Course__.course_name
+        id: course_arr.__Course__.id,
+        course_name: course_arr.__Course__.course_name
       });
-  }
-  return this.course_id_name
+    }
   }
 
-  dropdown_item(item){
-    console.log("LOL" , item)
-  }
+
+
 
   async getoneCourse(courseid) {
     let courseres: any;
@@ -256,9 +264,6 @@ export class CourseService implements OnInit {
     this.struct.courses.splice(index, 1);
   }
 
-  remove_one_cluster(index) {
-    this.struct.clusters.splice(index, 1);
-  }
   remove_one_course_from_cluster(index, course) {
     this.struct.clusters[index].splice(course, 1);
     if (!this.struct.clusters[index].length) {
@@ -266,7 +271,7 @@ export class CourseService implements OnInit {
       this.struct.clusters.splice(index, 1);
     }
   }
-  remove_temp_course_from_cluster(index){
+  remove_temp_course_from_cluster(index) {
     this.smgroup.splice(index, 1);
     if (!this.smgroup.length) this.group_submit_button_booly = false;
   }
