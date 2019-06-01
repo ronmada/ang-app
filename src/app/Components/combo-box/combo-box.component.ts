@@ -115,6 +115,7 @@ export class ComboBoxComponent implements OnInit {
         }
         this.inputItem = undefined;
         this.listHidden = true;
+        this.filteredList = this.list;
         /*
         if (!this.list.includes(this.inputItem)) {
           this.showError = true;
