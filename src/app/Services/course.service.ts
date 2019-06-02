@@ -24,8 +24,8 @@ export class CourseService implements OnInit {
   ga: GAresult;
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
-  //readonly ROOT_URL_local = 'http://127.0.0.1:5000'
-  readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
+  readonly ROOT_URL_local = 'http://127.0.0.1:5000'
+  //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
   readonly ROOT_URL = "https://infoplus.azurewebsites.net";
 
   constructor(private http: HttpClient) {
@@ -252,9 +252,7 @@ export class CourseService implements OnInit {
         });
     });
     await promise;
-    console.log("ga_result 0:  ", this.getGAresults());
-    console.log("ga_result 1 :  ", this.ga_result);
-    console.log("Struct looks like this after submit:  ", this.struct);
+    console.log("ga_result:  ", this.getGAresults());
     //console.log(someresult)
     //console.log(someresult.classes[1]["Class type"])
     this.ga_ready = true;

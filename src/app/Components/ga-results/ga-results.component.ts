@@ -15,7 +15,9 @@ export class GaResultsComponent implements OnInit {
   displayedColumns  :  string[] = ['0', '1', '2', '3', '4','hour'];
 
   test = ['8:30','sagi','','sagiiii','sasa','a','']
-  dataSource = new MatTableDataSource(this.test)
+  dataSource1 = new MatTableDataSource(this.test)
+  dataSource2 = new MatTableDataSource(this.test)
+  dataSource3 = new MatTableDataSource(this.test)
   @Input() ga_ready : boolean = false
 
   constructor(
@@ -25,40 +27,50 @@ export class GaResultsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    var ga_json = this.courseService.getGAresults()
-    var cos = this.courseService
-    var rows = new Array()
-    for(var hour = 0 ; hour<13;hour++){
-      var row_hour=hour+8
-      var start_min = 30
-      var end_min = 30
-      if (row_hour == 11){
-          start_min = 30
-          end_min = 20
-      }
-      if (row_hour >= 12){
-          start_min = 50
-          end_min = 50
-      }
-      var row = ['','','','','',''+row_hour + ':' + start_min + ' - ' + (row_hour+1)+ ':' + end_min]
-      ga_json.classes.forEach( function(clas) {
-        clas.lectures.forEach( function(lect) {
+    console.log("started on init of ga result");
+    var res_counter = 0
+    var one = new MatTableDataSource(this.test)
+    var two = new MatTableDataSource(this.test)
+    var three = new MatTableDataSource(this.test)
+    var gas = this.courseService.getGAresults()
+    gas.results.forEach(function(ga_json){
+      
+      var cos = this.courseService
+      var rows = new Array()
+      for(var hour = 0 ; hour<13;hour++){
+        var row_hour=hour+8
+        var start_min = 30
+        var end_min = 30
+        if (row_hour == 11){
+            start_min = 30
+            end_min = 20
+        }
+        if (row_hour >= 12){
+            start_min = 50
+            end_min = 50
+        }
+        var row = ['','','','','',''+row_hour + ':' + start_min + ' - ' + (row_hour+1)+ ':' + end_min]
+        ga_json.classes.forEach( function(clas) {
+          clas.lectures.forEach( function(lect) {
 
-           if ((lect.Start_time -8) <= hour &&  (lect.End_time -8) > hour ){
-            var c_name='no name'
-            cos.getoneCourse(clas.c_ID)
-            .then(
-              singleCourse => {
-                c_name = singleCourse.__Course__.course_name
-              })
-              c_name
-            row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID + ' ' +c_name +' '+ clas.Class_type + ' ' + lect.Lecturer_name
-          }
+            if ((lect.Start_time -8) <= hour &&  (lect.End_time -8) > hour ){
+              row[4-lect.Day] = row[4-lect.Day] + ' ' + clas.c_ID +' '+ clas.Class_type + ' ' + lect.Lecturer_name
+            }
+          });
         });
-      });
-      rows.push(row)
-    }
-    this.dataSource = new MatTableDataSource(rows)
+        rows.push(row)
+      }
+      if (res_counter ==0)
+      one = new MatTableDataSource(rows)
+      if (res_counter ==1)
+        two = new MatTableDataSource(rows)
+      if (res_counter ==2)
+       three = new MatTableDataSource(rows)
+      res_counter++;
+  });
+  this.dataSource1 = one
+  this.dataSource2 = two
+  this.dataSource3 = three
   }
   /*showGA(){
     this.ga_result = (this.courseService.getGAresults())
