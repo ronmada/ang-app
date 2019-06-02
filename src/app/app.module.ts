@@ -10,9 +10,10 @@ import { MatTableModule ,  } from "@angular/material";
 import { ComboBoxComponent } from './Components/combo-box/combo-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRadioModule } from '@angular/material';
+import { LoadScreenComponent } from './Components/load-screen/load-screen.component';
 
 @NgModule({
-  declarations: [AppComponent, routingComponents, ComboBoxComponent],
+  declarations: [AppComponent, routingComponents, ComboBoxComponent, LoadScreenComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

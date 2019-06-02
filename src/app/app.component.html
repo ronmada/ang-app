@@ -1,8 +1,21 @@
 <h1>InfoPlus+</h1>
-<div *ngIf="courseService.finished_fetch_booly">
+<div
+  *ngIf="
+    !courseService.finished_fetch_booly;
+    then loadScreenBlock;
+    else getSiteBlock
+  "
+></div>
+<ng-template #loadScreenBlock>
+  <div class="grid-container">
+    <div class="item5">
+      <app-load-screen></app-load-screen>
+    </div>
+  </div>
+</ng-template>
+<ng-template #getSiteBlock>
   <div class="grid-container">
     <div class="item1">Header</div>
-
     <div class="item2">
       <nav>
         <a routerLink="step-1" routerLinkActive="active">Step 1</a>
@@ -25,7 +38,7 @@
       </button>
     </div>
   </div>
-</div>
+</ng-template>
 
 <!--
 <nav>

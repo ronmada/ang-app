@@ -137,8 +137,12 @@ export class CourseService implements OnInit {
         );
     });
     await promise;
+  setTimeout(() => {
     this.finished_fetch_booly = true;
+    }, 500);
     // return this.course_id_name
+
+
   }
 
   fill_course_id_name() {
