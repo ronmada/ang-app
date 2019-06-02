@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+.loader {
+  /* height: 50px; */
+  animation: rotate 3s linear infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 50vh;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+}
+
+.circle {
+  background-color: purple;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.circle:nth-child(2) {
+  background-color: palevioletred;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
