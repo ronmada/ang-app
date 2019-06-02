@@ -47,6 +47,7 @@ export class Step1Component implements OnInit {
 
   onSubmit_selfmadeform() {
     this.courseService.add_cluster_to_struct();
+     this.courseService.check =[]
   }
 
   async onSubmit() {

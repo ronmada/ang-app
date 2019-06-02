@@ -10,6 +10,7 @@ import "rxjs/add/operator/toPromise";
 export class CourseService implements OnInit {
   editor: String = "single";
   search_option: string = "ID";
+  check: string[] = [];
   smgroup: any[] = [];
   group_submit_button_booly: boolean = false;
   cluster_show_booly: boolean[] = [];
@@ -24,7 +25,7 @@ export class CourseService implements OnInit {
   ga: GAresult;
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
-  readonly ROOT_URL_local = 'http://127.0.0.1:5000'
+  readonly ROOT_URL_local = "http://127.0.0.1:5000";
   //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
   readonly ROOT_URL = "https://infoplus.azurewebsites.net";
 
@@ -39,7 +40,6 @@ export class CourseService implements OnInit {
     }
   }
   send_search_option(id, name) {
-    console.log("option ID:", id);
     this.courseitem_ID = id;
     this.courseitem_Name = name;
   }
@@ -53,35 +53,74 @@ export class CourseService implements OnInit {
   add_singl_cor_to_struct(single_course) {
     console.log("the single course:", single_course);
     let result = this.search_Course(single_course);
-    this.struct.courses.push(result);
+    if (result === 0) {
+      return false;
+    } else {
+      this.struct.courses.push(result);
+    }
+    return true;
   }
 
   search_Course(single_course) {
+    let result;
     if (!isNaN(single_course.split(" ", 1)[0])) {
       single_course = single_course.split(" ", 1)[0];
-      let result = this.courseDB.filter(
+      result = this.courseDB.filter(
         courseIter => courseIter.__Course__.id == single_course
       )[0];
-      return result;
     } else {
       single_course = single_course.slice(-5);
-      let result = this.courseDB.filter(
+      result = this.courseDB.filter(
         courseIter => courseIter.__Course__.id == single_course
       )[0];
+    }
+    this.check_duplicate(result);
+    if (this.check.length === 0) {
+      console.log("check FALSE");
       return result;
+    } else {
+      console.log("DUPLICATE", this.check);
+      return 0;
+    }
+  }
+
+  check_duplicate(result) {
+    for (let iter of this.struct.courses) {
+      if (result === iter) {
+        console.log("duplicate found", result);
+        this.check.push(result);
+      }
+    }
+    for (let iter of this.struct.clusters) {
+      for (let it of iter) {
+        if (result === it) {
+          console.log("duplicate found", result);
+          this.check.push(result);
+        }
+      }
+    }
+    for (let iter of this.smgroup) {
+      if (result === iter) {
+        console.log("duplicate found", result);
+        this.check.push(result);
+      }
     }
   }
 
   add_single_course_to_cluster_struct(item) {
     let result = this.search_Course(item);
-    this.smgroup.push(result);
-    this.group_submit_button_booly = true;
-    console.log("smgroup looks like this: ", this.smgroup);
+    if (result === 0) {
+      return false;
+    } else {
+      this.smgroup.push(result);
+      this.group_submit_button_booly = true;
+      console.log("smgroup looks like this: ", this.smgroup);
+    }
+    return true;
   }
 
   add_cluster_to_struct() {
     //push the current cluster to the clusters
-    console.log("smgroup looks like this just before post: ", this.smgroup);
     this.struct.clusters.push(this.smgroup);
     console.log("clusters looks like this:", this.struct.clusters);
     this.cluster_show_booly.push(false);
@@ -137,12 +176,10 @@ export class CourseService implements OnInit {
         );
     });
     await promise;
-  setTimeout(() => {
-    this.finished_fetch_booly = true;
+    setTimeout(() => {
+      this.finished_fetch_booly = true;
     }, 500);
     // return this.course_id_name
-
-
   }
 
   fill_course_id_name() {
@@ -153,9 +190,6 @@ export class CourseService implements OnInit {
       });
     }
   }
-
-
-
 
   async getoneCourse(courseid) {
     let courseres: any;

@@ -16,7 +16,8 @@ export class ComboBoxComponent implements OnInit {
   inputItem = "";
   // enable or disable visiblility of dropdown
   listHidden = true;
-  showError = false;
+  @Input() showError = false;
+  errorMsg : string[]= []
   selectedIndex = -1;
   // the list to be shown after filtering
   filteredList: any[];
@@ -25,16 +26,16 @@ export class ComboBoxComponent implements OnInit {
 
   ngOnInit() {
     this.filteredList = this.list;
-    console.log("filterd list", this.filteredList);
+    // console.log("filterd list", this.filteredList);
   }
-  handleChange(option : string) {
+  handleChange(option: string) {
+    // this.showError = false;
     this.select_option = option;
+    console.log("changed to search by:", this.select_option);
     if (this.select_option === "ID") {
       this.list = this.courseService.courseitem_ID;
-      console.log("list first IDS", this.list);
     } else if (this.select_option === "Name") {
       this.list = this.courseService.courseitem_Name;
-      console.log("list first names", this.list[0][0]);
     }
     // this.filteredList = this.list;
   }
@@ -58,6 +59,7 @@ export class ComboBoxComponent implements OnInit {
 
   // navigate through the list of items
   onKeyPress(event) {
+    this.showError = false;
     if (!this.listHidden) {
       if (event.key === "Escape") {
         this.selectedIndex = -1;
@@ -95,6 +97,8 @@ export class ComboBoxComponent implements OnInit {
 
   // show or hide the dropdown list when input is focused or moves out of focus
   toggleListDisplay(sender: number) {
+    // this.showError = false;
+    let dup_check : boolean;
     if (sender === 1) {
       this.selectedIndex = -1;
       this.listHidden = false;
@@ -105,14 +109,25 @@ export class ComboBoxComponent implements OnInit {
         this.selectItem(this.selectedIndex);
         if (this.selectedIndex != -1) {
           if (this.courseService.editor === "single") {
-            this.courseService.add_singl_cor_to_struct(this.inputItem);
+            dup_check = this.courseService.add_singl_cor_to_struct(
+              this.inputItem
+            );
           } else if (this.courseService.editor === "cluster") {
-            console.log("adding course to cluster");
-            this.courseService.add_single_course_to_cluster_struct(
+            console.log("adding course to cluster temp group");
+            dup_check = this.courseService.add_single_course_to_cluster_struct(
               this.inputItem
             );
           }
         }
+        if (!(dup_check)){
+          console.log("Show Error" , this.courseService.check)
+          this.showError = true;
+          this.errorMsg = this.courseService.check
+        }
+        else{
+          this.showError = false;
+        }
+        this.courseService.check = [];
         this.inputItem = undefined;
         this.listHidden = true;
         this.filteredList = this.list;

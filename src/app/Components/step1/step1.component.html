@@ -1,7 +1,9 @@
 <form  (ngSubmit)="onSubmit()">
   <div class="item10">
     <nav>
-      <a (click)="toggle_editor()">{{ editor }}</a>
+      <a (click)="toggle_editor()">
+        {{ editor }}
+      </a>
     </nav>
   </div>
   <div *ngIf="courseService.finished_fetch_booly">

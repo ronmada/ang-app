@@ -33,9 +33,10 @@ export class GaResultsComponent implements OnInit {
     var two = new MatTableDataSource(this.test)
     var three = new MatTableDataSource(this.test)
     var gas = this.courseService.getGAresults()
+    console.log("gas" , gas)
     gas.results.forEach(function(ga_json){
-      
-      var cos = this.courseService
+
+      // var cos = this.courseService
       var rows = new Array()
       for(var hour = 0 ; hour<13;hour++){
         var row_hour=hour+8
@@ -72,12 +73,5 @@ export class GaResultsComponent implements OnInit {
   this.dataSource2 = two
   this.dataSource3 = three
   }
-  /*showGA(){
-    this.ga_result = (this.courseService.getGAresults())
-    console.log("Show GA :" , this.ga_result)
-    this.fill_ga_model()
-  }*/
-  fill_ga_model(){
-    console.log("what's this?" , this.ga_result.classes[0]['c ID'])
-  }
+
 }
