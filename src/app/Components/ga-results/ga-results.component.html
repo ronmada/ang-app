@@ -40,6 +40,7 @@
 
 </mat-table>
 
+
 <h2>ga-results page</h2>
 <mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
 
@@ -124,11 +125,14 @@
 </mat-table>
 
 
+<div *ngFor= "let res of courseService.getGAresults().results">
+        score : {{res.Score}}
+</div>
 
 
 <div *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"> </div>
 <!--true statement-->
-score : {{courseService.getGAresults().Score}}
+
 <!--else statement-->
 <ng-template #ga_not_ready>
   <div> GA is not ready</div>

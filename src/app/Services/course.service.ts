@@ -23,6 +23,8 @@ export class CourseService implements OnInit {
   courseitem_ID: any[] = [];
   courseitem_Name: any[] = [];
   ga: GAresult;
+  wights : number[]=[2,5,3]
+  // wights = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
   readonly ROOT_URL_local = "http://127.0.0.1:5000";
@@ -273,12 +275,21 @@ export class CourseService implements OnInit {
     if (courses != "") params = params.append("courses", courses);
     if (windows != "") params = params.append("specific_windows", windows);
     if (daysoff != "") params = params.append("specific_days_off", daysoff);
+    params = params.append("specific_windows_weight", ''+this.wights[0]);
+    params = params.append("specific_days_off_weight", ''+this.wights[1]);
+    params = params.append("specific_lecturer_weight", ''+this.wights[2]);
+
+
     console.log("array of clicked ", this.clicked);
     console.log("clusters:", params.getAll("cluster"));
     console.log("single courses", params.getAll("courses"));
 
     console.log("specific_windows", params.getAll("specific_windows"));
     console.log("specific_days_off", params.getAll("specific_days_off"));
+    console.log("specific_windows_weight courses", params.getAll("specific_windows_weight"));
+    console.log("single specific_days_off_weight", params.getAll("specific_days_off_weight"));
+    console.log("single specific_lecturer_weight", params.getAll("specific_lecturer_weight"));
+
     let promise = new Promise((resolve, reject) => {
       this.http
         .get(this.ROOT_URL_local + "/start_ga", { params })

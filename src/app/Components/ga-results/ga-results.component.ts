@@ -14,7 +14,7 @@ export class GaResultsComponent implements OnInit {
   ga : GAresult
   displayedColumns  :  string[] = ['0', '1', '2', '3', '4','hour'];
 
-  test = ['8:30','sagi','','sagiiii','sasa','a','']
+  test = []
   dataSource1 = new MatTableDataSource(this.test)
   dataSource2 = new MatTableDataSource(this.test)
   dataSource3 = new MatTableDataSource(this.test)
