@@ -12,22 +12,22 @@
         </li>
       </div>
     </ul>
-    <div *ngFor="let type of chosen_course">
-        type!:{{ type.__Course_Group__.g_id }}
-    </div>
+    <!-- <div *ngFor="let type of chosen_course">
+      type!:{{ type.__Course_Group__.g_id }}
+    </div> -->
 
-
-    <!-- <mat-form-field>
-      <mat-label>Course type</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let type of chosen_course.__Course__." [value]="type.value">
-          {{ type.viewValue }}
+    <mat-form-field>
+      <mat-label>Class type</mat-label>
+      <mat-select [(ngModel)]="inputItem" (valueChange)="doSomething($event)">
+        <mat-option
+          *ngFor="let type of names"
+          [value]="type.value"
+          [ngStyle]="{ display: type.disabled === 1 ? 'none' : 'block' }"
+        >
+          {{ type.value }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-</div> -->
-
     <!--
 <ul class="heroes">
   <li

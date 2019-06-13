@@ -13,11 +13,11 @@ export class ComboBoxComponent implements OnInit {
   @Input() list: any = [];
 
   // two way binding for input text
-  inputItem = "";
+  inputItem: string = "";
   // enable or disable visiblility of dropdown
   listHidden = true;
   @Input() showError = false;
-  errorMsg : string[]= []
+  errorMsg: string[] = [];
   selectedIndex = -1;
   // the list to be shown after filtering
   filteredList: any[];
@@ -98,7 +98,7 @@ export class ComboBoxComponent implements OnInit {
   // show or hide the dropdown list when input is focused or moves out of focus
   toggleListDisplay(sender: number) {
     // this.showError = false;
-    let dup_check : boolean;
+    let dup_check: boolean;
     if (sender === 1) {
       this.selectedIndex = -1;
       this.listHidden = false;
@@ -119,12 +119,11 @@ export class ComboBoxComponent implements OnInit {
             );
           }
         }
-        if (!(dup_check)){
-          console.log("Show Error" , this.courseService.check)
+        if (!dup_check) {
+          console.log("Show Error", this.courseService.check);
           this.showError = true;
-          this.errorMsg = this.courseService.check
-        }
-        else{
+          this.errorMsg = this.courseService.check;
+        } else {
           this.showError = false;
         }
         this.courseService.check = [];
