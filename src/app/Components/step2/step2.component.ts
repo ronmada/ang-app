@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CourseService } from "../../Services/course.service";
-import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { PreflectService } from "../../Services/preflect.service";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Struct } from "../../models/Struct";
+import * as _ from "underscore";
 
 @Component({
   selector: "app-step2",
@@ -10,81 +11,61 @@ import { Struct } from "../../models/Struct";
   styleUrls: ["./step2.component.css"]
 })
 export class Step2Component implements OnInit {
-  inputItem: string = "";
-  button_value: string;
+  array: Array<any> = [];
+  class_type: string = "";
+  lecturers: Array<any>;
   selected_course: any;
   classes: Set<string>;
-  displayParameters: string[] = ["ID", "Name"];
   chosen_course: any[] = [];
   names: any[] = [
-    { lab: Set, value: "lab", disabled: 1 },
-    { pract: Set, value: "Practice", disabled: 1 },
-    { lect: Set, value: "Lecture", disabled: 1 },
-    { q_a: Set, value: "q_a", disabled: 1 }
+    { labs: Set, value: "lab", disabled: 1, r_value: "labs" },
+    { practices: Set, value: "Practice", disabled: 1, r_value: "practices" },
+    { lectures: Set, value: "Lecture", disabled: 1, r_value: "lectures" },
+    { q_and_as: Set, value: "q_a", disabled: 1, r_value: "q_and_as" }
   ];
-  labs: any[] = [];
-  pract: any[] = [];
-  lect: any[] = [];
-  q_a: any[] = [];
-  model: string[];
   struct: Struct;
-  // lesson: any[] = [
-  //   { value: "lecture", viewValue: "lecture", disabled: 1 },
-  //   { value: "practice", viewValue: "practice", disabled: 1 },
-  //   { value: "q_a", viewValue: "q_a", disabled: 1 },
-  //   { value: "lab", viewValue: "lab", disabled: 1 }
-  // ];
-  foods: any[] = [
-    { value: "steak-0", viewValue: "Steak" },
-    { value: "pizza-1", viewValue: "Pizza" },
-    { value: "tacos-2", viewValue: "Tacos" }
-  ];
+
   constructor(
     public courseService: CourseService,
+    public preflectService: PreflectService,
     private route: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder
+    private router: Router
   ) {}
+
   ngOnInit() {
     this.struct = this.courseService.getstruct();
     console.log("Struct is:", this.struct);
+    this.array = this.preflectService.get_Pref_Lect();
   }
-  resetItems() {
-    this.inputItem = undefined;
 
-    this.names[0].lab = new Set();
-    this.names[1].pract = new Set();
-    this.names[2].lect = new Set();
-    this.names[3].q_a = new Set();
+  resetItems(course: object) {
+    this.lecturers = new Array();
+    this.names[0].labs = new Set();
+    this.names[1].practices = new Set();
+    this.names[2].lectures = new Set();
+    this.names[3].q_and_as = new Set();
     this.classes = new Set();
-    this.selected_course = "";
-  }
-  onSelect(course) {
     this.selected_course = course;
-    console.log("this.selected_course", this.selected_course);
-    this.resetItems();
-    let course_group: any[] = [];
-    let emptyAray = [];
+  }
+  onSelectCourse(course: any) {
+    this.resetItems(course);
+    let course_group: object[] = [];
     for (let group of course.__Course__.groups) {
       course_group.push(group);
     }
-    this.chosen_course = emptyAray.concat(course_group);
+    this.chosen_course = course_group;
     console.log("chosen course groups:", this.chosen_course);
     this.check_course_types(this.chosen_course);
   }
 
-  check_course_types(course) {
+  check_course_types(course: Array<any>) {
     for (let cor of course) {
-      console.log("cor", cor);
-      console.log("COURSE length", cor.__Course_Group__.lectures.length);
       if (cor.__Course_Group__.lectures.length > 0) {
         this.classes.add("Lecture");
         this.names[2].disabled = 0;
         for (let co of cor.__Course_Group__.lectures) {
-          console.log("kitas: ", co.__Kita__);
           for (let c of co.__Kita__.lectures) {
-            console.log("lecturers: ", c.__Lect__.lecturer);
-            this.names[2].lect.add(c.__Lect__.lecturer);
+            this.names[2].lectures.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -92,10 +73,8 @@ export class Step2Component implements OnInit {
         this.classes.add("Practice");
         this.names[1].disabled = 0;
         for (let co of cor.__Course_Group__.practices) {
-          console.log("kitas: ", co.__Kita__);
           for (let c of co.__Kita__.lectures) {
-            console.log("lecturers: ", c.__Lect__.lecturer);
-            this.names[1].pract.add(c.__Lect__.lecturer);
+            this.names[1].practices.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -103,10 +82,8 @@ export class Step2Component implements OnInit {
         this.classes.add("q_a");
         this.names[3].disabled = 0;
         for (let co of cor.__Course_Group__.q_and_as) {
-          console.log("kitas: ", co.__Kita__);
           for (let c of co.__Kita__.lectures) {
-            console.log("lecturers: ", c.__Lect__.lecturer);
-            this.names[3].q_a.add(c.__Lect__.lecturer);
+            this.names[3].q_and_as.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -114,34 +91,51 @@ export class Step2Component implements OnInit {
         this.classes.add("lab");
         this.names[0].disabled = 0;
         for (let co of cor.__Course_Group__.labs) {
-          console.log("kitas: ", co.__Kita__);
           for (let c of co.__Kita__.lectures) {
-            console.log("lecturers: ", c.__Lect__.lecturer);
-            this.names[0].lab.add(c.__Lect__.lecturer);
+            this.names[0].labs.add(c.__Lect__.lecturer);
           }
         }
-        console.log("lecturers: lab ", this.names[0].lab);
       }
-
-      // for (let co of cor) {
-      //   console.log("LEngTH1", co.__Course_Group__.lectures.length);
-      //   console.log("lengthL" , co.length)
-      //   if (co.length){
-      //      lect = true;
-      //      console.log("there are X lectures:", co.length);
-      //     //  this.lectures =
-      //   }
-      // }
     }
-    console.log("Lab Length:", this.names[0].lab.size);
-    const entries = Object.entries(this.names);
-    console.log(entries);
-    // console.log("Lesson:", this.lesson);
-    // console.log("Lesson index:", this.lesson.indexOf("lab"));
-    // const values = Object.values(this.lesson);
-    // console.log(values);
   }
-  doSomething(event) {
-    console.log("event", event);
+  onSelectClassType(class_index: number, class_type: string) {
+    this.reset_names(class_type);
+    this.names[class_index][class_type].forEach((lect_name: string) => {
+      this.lecturers.push(lect_name);
+    });
+  }
+  reset_names(class_type: string) {
+    this.class_type = class_type;
+    this.lecturers = new Array();
+  }
+  onSelectLecturer(lecturer: string, class_type: string, course_id: string) {
+    let obj = {
+      id: course_id,
+      classtype: class_type,
+      lecturer: lecturer
+    };
+    this.check_chosen_lect(obj);
+    console.log("Array is:", this.array);
+  }
+  check_chosen_lect(obj: any) {
+    let flag: boolean = true;
+    for (let [index, checker] of this.array.entries()) {
+      if (!this.array.length) {
+        this.preflectService.push_Pref_Lect(obj);
+        break;
+      }
+      if (
+        _.isEqual(checker, obj) ||
+        (obj.id === checker.id && obj.classtype === checker.classtype)
+      ) {
+        flag = false;
+        console.log("same course and classtype, swapping pref lecture!");
+        this.preflectService.switchLect(obj, index);
+        break;
+      }
+    }
+    if (flag) {
+      this.preflectService.push_Pref_Lect(obj);
+    }
   }
 }

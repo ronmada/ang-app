@@ -98,7 +98,7 @@ export class ComboBoxComponent implements OnInit {
   // show or hide the dropdown list when input is focused or moves out of focus
   toggleListDisplay(sender: number) {
     // this.showError = false;
-    let dup_check: boolean;
+    let dup_check: boolean = true;
     if (sender === 1) {
       this.selectedIndex = -1;
       this.listHidden = false;
@@ -107,8 +107,9 @@ export class ComboBoxComponent implements OnInit {
       // helps to select item by clicking
       setTimeout(() => {
         this.selectItem(this.selectedIndex);
-        if (this.selectedIndex != -1) {
+        if (this.selectedIndex !== -1) {
           if (this.courseService.editor === "single") {
+            console.log("input item", this.inputItem);
             dup_check = this.courseService.add_singl_cor_to_struct(
               this.inputItem
             );
