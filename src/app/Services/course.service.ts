@@ -2,6 +2,8 @@ import { Injectable, OnInit, Input } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Struct } from "../models/Struct";
 import { GAresult } from "../models/GAresult";
+import { PreflectService } from "./preflect.service";
+
 import "rxjs/add/operator/toPromise";
 
 @Injectable({
@@ -23,7 +25,7 @@ export class CourseService implements OnInit {
   courseitem_ID: any[] = [];
   courseitem_Name: any[] = [];
   ga: GAresult;
-  wights : number[]=[2,5,3]
+  wights: number[] = [2, 5, 3];
   // wights = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
@@ -31,7 +33,10 @@ export class CourseService implements OnInit {
   //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
   readonly ROOT_URL = "https://infoplus.azurewebsites.net";
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    public preflectService: PreflectService
+  ) {
     this.struct = new Struct();
     this.ga = new GAresult();
   }
@@ -275,20 +280,46 @@ export class CourseService implements OnInit {
     if (courses != "") params = params.append("courses", courses);
     if (windows != "") params = params.append("specific_windows", windows);
     if (daysoff != "") params = params.append("specific_days_off", daysoff);
-    params = params.append("specific_windows_weight", ''+this.wights[0]);
-    params = params.append("specific_days_off_weight", ''+this.wights[1]);
-    params = params.append("specific_lecturer_weight", ''+this.wights[2]);
-
+    params = params.append("specific_windows_weight", "" + this.wights[0]);
+    params = params.append("specific_days_off_weight", "" + this.wights[1]);
+    params = params.append("specific_lecturer_weight", "" + this.wights[2]);
+    let pref_lecturers: Array<object> = this.preflectService.get_Pref_Lect();
+    console.log("pref_lectures_array", pref_lecturers);
+    if (pref_lecturers.length) {
+      for (let preflect_obj of pref_lecturers) {
+        let full_lect_string: string = "(";
+        let count: number = 2;
+        for (let preflect_string in preflect_obj) {
+          if (count !== 0) {
+            full_lect_string += preflect_obj[preflect_string] + ",";
+            count -= 1;
+          } else {
+            full_lect_string += preflect_obj[preflect_string];
+          }
+        }
+        full_lect_string += ")";
+        params = params.append("lecturer", full_lect_string);
+      }
+    }
 
     console.log("array of clicked ", this.clicked);
     console.log("clusters:", params.getAll("cluster"));
     console.log("single courses", params.getAll("courses"));
-
+    console.log("Preferd lecturers", params.getAll("lecturer"));
     console.log("specific_windows", params.getAll("specific_windows"));
     console.log("specific_days_off", params.getAll("specific_days_off"));
-    console.log("specific_windows_weight courses", params.getAll("specific_windows_weight"));
-    console.log("single specific_days_off_weight", params.getAll("specific_days_off_weight"));
-    console.log("single specific_lecturer_weight", params.getAll("specific_lecturer_weight"));
+    console.log(
+      "specific_windows_weight courses",
+      params.getAll("specific_windows_weight")
+    );
+    console.log(
+      "single specific_days_off_weight",
+      params.getAll("specific_days_off_weight")
+    );
+    console.log(
+      "single specific_lecturer_weight",
+      params.getAll("specific_lecturer_weight")
+    );
 
     let promise = new Promise((resolve, reject) => {
       this.http
