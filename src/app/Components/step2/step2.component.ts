@@ -12,6 +12,7 @@ import * as _ from "underscore";
 })
 export class Step2Component implements OnInit {
   array: Array<any> = [];
+  nones: string = "None";
   class_type: string = "";
   lecturers: Array<any>;
   selected_course: any;
@@ -41,6 +42,7 @@ export class Step2Component implements OnInit {
   resetItems(course: object) {
     this.lecturers = new Array();
     this.names[0].labs = new Set();
+    for (let i = 0; i < this.names.length; i++) this.names[i].disabled = 1;
     this.names[1].practices = new Set();
     this.names[2].lectures = new Set();
     this.names[3].q_and_as = new Set();
@@ -137,5 +139,25 @@ export class Step2Component implements OnInit {
     if (flag) {
       this.preflectService.push_Pref_Lect(obj);
     }
+  }
+
+  onSelectRemoveLect(class_type: string, id: string) {
+    let obj = {
+      id: id,
+      classtype: class_type
+    };
+    for (let [index, checker] of this.array.entries()) {
+      if (obj.id === checker.id && obj.classtype === checker.classtype) {
+        console.log("Removing pref lecture");
+        this.preflectService.removeSelectedPrefLect(index);
+        break;
+      }
+    }
+    console.log(
+      "Array after removed is:",
+      this.array,
+      "service:",
+      this.preflectService.get_Pref_Lect()
+    );
   }
 }

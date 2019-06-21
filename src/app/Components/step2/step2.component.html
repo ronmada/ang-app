@@ -37,6 +37,12 @@
       <mat-label>Choose Lecturer</mat-label>
       <mat-select>
         <mat-option
+          (click)="
+            onSelectRemoveLect(class_type, selected_course.__Course__.id)
+          "
+          >{{ nones }}</mat-option
+        >
+        <mat-option
           *ngFor="let lecture of lecturers"
           [value]="lecture"
           (click)="
