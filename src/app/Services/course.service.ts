@@ -29,9 +29,8 @@ export class CourseService implements OnInit {
   // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
-  readonly ROOT_URL_local = "http://127.0.0.1:5000";
-  //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
-  readonly ROOT_URL = "https://infoplus.azurewebsites.net";
+  //readonly ROOT_URL_local = "http://127.0.0.1:5000";
+  readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
 
   constructor(
     private http: HttpClient,
@@ -288,7 +287,7 @@ export class CourseService implements OnInit {
 
     let pref_lecturers: Array<object> = this.preflectService.get_Pref_Lect();
     console.log("pref_lectures_array", pref_lecturers);
-    
+
     if (pref_lecturers.length) {
       let lect_length: number = pref_lecturers.length - 1;
       for (let preflect_obj of pref_lecturers) {
@@ -312,7 +311,7 @@ export class CourseService implements OnInit {
         console.log("full lect string", full_lect_string);
         params = params.append("lecturer", full_lect_string);
       }
-      
+
     }
 
     ///////////////////////////////////////
