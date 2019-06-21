@@ -25,8 +25,8 @@ export class CourseService implements OnInit {
   courseitem_ID: any[] = [];
   courseitem_Name: any[] = [];
   ga: GAresult;
-  wights: number[] = [2, 5, 3];
-  // wights = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
+  weight: number[] = [2, 5, 3];
+  // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
   readonly ROOT_URL_local = "http://127.0.0.1:5000";
@@ -280,9 +280,9 @@ export class CourseService implements OnInit {
     if (courses != "") params = params.append("courses", courses);
     if (windows != "") params = params.append("specific_windows", windows);
     if (daysoff != "") params = params.append("specific_days_off", daysoff);
-    params = params.append("specific_windows_weight", "" + this.wights[0]);
-    params = params.append("specific_days_off_weight", "" + this.wights[1]);
-    params = params.append("specific_lecturer_weight", "" + this.wights[2]);
+    params = params.append("specific_windows_weight", "" + this.weight[0]);
+    params = params.append("specific_days_off_weight", "" + this.weight[1]);
+    params = params.append("specific_lecturer_weight", "" + this.weight[2]);
 
     ///////////////////////////////////
 
