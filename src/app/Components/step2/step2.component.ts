@@ -116,6 +116,23 @@ export class Step2Component implements OnInit {
       classtype: class_type,
       lecturer: lecturer
     };
+    if (obj.classtype == "lectures")
+    {
+      obj.classtype = "lecture"
+    }
+    if (obj.classtype == "labs")
+    {
+      obj.classtype = "lab"
+    }
+    if (obj.classtype == "practices")
+    {
+      obj.classtype = "practice"
+    }
+    if (obj.classtype == "q_and_as")
+    {
+      obj.classtype = "q_and_a"
+    }
+
     this.check_chosen_lect(obj);
     console.log("Array is:", this.array);
   }

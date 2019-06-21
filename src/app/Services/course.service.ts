@@ -288,10 +288,11 @@ export class CourseService implements OnInit {
 
     let pref_lecturers: Array<object> = this.preflectService.get_Pref_Lect();
     console.log("pref_lectures_array", pref_lecturers);
-    let full_lect_string: string = "";
+    
     if (pref_lecturers.length) {
       let lect_length: number = pref_lecturers.length - 1;
       for (let preflect_obj of pref_lecturers) {
+        let full_lect_string: string = "";
         full_lect_string += "(";
         let count: number = 2;
         for (let preflect_string in preflect_obj) {
@@ -309,8 +310,9 @@ export class CourseService implements OnInit {
           full_lect_string += ")";
         }
         console.log("full lect string", full_lect_string);
+        params = params.append("lecturer", full_lect_string);
       }
-      params = params.append("lecturer", full_lect_string);
+      
     }
 
     ///////////////////////////////////////
