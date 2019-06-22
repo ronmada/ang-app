@@ -1,0 +1,24 @@
+import { Injectable } from "@angular/core";
+
+@Injectable({
+  providedIn: "root"
+})
+export class WindowsDaysOffService {
+  windows_importance: number = 2;
+  windows_string: string = "2";
+  days_off_importance: number = 5;
+  days_off_string: string = "5";
+  constructor() {}
+
+  set_windows_importance(importance: number) {
+    this.windows_importance = importance;
+    this.windows_string = String(importance);
+    console.log("windows importance:", this.windows_importance);
+  }
+
+  set_daysoff_importance(importance: number) {
+    this.days_off_importance = importance;
+    this.days_off_string = String(importance);
+    console.log("daysoff importance:", this.days_off_importance);
+  }
+}

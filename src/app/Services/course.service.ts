@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { Struct } from "../models/Struct";
 import { GAresult } from "../models/GAresult";
 import { PreflectService } from "./preflect.service";
+import { WindowsDaysOffService } from "./windows-days-off.service";
 
 import "rxjs/add/operator/toPromise";
 
@@ -27,14 +28,17 @@ export class CourseService implements OnInit {
   ga: GAresult;
   weight: number[] = [2, 5, 3];
   // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
+  //[2,5,3] defult values
+  //[4,10,6] high values
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
-  //readonly ROOT_URL_local = "http://127.0.0.1:5000";
-  readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
+  readonly ROOT_URL_local = "http://127.0.0.1:5000";
+  //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
 
   constructor(
     private http: HttpClient,
-    public preflectService: PreflectService
+    private preflectService: PreflectService,
+    private windowsDaysOffService: WindowsDaysOffService
   ) {
     this.struct = new Struct();
     this.ga = new GAresult();
@@ -279,6 +283,9 @@ export class CourseService implements OnInit {
     if (courses != "") params = params.append("courses", courses);
     if (windows != "") params = params.append("specific_windows", windows);
     if (daysoff != "") params = params.append("specific_days_off", daysoff);
+    this.weight[0] = this.windowsDaysOffService.windows_importance;
+    this.weight[1] = this.windowsDaysOffService.days_off_importance;
+    this.weight[2] = this.preflectService.lect_importance;
     params = params.append("specific_windows_weight", "" + this.weight[0]);
     params = params.append("specific_days_off_weight", "" + this.weight[1]);
     params = params.append("specific_lecturer_weight", "" + this.weight[2]);
@@ -311,7 +318,6 @@ export class CourseService implements OnInit {
         console.log("full lect string", full_lect_string);
         params = params.append("lecturer", full_lect_string);
       }
-
     }
 
     ///////////////////////////////////////

@@ -25,7 +25,6 @@ export class Step2Component implements OnInit {
     { q_and_as: Set, value: "q_a", disabled: 1, r_value: "q_and_as" }
   ];
   struct: Struct;
-
   constructor(
     public courseService: CourseService,
     public preflectService: PreflectService,
@@ -116,21 +115,17 @@ export class Step2Component implements OnInit {
       classtype: class_type,
       lecturer: lecturer
     };
-    if (obj.classtype == "lectures")
-    {
-      obj.classtype = "lecture"
+    if (obj.classtype == "lectures") {
+      obj.classtype = "lecture";
     }
-    if (obj.classtype == "labs")
-    {
-      obj.classtype = "lab"
+    if (obj.classtype == "labs") {
+      obj.classtype = "lab";
     }
-    if (obj.classtype == "practices")
-    {
-      obj.classtype = "practice"
+    if (obj.classtype == "practices") {
+      obj.classtype = "practice";
     }
-    if (obj.classtype == "q_and_as")
-    {
-      obj.classtype = "q_and_a"
+    if (obj.classtype == "q_and_as") {
+      obj.classtype = "q_and_a";
     }
 
     this.check_chosen_lect(obj);
@@ -164,7 +159,7 @@ export class Step2Component implements OnInit {
       classtype: class_type
     };
     for (let [index, checker] of this.array.entries()) {
-      if (obj.id === checker.id && obj.classtype === checker.classtype) {
+      if (obj.id == checker.id && obj.classtype == checker.classtype) {
         console.log("Removing pref lecture");
         this.preflectService.removeSelectedPrefLect(index);
         break;
@@ -176,5 +171,9 @@ export class Step2Component implements OnInit {
       "service:",
       this.preflectService.get_Pref_Lect()
     );
+  }
+  onSelectImportance(val: string) {
+    let value = Number(val);
+    this.preflectService.set_importance(value);
   }
 }

@@ -25,29 +25,48 @@ mat-radio-button{
 .grid-container {
   display: grid;
   /* grid-template-rows: 5% 5% auto auto; */
+  grid-template-columns: 20% 40% 40%;
   grid-template-areas:
     "id id id"
-    "courselist coursetype preflecturer";
+    "courselist coursetype preflecturer"
+    "nothing nothing priority";
   grid-gap: 10px;
   /* background-color: #2196F3; */
   padding: 10px;
   /* background: linear-gradient(to bottom, #3333ff 0%, #3399ff 100%); */
 }
-.courselist_grid_item{
+
+.grid-container .id {
+  grid-area: id;
+}
+.grid-container .courselist {
   grid-area: courselist;
-  display:flex;
+}
+
+.grid-container .coursetype {
+  grid-area: coursetype;
+}
+.grid-container .preflecturer {
+  grid-area: preflecturer;
+}
+.grid-container .priority {
+  grid-area: priority;
+}
+
+.courselist_grid_item {
+  grid-area: courselist;
+  display: flex;
   flex-direction: column;
 }
 
-.coursetype_grid_item{
+.coursetype_grid_item {
   grid-area: coursetype;
   /* display:flex;
   flex-direction: column; */
 }
 
-
 .selected {
-  background-color: #CFD8DC !important;
+  background-color: #cfd8dc !important;
   color: white;
 }
 .heroes {
@@ -61,21 +80,21 @@ mat-radio-button{
   cursor: pointer;
   position: relative;
   left: 0;
-  background-color: #EEE;
-  margin: .5em;
+  background-color: #eee;
+  margin: 0.5em;
   padding: 10px;
   /* height: 1.6em; */
   border-radius: 4px;
   width: -webkit-fit-content;
 }
 .heroes li.selected:hover {
-  background-color: #BBD8DC !important;
+  background-color: #bbd8dc !important;
   color: white;
 }
 .heroes li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
+  color: #607d8b;
+  background-color: #ddd;
+  left: 0.1em;
 }
 .heroes .text {
   position: relative;
@@ -87,12 +106,25 @@ mat-radio-button{
   font-size: small;
   color: white;
   padding: 0.8em 0.7em 0 0.7em;
-  background-color:#405061;
+  background-color: #405061;
   line-height: 1em;
   position: relative;
   left: -1px;
   top: -4px;
   height: 1.8em;
-  margin-right: .8em;
+  margin-right: 0.8em;
   border-radius: 4px 0 0 4px;
+}
+.mat-button-toggle-checked {
+  background-color: rgb(48, 177, 97);
+}
+.mat-button-toggle-group {
+  width: 30%;
+}
+.mat-button-toggle {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
 }

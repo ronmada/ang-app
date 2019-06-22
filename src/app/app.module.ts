@@ -13,6 +13,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatRadioModule } from "@angular/material";
 import { LoadScreenComponent } from "./Components/load-screen/load-screen.component";
 import { MatSelectModule } from "@angular/material/select";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { WindowsDaysOffService } from "./Services/windows-days-off.service";
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
+
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +37,12 @@ import { MatSelectModule } from "@angular/material/select";
     BrowserAnimationsModule,
     FormsModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    AngularSvgIconModule,
+    MatIconModule
   ],
-  providers: [CourseService, PreflectService],
+  providers: [CourseService, PreflectService , WindowsDaysOffService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

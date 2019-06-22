@@ -1,4 +1,7 @@
 <h1>InfoPlus+</h1>
+<!-- [svgStyle]="{ 'width.px':90 , 'height.px':90} -->
+<!-- <svg-icon src="assets/images/infplus_image.svg" ></svg-icon> -->
+<img src="assets/images/infoplus_image.PNG" alt="infoplus Image">
 <div
   *ngIf="
     !courseService.finished_fetch_booly;
@@ -18,10 +21,10 @@
     <div class="item1">Header</div>
     <div class="item2">
       <nav>
-        <a routerLink="step-1" routerLinkActive="active">Step 1</a>
-        <a routerLink="step-2" routerLinkActive="active">Step 2</a>
-        <a routerLink="step-3" routerLinkActive="active">Step 3</a>
-        <a routerLink="step-4" routerLinkActive="active">Step 4</a>
+        <a routerLink="step-1" routerLinkActive="active">Courses</a>
+        <a routerLink="step-2" routerLinkActive="active">Lectures</a>
+        <a routerLink="step-3" routerLinkActive="active">Windows & Daysoff</a>
+        <a routerLink="step-4" routerLinkActive="active">Priorities</a>
         <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
       </nav>
     </div>

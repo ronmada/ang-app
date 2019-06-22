@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "ang-app-test": {
-      "root": "",
+      "root": "src",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
