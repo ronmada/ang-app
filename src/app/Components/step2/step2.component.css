@@ -29,7 +29,7 @@ mat-radio-button{
   grid-template-areas:
     "id id id"
     "courselist coursetype preflecturer"
-    "nothing nothing priority";
+    "nothing chosen_lect_list chosen_lect_list";
   grid-gap: 10px;
   /* background-color: #2196F3; */
   padding: 10px;
@@ -49,8 +49,8 @@ mat-radio-button{
 .grid-container .preflecturer {
   grid-area: preflecturer;
 }
-.grid-container .priority {
-  grid-area: priority;
+.grid-container .chosen_lect_list {
+  grid-area: chosen_lect_list;
 }
 
 .courselist_grid_item {
@@ -66,7 +66,7 @@ mat-radio-button{
 }
 
 .selected {
-  background-color: #cfd8dc !important;
+  background-color: rgb(50, 78, 129) !important;
   color: white;
 }
 .heroes {
@@ -85,16 +85,17 @@ mat-radio-button{
   padding: 10px;
   /* height: 1.6em; */
   border-radius: 4px;
-  width: -webkit-fit-content;
+  /* width: -webkit-fit-content; */
+  width: fit-content;
 }
-.heroes li.selected:hover {
+/* .heroes li.selected:hover {
   background-color: #bbd8dc !important;
   color: white;
-}
+} */
 .heroes li:hover {
-  color: #607d8b;
-  background-color: #ddd;
-  left: 0.1em;
+  /* color: #607d8b; */
+  background-color: #ffffff38;
+  left: 0.em;
 }
 .heroes .text {
   position: relative;

@@ -32,8 +32,8 @@ export class CourseService implements OnInit {
   //[4,10,6] high values
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
-  //readonly ROOT_URL_local = "http://127.0.0.1:5000";
-  readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
+  readonly ROOT_URL_local = "http://127.0.0.1:5000";
+  //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
 
   constructor(
     private http: HttpClient,
@@ -56,10 +56,7 @@ export class CourseService implements OnInit {
   define_editor(editor) {
     this.editor = editor;
   }
-  remove_cluster_from_list(index) {
-    this.struct.clusters.splice(index, 1);
-    this.cluster_show_booly.pop();
-  }
+
   add_singl_cor_to_struct(single_course) {
     console.log("the single course:", single_course);
     let result = this.search_Course(single_course);
@@ -358,19 +355,30 @@ export class CourseService implements OnInit {
     this.ga_ready = true;
   }
 
-  remove_single_Course(index) {
+  remove_single_Course(index: number) {
+    this.preflectService.remove_Pref_Lect_By_Removing_Course(
+      this.struct.courses[index]
+    );
     this.struct.courses.splice(index, 1);
   }
 
-  remove_one_course_from_cluster(index, course) {
+  remove_one_course_from_cluster(index: number, course: number) {
+    this.preflectService.remove_Pref_Lect_By_Removing_Course(this.struct.clusters[index][course]);
     this.struct.clusters[index].splice(course, 1);
     if (!this.struct.clusters[index].length) {
       this.cluster_show_booly.pop();
       this.struct.clusters.splice(index, 1);
     }
   }
-  remove_temp_course_from_cluster(index) {
+  remove_temp_course_from_cluster(index: number) {
     this.smgroup.splice(index, 1);
     if (!this.smgroup.length) this.group_submit_button_booly = false;
+  }
+  remove_cluster_from_list(index: number) {
+    this.preflectService.remove_Pref_Lect_By_Removing_Cluster(
+      this.struct.clusters[index]
+    );
+    this.struct.clusters.splice(index, 1);
+    this.cluster_show_booly.pop();
   }
 }

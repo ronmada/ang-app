@@ -15,10 +15,9 @@ import { LoadScreenComponent } from "./Components/load-screen/load-screen.compon
 import { MatSelectModule } from "@angular/material/select";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { WindowsDaysOffService } from "./Services/windows-days-off.service";
-import { AngularSvgIconModule } from 'angular-svg-icon';
-
-
-import {MatIconModule} from '@angular/material/icon';
+import { AngularSvgIconModule } from "angular-svg-icon";
+import { MatListModule } from "@angular/material/list";
+import { MatIconModule } from "@angular/material/icon";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,9 +39,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatSelectModule,
     MatButtonToggleModule,
     AngularSvgIconModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
-  providers: [CourseService, PreflectService , WindowsDaysOffService],
+  providers: [CourseService, PreflectService, WindowsDaysOffService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

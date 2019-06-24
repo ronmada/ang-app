@@ -4,13 +4,18 @@
       <ul class="heroes">
         <li
           *ngFor="let course of struct.courses"
+          [class.selected]="course === selected_course"
           (click)="onSelectCourse(course)"
         >
           <span class="badge">{{ course.__Course__.id }}</span>
           {{ course.__Course__.course_name }}
         </li>
         <div *ngFor="let clus of struct.clusters">
-          <li *ngFor="let clu of clus" (click)="onSelectCourse(clu)">
+          <li
+            *ngFor="let clu of clus"
+            [class.selected]="clu === selected_course"
+            (click)="onSelectCourse(clu)"
+          >
             <span class="badge">{{ clu.__Course__.id }}</span>
             {{ clu.__Course__.course_name }}
           </li>
@@ -58,36 +63,10 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <!--
-<ul class="heroes">
-  <li
-    *ngFor="let hero of heroes"
-    [class.selected]="hero === selectedHero"
-    (click)="onSelect(hero)"
-  >
-    <span class="badge">{{ hero.id }}</span> {{ hero.name }}
-  </li>
-</ul> -->
-
-    <!-- <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link"  >Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" >Profile</a>
-    </li> -->
-    <!-- <div class="priority" *ngIf="struct.courses.length || struct.clusters.length">
-      <h2>priority</h2>
-      <mat-button-toggle-group
-        #group="matButtonToggleGroup"
-        name="fontStyle"
-        aria-label="Font Style"
-        [value]="this.preflectService.lect_string"
-        (change)="onSelectImportance(group.value)"
-      >
-        <mat-button-toggle value="3">Default</mat-button-toggle>
-        <mat-button-toggle value="6">High</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div> -->
+    <div class="chosen_lect_list">
+      <div *ngFor="let preflect of array">
+        {{ preflect }}
+      </div>
+    </div>
   </div>
 </div>
