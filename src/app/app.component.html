@@ -34,6 +34,8 @@
     <div class="item4">
       <button
         type="submit"
+        [disabled]="!(this.courseService.struct.courses.length ||
+        this.courseService.struct.clusters.length) "
         class="btn btn-primary btn-lg"
         (click)="onSubmitGA()"
       >
