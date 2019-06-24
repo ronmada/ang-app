@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import { CourseService } from "../../Services/course.service";
 import { FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -9,10 +9,8 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./step1.component.css"]
 })
 export class Step1Component implements OnInit {
-  courseitem_ID: String[] = [];
-  courseitem_Name: String[] = [];
-  editorbooly: String = "single";
-  editor: String = "Cluster";
+  courseitem_ID: string[] = [];
+  courseitem_Name: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -34,20 +32,9 @@ export class Step1Component implements OnInit {
     );
   }
 
-  toggle_editor() {
-    if (this.editorbooly == "cluster") {
-      this.editorbooly = "single";
-      this.editor = "Cluster";
-    } else {
-      this.editorbooly = "cluster";
-      this.editor = "Single Course";
-    }
-    this.courseService.define_editor(this.editorbooly);
-  }
-
   onSubmit_selfmadeform() {
     this.courseService.add_cluster_to_struct();
-     this.courseService.check =[]
+    this.courseService.check = [];
   }
 
   async onSubmit() {

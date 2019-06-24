@@ -11,6 +11,7 @@ export class ComboBoxComponent implements OnInit {
   chosen: string = "ID";
   select_option: string = "ID";
   @Input() list: any = [];
+  @Input() type_of_search: string;
 
   // two way binding for input text
   inputItem: string = "";
@@ -27,6 +28,7 @@ export class ComboBoxComponent implements OnInit {
   ngOnInit() {
     this.filteredList = this.list;
     // console.log("filterd list", this.filteredList);
+    console.log("cluster is:", this.type_of_search);
   }
   handleChange(option: string) {
     // this.showError = false;
@@ -108,12 +110,12 @@ export class ComboBoxComponent implements OnInit {
       setTimeout(() => {
         this.selectItem(this.selectedIndex);
         if (this.selectedIndex !== -1) {
-          if (this.courseService.editor === "single") {
+          if (this.type_of_search === "single") {
             console.log("input item", this.inputItem);
             dup_check = this.courseService.add_singl_cor_to_struct(
               this.inputItem
             );
-          } else if (this.courseService.editor === "cluster") {
+          } else if (this.type_of_search === "cluster") {
             console.log("adding course to cluster temp group");
             dup_check = this.courseService.add_single_course_to_cluster_struct(
               this.inputItem

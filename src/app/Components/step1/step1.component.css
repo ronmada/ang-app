@@ -1,18 +1,19 @@
 form {
   /*grid-template-columns: 200px 1fr;*/
-  display: grid;
+  display: inline-grid;
   grid-template-rows: auto;
   /* grid-template-columns: 15% 25% 10% ;
   grid-template-rows: 5% 50% 20% 10%; */
 
   grid-template-areas:
-    "editors editors editors"
-    "course_cluster cluster_group results_form"
-    "cluster_group_button cluster_group_button cluster_group_button"
-    "next_button next_button next_button";
-  grid-gap: 5px;
+    "cluster_temp single_course_combo results_form"
+    "cluster_temp cluster_combo result_form"
+    "cluster_group_button nothing nothing"
+    "not next_button next_button";
+  /* grid-gap: 5px; */
+  grid-gap: 1.5rem 4rem;
   /* background-color: rgb(11, 224, 239); */
-  padding: 10px;
+  padding: 2rem;
   /* align-items: center; */
 }
 form > div {
@@ -24,21 +25,24 @@ form > div {
 form .item9 {
   grid-area: next_button;
 }
-
-form .item10 {
+form .item2 {
+  grid-area: cluster_temp;
+  align-self: end;
+}
+/* form .item10 {
   grid-area: editors;
   position: relative;
   right: 27%;
-}
+} */
 form .item1 {
-  grid-area: course_cluster;
+  grid-area: single_course_combo;
 
   /* place-self: center; */
   /* display: none; */
 }
 
 form .item3 {
-  grid-area: cluster_group;
+  grid-area: cluster_combo;
   /* justify-self: end;
   align-self: start; */
 }
@@ -49,7 +53,8 @@ form .item4 {
 }
 .item4 button {
   position: relative;
-  left: 100%;
+  left: 50%;
+  background-color: red;
 }
 form .item5 {
   grid-area: results_form;

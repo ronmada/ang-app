@@ -1,7 +1,6 @@
-import { Injectable, OnInit, Input } from "@angular/core";
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { Injectable, OnInit } from "@angular/core";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Struct } from "../models/Struct";
-import { GAresult } from "../models/GAresult";
 import { PreflectService } from "./preflect.service";
 import { WindowsDaysOffService } from "./windows-days-off.service";
 
@@ -11,8 +10,8 @@ import "rxjs/add/operator/toPromise";
   providedIn: "root"
 })
 export class CourseService implements OnInit {
-  editor: String = "single";
   search_option: string = "ID";
+  search_optio_cluster: string = "ID";
   check: string[] = [];
   smgroup: any[] = [];
   group_submit_button_booly: boolean = false;
@@ -25,7 +24,6 @@ export class CourseService implements OnInit {
   course_id_name: any[] = [];
   courseitem_ID: any[] = [];
   courseitem_Name: any[] = [];
-  ga: GAresult;
   weight: number[] = [2, 8, 3];
   // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
   //[2,8,3] defult values
@@ -41,7 +39,6 @@ export class CourseService implements OnInit {
     private windowsDaysOffService: WindowsDaysOffService
   ) {
     this.struct = new Struct();
-    this.ga = new GAresult();
   }
 
   ngOnInit() {
@@ -52,9 +49,6 @@ export class CourseService implements OnInit {
   send_search_option(id, name) {
     this.courseitem_ID = id;
     this.courseitem_Name = name;
-  }
-  define_editor(editor) {
-    this.editor = editor;
   }
 
   add_singl_cor_to_struct(single_course) {
@@ -287,7 +281,7 @@ export class CourseService implements OnInit {
     params = params.append("specific_days_off_weight", "" + this.weight[1]);
     params = params.append("specific_lecturer_weight", "" + this.weight[2]);
 
-    ///////////////////////////////////
+
 
     let pref_lecturers: Array<object> = this.preflectService.get_Pref_Lect();
     console.log("pref_lectures_array", pref_lecturers);
@@ -317,7 +311,6 @@ export class CourseService implements OnInit {
       }
     }
 
-    ///////////////////////////////////////
 
     console.log("array of clicked ", this.clicked);
     console.log("clusters:", params.getAll("cluster"));
@@ -363,7 +356,9 @@ export class CourseService implements OnInit {
   }
 
   remove_one_course_from_cluster(index: number, course: number) {
-    this.preflectService.remove_Pref_Lect_By_Removing_Course(this.struct.clusters[index][course]);
+    this.preflectService.remove_Pref_Lect_By_Removing_Course(
+      this.struct.clusters[index][course]
+    );
     this.struct.clusters[index].splice(course, 1);
     if (!this.struct.clusters[index].length) {
       this.cluster_show_booly.pop();

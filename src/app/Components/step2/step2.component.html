@@ -42,6 +42,7 @@
         <mat-label>Choose Lecturer</mat-label>
         <mat-select>
           <mat-option
+            *ngIf="class_type"
             (click)="
               onSelectRemoveLect(class_type, selected_course.__Course__.id)
             "

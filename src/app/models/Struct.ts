@@ -1,4 +1,4 @@
 export class Struct {
-  courses : any[] = []
-  clusters: any[] = []
+  courses: any[] = [];
+  clusters: any[] = [];
 }

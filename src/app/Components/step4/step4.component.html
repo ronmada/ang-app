@@ -1,18 +1,10 @@
-
-<!-- <div
-  *ngIf="
-    this.courseService.struct.courses.length ||
-    this.courseService.struct.clusters.length
-  "
-> -->
-
 <h2>Lectures priority</h2>
 <mat-button-toggle-group
   #group1="matButtonToggleGroup"
   name="fontStyle"
   aria-label="Font Style"
-  [disabled]="!this.preflectService.pref_lecturers.length"
-  [value]="this.preflectService.lect_string"
+  [disabled]="!preflectService.pref_lecturers.length"
+  [value]="preflectService.lect_string"
   (change)="onSelectLectImportance(group1.value)"
 >
   <mat-button-toggle value="3">Default</mat-button-toggle>
@@ -25,7 +17,7 @@
   name="fontStyle"
   aria-label="Font Style"
   [disabled]="!step3"
-  [value]="this.windowsDaysOffService.windows_string"
+  [value]="windowsDaysOffService.windows_string"
   (change)="onSelectWindowImportance(group2.value)"
 >
   <mat-button-toggle value="2">Default</mat-button-toggle>
@@ -38,7 +30,7 @@
   name="fontStyle"
   aria-label="Font Style"
   [disabled]="!step3"
-  [value]="this.windowsDaysOffService.days_off_string"
+  [value]="windowsDaysOffService.days_off_string"
   (change)="onSelectDaysoffImportance(group3.value)"
 >
   <mat-button-toggle value="8">Default</mat-button-toggle>

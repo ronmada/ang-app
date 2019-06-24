@@ -1,6 +1,5 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { CourseService } from '../../Services/course.service';
-import { GAresult } from "../../models/GAresult";
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 
@@ -10,8 +9,6 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./ga-results.component.css']
 })
 export class GaResultsComponent implements OnInit {
-  ga_result : any
-  ga : GAresult
   displayedColumns  :  string[] = ['0', '1', '2', '3', '4','hour'];
 
   test = []

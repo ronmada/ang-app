@@ -5,10 +5,10 @@ import { Injectable } from "@angular/core";
 })
 export class WindowsDaysOffService {
   windows_importance: number = 2;
-  windows_string: string = String(this.windows_importance)
+  windows_string: string = String(this.windows_importance);
   days_off_importance: number = 8;
-  days_off_string: string = String(this.days_off_importance)
-  constructor() { }
+  days_off_string: string = String(this.days_off_importance);
+  constructor() {}
 
   set_windows_importance(importance: number) {
     this.windows_importance = importance;

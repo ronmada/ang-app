@@ -1,11 +1,4 @@
-<form  (ngSubmit)="onSubmit()">
-  <div class="item10">
-    <nav>
-      <a (click)="toggle_editor()">
-        {{ editor }}
-      </a>
-    </nav>
-  </div>
+<form (ngSubmit)="onSubmit()">
   <div *ngIf="courseService.finished_fetch_booly">
     <div class="item1">
       <label
@@ -15,49 +8,73 @@
         >Search Course by:</label
       >
       <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
-        <app-combo-box [list]="courseitem_ID"></app-combo-box>
+        <app-combo-box
+          [list]="courseitem_ID"
+          type_of_search="single"
+        ></app-combo-box>
       </div>
       <ng-template #elseBlock>
         <div *ngIf="courseService.search_option === 'Name'">
-          <app-combo-box [list]="courseitem_Name"></app-combo-box>
+          <app-combo-box
+            [list]="courseitem_Name"
+            type_of_search="single"
+          ></app-combo-box>
+        </div>
+      </ng-template>
+    </div>
+    <div class="item3">
+      <label
+        class="col-form-label col-form-label-lg"
+        style="color:rgb(116, 35, 52)"
+        for="inputLarge"
+        >Search Cluster by:</label
+      >
+      <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
+        <app-combo-box
+          [list]="courseitem_ID"
+          type_of_search="cluster"
+        ></app-combo-box>
+      </div>
+      <ng-template #elseBlock>
+        <div *ngIf="courseService.search_option === 'Name'">
+          <app-combo-box
+            [list]="courseitem_Name"
+            type_of_search="cluster"
+          ></app-combo-box>
         </div>
       </ng-template>
     </div>
   </div>
-  <div *ngIf="editorbooly == 'cluster'">
-    <div class="item3">
-      <table class="table-success">
-        <tbody>
-          <tr *ngFor="let course of courseService.smgroup; let n = index">
-            {{
-              course.__Course__.id
-            }}
-            {{
-              course.__Course__.course_name
-            }}
-            <button
-              type="button"
-              (click)="remove_temp_course_from_cluster(n)"
-              class="btn btn-danger"
-            >
-              -
-            </button>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="item2">
+    <table class="table-success">
+      <tbody>
+        <tr *ngFor="let course of courseService.smgroup; let n = index">
+          {{
+            course.__Course__.id
+          }}
+          {{
+            course.__Course__.course_name
+          }}
+          <button
+            type="button"
+            (click)="remove_temp_course_from_cluster(n)"
+            class="btn btn-danger"
+          >
+            -
+          </button>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div *ngIf="editorbooly == 'cluster'">
-    <div class="item4">
-      <button
-        type="button"
-        class="btn btn-secondary"
-        [hidden]="!courseService.group_submit_button_booly"
-        (click)="onSubmit_selfmadeform()"
-      >
-        submit cluster
-      </button>
-    </div>
+  <div class="item4">
+    <button
+      type="button"
+      class="btn btn-info"
+      [hidden]="!courseService.group_submit_button_booly"
+      (click)="onSubmit_selfmadeform()"
+    >
+      submit cluster
+    </button>
   </div>
   <div class="item5">
     <table class="table table-hover">

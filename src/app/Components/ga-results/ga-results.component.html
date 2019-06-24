@@ -1,142 +1,124 @@
-
 <h2>ga-results page</h2>
 <mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
-
-
-
-<ng-container  matColumnDef="0">
+  <ng-container matColumnDef="0">
     <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[0]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="1">
+  <ng-container matColumnDef="1">
     <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[1]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="2">
+  <ng-container matColumnDef="2">
     <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[2]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="3">
+  <ng-container matColumnDef="3">
     <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[3]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="4">
+  <ng-container matColumnDef="4">
     <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[4]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="hour">
+  <ng-container matColumnDef="hour">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[5]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
+  </ng-container>
 
-<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-
 
 <h2>ga-results page</h2>
 <mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-
-
-
-<ng-container  matColumnDef="0">
+  <ng-container matColumnDef="0">
     <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[0]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="1">
+  <ng-container matColumnDef="1">
     <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[1]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="2">
+  <ng-container matColumnDef="2">
     <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[2]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="3">
+  <ng-container matColumnDef="3">
     <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[3]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="4">
+  <ng-container matColumnDef="4">
     <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[4]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="hour">
+  <ng-container matColumnDef="hour">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[5]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
+  </ng-container>
 
-<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-
 
 <h2>ga-results page</h2>
 <mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
-
-
-
-<ng-container  matColumnDef="0">
+  <ng-container matColumnDef="0">
     <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[0]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="1">
+  <ng-container matColumnDef="1">
     <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[1]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="2">
+  <ng-container matColumnDef="2">
     <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[2]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="3">
+  <ng-container matColumnDef="3">
     <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[3]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="4">
+  <ng-container matColumnDef="4">
     <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[4]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
+  </ng-container>
 
-<ng-container  matColumnDef="hour">
+  <ng-container matColumnDef="hour">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{lesson[5]}}</mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
+  </ng-container>
 
-<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 
-
-<div *ngFor= "let res of courseService.getGAresults().results">
-        score : {{res.Score}}
+<div *ngFor="let res of courseService.getGAresults().results">
+  score : {{ res.Score }}
 </div>
 
-
-<div *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"> </div>
+<div
+  *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"
+></div>
 <!--true statement-->
 
 <!--else statement-->
 <ng-template #ga_not_ready>
-  <div> GA is not ready</div>
+  <div>GA is not ready</div>
 </ng-template>
-
-
-
