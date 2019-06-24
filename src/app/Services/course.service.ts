@@ -26,10 +26,10 @@ export class CourseService implements OnInit {
   courseitem_ID: any[] = [];
   courseitem_Name: any[] = [];
   ga: GAresult;
-  weight: number[] = [2, 5, 3];
+  weight: number[] = [2, 8, 3];
   // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
-  //[2,5,3] defult values
-  //[4,10,6] high values
+  //[2,8,3] defult values
+  //[4,16,6] high values
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
   readonly ROOT_URL_local = "http://127.0.0.1:5000";

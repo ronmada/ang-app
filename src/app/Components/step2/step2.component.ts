@@ -19,10 +19,10 @@ export class Step2Component implements OnInit {
   classes: Set<string>;
   chosen_course: any[] = [];
   names: any[] = [
-    { labs: Set, value: "lab", disabled: 1, r_value: "labs" },
-    { practices: Set, value: "Practice", disabled: 1, r_value: "practices" },
-    { lectures: Set, value: "Lecture", disabled: 1, r_value: "lectures" },
-    { q_and_as: Set, value: "q_a", disabled: 1, r_value: "q_and_as" }
+    { lab: Set, value: "lab", disabled: 1, r_value: "lab" },
+    { practice: Set, value: "Practice", disabled: 1, r_value: "practice" },
+    { lecture: Set, value: "Lecture", disabled: 1, r_value: "lecture" },
+    { q_and_a: Set, value: "q_a", disabled: 1, r_value: "q_and_a" }
   ];
   struct: Struct;
   constructor(
@@ -40,11 +40,11 @@ export class Step2Component implements OnInit {
 
   resetItems(course: object) {
     this.lecturers = new Array();
-    this.names[0].labs = new Set();
+    this.names[0].lab = new Set();
     for (let i = 0; i < this.names.length; i++) this.names[i].disabled = 1;
-    this.names[1].practices = new Set();
-    this.names[2].lectures = new Set();
-    this.names[3].q_and_as = new Set();
+    this.names[1].practice = new Set();
+    this.names[2].lecture = new Set();
+    this.names[3].q_and_a = new Set();
     this.classes = new Set();
     this.selected_course = course;
   }
@@ -66,7 +66,7 @@ export class Step2Component implements OnInit {
         this.names[2].disabled = 0;
         for (let co of cor.__Course_Group__.lectures) {
           for (let c of co.__Kita__.lectures) {
-            this.names[2].lectures.add(c.__Lect__.lecturer);
+            this.names[2].lecture.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -75,7 +75,7 @@ export class Step2Component implements OnInit {
         this.names[1].disabled = 0;
         for (let co of cor.__Course_Group__.practices) {
           for (let c of co.__Kita__.lectures) {
-            this.names[1].practices.add(c.__Lect__.lecturer);
+            this.names[1].practice.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -84,7 +84,7 @@ export class Step2Component implements OnInit {
         this.names[3].disabled = 0;
         for (let co of cor.__Course_Group__.q_and_as) {
           for (let c of co.__Kita__.lectures) {
-            this.names[3].q_and_as.add(c.__Lect__.lecturer);
+            this.names[3].q_and_a.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -93,7 +93,7 @@ export class Step2Component implements OnInit {
         this.names[0].disabled = 0;
         for (let co of cor.__Course_Group__.labs) {
           for (let c of co.__Kita__.lectures) {
-            this.names[0].labs.add(c.__Lect__.lecturer);
+            this.names[0].lab.add(c.__Lect__.lecturer);
           }
         }
       }
@@ -115,18 +115,7 @@ export class Step2Component implements OnInit {
       classtype: class_type,
       lecturer: lecturer
     };
-    if (obj.classtype == "lectures") {
-      obj.classtype = "lecture";
-    }
-    if (obj.classtype == "labs") {
-      obj.classtype = "lab";
-    }
-    if (obj.classtype == "practices") {
-      obj.classtype = "practice";
-    }
-    if (obj.classtype == "q_and_as") {
-      obj.classtype = "q_and_a";
-    }
+    
 
     this.check_chosen_lect(obj);
     console.log("Array is:", this.array);

@@ -7,7 +7,7 @@ import * as _ from "underscore";
 export class PreflectService {
   pref_lecturers: Array<any> = [];
   lect_importance: number = 3;
-  lect_string: string = "3";
+  lect_string: string = String(this.lect_importance);
   constructor() {}
 
   push_Pref_Lect(obj: object) {
@@ -56,6 +56,7 @@ export class PreflectService {
     console.log("cluster[index]", cluster);
     let index = 0;
     let tempsplicer: Array<any> = [];
+    let temparray: Array<any> = tempsplicer;
     for (let course of cluster) {
       console.log("COURSE", course);
       for (let lect_checker of this.pref_lecturers) {
@@ -70,10 +71,16 @@ export class PreflectService {
         index += 1;
       }
       console.log("tempsplicer", tempsplicer);
-      while (tempsplicer.length) {
-        this.pref_lecturers.splice(tempsplicer.pop(), 1);
+      temparray.push(tempsplicer)
+      index=0
+    }
+    console.log(temparray)
+    for(let i=0;i<temparray.length;i++){
+      while (temparray.length) {
+        this.pref_lecturers.splice(temparray[i].pop(), 1);
       }
     }
+    
 
     console.log("pref_lecturers after removal", this.pref_lecturers);
   }
