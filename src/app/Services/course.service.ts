@@ -32,8 +32,8 @@ export class CourseService implements OnInit {
   //[4,16,6] high values
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
-  readonly ROOT_URL_local = "http://127.0.0.1:5000";
-  //readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
+  //readonly ROOT_URL_local = "http://127.0.0.1:5000";
+  readonly ROOT_URL_local = "https://infoplus.azurewebsites.net";
 
   constructor(
     private http: HttpClient,
