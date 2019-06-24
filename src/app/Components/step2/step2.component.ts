@@ -115,10 +115,7 @@ export class Step2Component implements OnInit {
       classtype: class_type,
       lecturer: lecturer
     };
-    
-
     this.check_chosen_lect(obj);
-    console.log("Array is:", this.array);
   }
   check_chosen_lect(obj: any) {
     let flag: boolean = true;

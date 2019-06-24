@@ -56,7 +56,6 @@ export class PreflectService {
     console.log("cluster[index]", cluster);
     let index = 0;
     let tempsplicer: Array<any> = [];
-    let temparray: Array<any> = tempsplicer;
     for (let course of cluster) {
       console.log("COURSE", course);
       for (let lect_checker of this.pref_lecturers) {
@@ -65,23 +64,17 @@ export class PreflectService {
             if (lect_checker[lect_obj] === course.__Course__.id) {
               console.log("MATCH:   ", course.__Course__.id);
               tempsplicer.push(index);
+              console.log("index is:", index);
             }
           }
         }
         index += 1;
       }
-      console.log("tempsplicer", tempsplicer);
-      temparray.push(tempsplicer)
-      index=0
-    }
-    console.log(temparray)
-    for(let i=0;i<temparray.length;i++){
-      while (temparray.length) {
-        this.pref_lecturers.splice(temparray[i].pop(), 1);
+      while (tempsplicer.length) {
+        this.pref_lecturers.splice(tempsplicer.pop(), 1);
       }
+      index = 0;
     }
-    
-
     console.log("pref_lecturers after removal", this.pref_lecturers);
   }
 }
