@@ -3,6 +3,8 @@ import { CourseService } from "../../Services/course.service";
 import { PreflectService } from "../../Services/preflect.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Struct } from "../../models/Struct";
+import { FormControl } from "@angular/forms";
+
 import * as _ from "underscore";
 
 @Component({
@@ -11,7 +13,14 @@ import * as _ from "underscore";
   styleUrls: ["./step2.component.css"]
 })
 export class Step2Component implements OnInit {
+  class_Type_control = new FormControl();
+  pref_lect_control = new FormControl();
+  show_class_type: boolean = false;
+  show_lecturer: boolean = false;
   array: Array<any> = [];
+  course_chosen: boolean = false;
+  class_type_chosen: boolean = false;
+  lecturer_chosen: boolean = false;
   nones: string = "None";
   class_type: string = "";
   lecturers: Array<any>;
@@ -47,6 +56,9 @@ export class Step2Component implements OnInit {
     this.names[3].q_and_a = new Set();
     this.classes = new Set();
     this.selected_course = course;
+    this.course_chosen = true;
+    this.class_type_chosen = false;
+    this.show_class_type = false;
   }
   onSelectCourse(course: any) {
     this.resetItems(course);
@@ -108,13 +120,21 @@ export class Step2Component implements OnInit {
   reset_names(class_type: string) {
     this.class_type = class_type;
     this.lecturers = new Array();
+    this.class_type_chosen = true;
+    this.show_class_type = true;
+    this.show_lecturer = false;
   }
   onSelectLecturer(lecturer: string, class_type: string, course_id: string) {
+    this.show_class_type = true;
+    this.show_lecturer = true;
+
     let obj = {
       id: course_id,
       classtype: class_type,
       lecturer: lecturer
     };
+    // this.class_type_chosen = false;
+
     this.check_chosen_lect(obj);
   }
   check_chosen_lect(obj: any) {
@@ -161,5 +181,10 @@ export class Step2Component implements OnInit {
   onSelectImportance(val: string) {
     let value = Number(val);
     this.preflectService.set_importance(value);
+  }
+  remove_preflect_fromlist(index: number) {
+    this.array.splice(index, 1);
+    this.show_class_type = false;
+    this.show_lecturer = false;
   }
 }

@@ -1,7 +1,4 @@
 @media (min-width: 768px) {
-  .item1 {
-    grid-area: header;
-  }
   .item2 {
     grid-area: main;
   }
@@ -18,21 +15,23 @@
 
   .grid-container {
     display: grid;
-    grid-template-rows: 5% 5% auto auto;
+    grid-template-rows: 5% auto auto;
     grid-template-areas:
-      "header"
       "main"
       "_content_"
       "sub_button";
     grid-gap: 10px;
+
     /* background-color: #2196F3; */
     padding: 10px;
+    padding-left: 3rem;
+    padding-top: 1rem;
     /* background: linear-gradient(to bottom, #3333ff 0%, #3399ff 100%); */
   }
 
   .grid-container > div {
     /* background-color: rgba(255, 255, 255, 0.8); */
-    text-align: center;
+    text-align: auto;
     padding: 20px 0;
     font-size: auto;
   }

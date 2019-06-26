@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()">
+<div class="main_grid">
   <div *ngIf="courseService.finished_fetch_booly">
     <div class="item1">
       <label
@@ -117,7 +117,8 @@
               </button>
               <div class="dropdown-content">
                 <div *ngFor="let course of cluster; let k = index">
-                  {{ course.__Course__.id }} {{ course.__Course__.course_name }}
+                  {{ course.__Course__.id }}
+                  {{ course.__Course__.course_name }}
                   <button
                     type="button"
                     (click)="remove_coursefromcluster(j, k)"
@@ -147,4 +148,13 @@
       Next
     </button>
   </div>
-</form>
+</div>
+
+<!--
+<div class="main_grid">
+  <div class="single_cluster_grid">
+    <div class="item1">
+      hello
+    </div>
+  </div>
+</div> -->

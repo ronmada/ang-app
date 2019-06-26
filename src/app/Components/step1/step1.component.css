@@ -1,4 +1,4 @@
-form {
+.main_grid {
   /*grid-template-columns: 200px 1fr;*/
   display: inline-grid;
   grid-template-rows: auto;
@@ -10,43 +10,54 @@ form {
     "cluster_temp cluster_combo result_form"
     "cluster_group_button nothing nothing"
     "not next_button next_button";
+    /* grid-template-areas:
+    "single_cluster results_form"
+    "next_button next_button"; */
   /* grid-gap: 5px; */
   grid-gap: 1.5rem 4rem;
   /* background-color: rgb(11, 224, 239); */
   padding: 2rem;
   /* align-items: center; */
 }
-form > div {
+.main_grid > div {
   /* text-align: center; */
   /* padding: 20px; */
   font-size: auto;
 }
+.single_cluster_grid {
+  display: grid;
+  grid-area: single_cluster;
+  grid-template-areas:
+    "nothing1 single_course_combo nothing3"
+    "nothing2 cluster_combo nothing4"
+    "cluster_temp cluster_group_button nothing5";
+}
 
-form .item9 {
+.item9 {
   grid-area: next_button;
 }
-form .item2 {
+.item2 {
   grid-area: cluster_temp;
   align-self: end;
 }
-/* form .item10 {
+/* .item10 {
   grid-area: editors;
   position: relative;
   right: 27%;
 } */
-form .item1 {
+.item1 {
   grid-area: single_course_combo;
 
   /* place-self: center; */
   /* display: none; */
 }
 
-form .item3 {
+.item3 {
   grid-area: cluster_combo;
   /* justify-self: end;
   align-self: start; */
 }
-form .item4 {
+.item4 {
   grid-area: cluster_group_button;
   align-self: center;
   justify-self: start;
@@ -56,23 +67,23 @@ form .item4 {
   left: 50%;
   background-color: red;
 }
-form .item5 {
+.item5 {
   grid-area: results_form;
   justify-self: start;
 }
-form .item6 {
+.item6 {
   grid-area: sub_button;
   justify-self: center;
 }
-form .btn-primary {
+.btn-primary {
   width: 300px;
 }
 
-form .btn-info {
+.btn-info {
   font-size: 1rem;
   margin-right: 1rem;
 }
-form .btn-danger {
+.btn-danger {
   font-size: 0.6rem;
 }
 
@@ -80,7 +91,7 @@ form .btn-danger {
   margin-left: 10px;
 }
 
-form .table-hover {
+.table-hover {
   width: 1px;
   white-space: nowrap;
   text-align: center;
@@ -89,7 +100,7 @@ form .table-hover {
   border: 0.2rem solid rgba(223, 223, 37, 0.89);
   /* background-color: rgb(255, 255, 0); */
 }
-form .item3 .table-success {
+.item3 .table-success {
   border: 0.2rem solid rgba(42, 165, 42, 0.568);
 }
 

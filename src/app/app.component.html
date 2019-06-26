@@ -1,6 +1,6 @@
 <!-- [svgStyle]="{ 'width.px':90 , 'height.px':90} -->
 <!-- <svg-icon src="assets/images/infplus_image.svg" ></svg-icon> -->
-<img src="assets/images/infoplus_image.PNG" alt="infoplus Image">
+<img src="assets/images/infoplus_image.PNG" alt="infoplus Image" width="440" height="222">
 <div
   *ngIf="
     !courseService.finished_fetch_booly;
@@ -17,7 +17,6 @@
 </ng-template>
 <ng-template #getSiteBlock>
   <div class="grid-container">
-    <!-- <div class="item1">Header</div> -->
     <div class="item2">
       <nav>
         <a routerLink="step-1" routerLinkActive="active">Courses</a>
@@ -43,34 +42,3 @@
     </div>
   </div>
 </ng-template>
-
-<!--
-<nav>
-  <a (click)="toggleEditor('name')">Search by Course ID</a>
-</nav>
--->
-<!--<app-name-editor *ngIf="showNameEditor"></app-name-editor>-->
-<!--<app-name-editor></app-name-editor>-->
-
-<!--
-<div *ngIf="courseService.get_show_ga_result(); then clickedsubmit">
-</div>
-<ng-template #clickedsubmit>
-    <app-ga-results></app-ga-results>
-</ng-template>
--->
-
-<!--
-<app-submit-to-ga *ngIf="courseService.get_show_ga_result(); then loggedIn; else loggedOut"> </app-submit-to-ga>
-
-<ng-template #loggedIn>
-  <div>
-    Welcome back, friend.
-  </div>
-</ng-template>
-<ng-template #loggedOut>
-  <div>
-    Please friend, login.
-  </div>
-</ng-template>
--->

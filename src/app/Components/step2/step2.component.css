@@ -1,70 +1,37 @@
-/* .example-h2 {
-  margin: 10px;
-}
-
-.example-section {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  height: 60px;
-}
-
-.example-margin {
-  margin: 10px;
-}
-mat-radio-button{
-  margin: 5px 20px;;
-}
-.custom-radio{
-  display: inline-flex;
-}
-.radio-class{
-  margin: 2px 5px;
-} */
-
 .grid-container {
   display: inline-grid;
   /* grid-template-rows: 5% 5% auto auto; */
   grid-template-columns: auto;
   grid-template-areas:
-    "id id id"
-    "courselist coursetype preflecturer"
-    "nothing chosen_lect_list chosen_lect_list";
+    "courselist coursetype chosen_lect_list"
+    "courselist preflecturer chosen_lect_list";
   grid-gap: 1.5rem 4rem;
   /* background-color: #2196F3; */
   padding: 10px;
   /* background: linear-gradient(to bottom, #3333ff 0%, #3399ff 100%); */
 }
 
-.grid-container .id {
-  grid-area: id;
-}
-.grid-container .courselist {
+.courselist {
   grid-area: courselist;
 }
 
-.grid-container .coursetype {
+.coursetype {
   grid-area: coursetype;
 }
-.grid-container .preflecturer {
+.preflecturer {
   grid-area: preflecturer;
 }
-.grid-container .chosen_lect_list {
+.chosen_lect_list {
   grid-area: chosen_lect_list;
 }
 
-.courselist_grid_item {
-  grid-area: courselist;
-  display: flex;
-  flex-direction: column;
+h4,
+h3 {
+  text-align: center;
 }
-
-.coursetype_grid_item {
-  grid-area: coursetype;
-  /* display:flex;
-  flex-direction: column; */
+h4 {
+  margin: 1.6rem auto;
 }
-
 .selected {
   background-color: rgb(14, 105, 209) !important;
   color: white;
@@ -129,4 +96,20 @@ mat-radio-button{
   align-items: center;
   flex-direction: row;
   display: flex;
+}
+.numberCircle {
+  position: relative;
+  left: 40%;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  width: 36px;
+  height: 36px;
+  /* padding: 2px; */
+
+  background: #fff;
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
+
+  font: 32px Arial, sans-serif;
 }
