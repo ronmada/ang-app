@@ -143,8 +143,18 @@
       Submit to GA
     </button>
   </div> -->
-  <div class="item9">
-    <button type="button" class="btn btn-success" (click)="next_step()">
+  <div class="next_button">
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="
+        !(
+          courseService.struct.courses.length ||
+          courseService.struct.clusters.length
+        )
+      "
+      (click)="next_step()"
+    >
       Next
     </button>
   </div>

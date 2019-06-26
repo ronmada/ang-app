@@ -77,7 +77,6 @@ export class CourseService implements OnInit {
     }
     this.check_duplicate(result);
     if (this.check.length === 0) {
-      console.log("check FALSE");
       return result;
     } else {
       console.log("DUPLICATE", this.check);
@@ -262,7 +261,6 @@ export class CourseService implements OnInit {
         }
       }
     }
-
     let courses = "";
     for (let course of struct.courses) {
       if (courses == "") {
@@ -280,8 +278,6 @@ export class CourseService implements OnInit {
     params = params.append("specific_windows_weight", "" + this.weight[0]);
     params = params.append("specific_days_off_weight", "" + this.weight[1]);
     params = params.append("specific_lecturer_weight", "" + this.weight[2]);
-
-
 
     let pref_lecturers: Array<object> = this.preflectService.get_Pref_Lect();
     console.log("pref_lectures_array", pref_lecturers);
@@ -310,7 +306,6 @@ export class CourseService implements OnInit {
         params = params.append("lecturer", full_lect_string);
       }
     }
-
 
     console.log("array of clicked ", this.clicked);
     console.log("clusters:", params.getAll("cluster"));

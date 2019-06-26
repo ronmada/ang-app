@@ -20,7 +20,6 @@ export class Step2Component implements OnInit {
   array: Array<any> = [];
   course_chosen: boolean = false;
   class_type_chosen: boolean = false;
-  lecturer_chosen: boolean = false;
   nones: string = "None";
   class_type: string = "";
   lecturers: Array<any>;
@@ -43,7 +42,6 @@ export class Step2Component implements OnInit {
 
   ngOnInit() {
     this.struct = this.courseService.getstruct();
-    console.log("Struct is:", this.struct);
     this.array = this.preflectService.get_Pref_Lect();
   }
 
@@ -67,7 +65,6 @@ export class Step2Component implements OnInit {
       course_group.push(group);
     }
     this.chosen_course = course_group;
-    console.log("chosen course groups:", this.chosen_course);
     this.check_course_types(this.chosen_course);
   }
 
@@ -186,5 +183,8 @@ export class Step2Component implements OnInit {
     this.array.splice(index, 1);
     this.show_class_type = false;
     this.show_lecturer = false;
+  }
+  next_step() {
+    this.router.navigate(["/step-3"]);
   }
 }

@@ -28,7 +28,6 @@ export class ComboBoxComponent implements OnInit {
   ngOnInit() {
     this.filteredList = this.list;
     // console.log("filterd list", this.filteredList);
-    console.log("cluster is:", this.type_of_search);
   }
   handleChange(option: string) {
     // this.showError = false;
@@ -111,7 +110,6 @@ export class ComboBoxComponent implements OnInit {
         this.selectItem(this.selectedIndex);
         if (this.selectedIndex !== -1) {
           if (this.type_of_search === "single") {
-            console.log("input item", this.inputItem);
             dup_check = this.courseService.add_singl_cor_to_struct(
               this.inputItem
             );

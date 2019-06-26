@@ -1,319 +1,328 @@
-<p>
-  <button class="btn btn-primary" (click)="clickweek(0)" id="0">
-    {{
-      clicked(0) ||
-      clicked(1) ||
-      clicked(2) ||
-      clicked(3) ||
-      clicked(4) ||
-      clicked(5) ||
-      clicked(6) ||
-      clicked(7) ||
-      clicked(8) ||
-      clicked(9) ||
-      clicked(10) ||
-      clicked(11) ||
-      clicked(12)
-        ? "Remove"
-        : "חמישי"
-    }}
-  </button>
-  <button class="btn btn-primary" (click)="clickweek(1)" id="13">
-    {{
-      clicked(25) ||
-      clicked(13) ||
-      clicked(14) ||
-      clicked(15) ||
-      clicked(16) ||
-      clicked(17) ||
-      clicked(18) ||
-      clicked(19) ||
-      clicked(20) ||
-      clicked(21) ||
-      clicked(22) ||
-      clicked(23) ||
-      clicked(24)
-        ? "Remove"
-        : "רביעי"
-    }}
-  </button>
-  <button class="btn btn-primary" (click)="clickweek(2)" id="26">
-    {{
-      clicked(26) ||
-      clicked(27) ||
-      clicked(28) ||
-      clicked(29) ||
-      clicked(30) ||
-      clicked(31) ||
-      clicked(32) ||
-      clicked(33) ||
-      clicked(34) ||
-      clicked(35) ||
-      clicked(36) ||
-      clicked(37) ||
-      clicked(38)
-        ? "Remove"
-        : "שלישי"
-    }}
-  </button>
-  <button class="btn btn-primary" (click)="clickweek(3)" id="39">
-    {{
-      clicked(39) ||
-      clicked(40) ||
-      clicked(41) ||
-      clicked(42) ||
-      clicked(43) ||
-      clicked(44) ||
-      clicked(45) ||
-      clicked(46) ||
-      clicked(47) ||
-      clicked(48) ||
-      clicked(49) ||
-      clicked(50) ||
-      clicked(51)
-        ? "Remove"
-        : "שני"
-    }}
-  </button>
-  <button class="btn btn-primary" (click)="clickweek(4)" id="52">
-    {{
-      clicked(52) ||
-      clicked(53) ||
-      clicked(54) ||
-      clicked(55) ||
-      clicked(56) ||
-      clicked(57) ||
-      clicked(58) ||
-      clicked(59) ||
-      clicked(60) ||
-      clicked(61) ||
-      clicked(62) ||
-      clicked(63) ||
-      clicked(64)
-        ? "Remove"
-        : "ראשון"
-    }}
-  </button>
+<div class="grid-container">
+  <div class="day">
+    <button class="btn btn-primary" (click)="clickweek(0)" id="0">
+      {{
+        clicked(0) ||
+        clicked(1) ||
+        clicked(2) ||
+        clicked(3) ||
+        clicked(4) ||
+        clicked(5) ||
+        clicked(6) ||
+        clicked(7) ||
+        clicked(8) ||
+        clicked(9) ||
+        clicked(10) ||
+        clicked(11) ||
+        clicked(12)
+          ? "Remove"
+          : "חמישי"
+      }}
+    </button>
 
-  <br />
+    <button class="btn btn-primary" (click)="clickweek(1)" id="13">
+      {{
+        clicked(25) ||
+        clicked(13) ||
+        clicked(14) ||
+        clicked(15) ||
+        clicked(16) ||
+        clicked(17) ||
+        clicked(18) ||
+        clicked(19) ||
+        clicked(20) ||
+        clicked(21) ||
+        clicked(22) ||
+        clicked(23) ||
+        clicked(24)
+          ? "Remove"
+          : "רביעי"
+      }}
+    </button>
+    <button class="btn btn-primary" (click)="clickweek(2)" id="26">
+      {{
+        clicked(26) ||
+        clicked(27) ||
+        clicked(28) ||
+        clicked(29) ||
+        clicked(30) ||
+        clicked(31) ||
+        clicked(32) ||
+        clicked(33) ||
+        clicked(34) ||
+        clicked(35) ||
+        clicked(36) ||
+        clicked(37) ||
+        clicked(38)
+          ? "Remove"
+          : "שלישי"
+      }}
+    </button>
+    <button class="btn btn-primary" (click)="clickweek(3)" id="39">
+      {{
+        clicked(39) ||
+        clicked(40) ||
+        clicked(41) ||
+        clicked(42) ||
+        clicked(43) ||
+        clicked(44) ||
+        clicked(45) ||
+        clicked(46) ||
+        clicked(47) ||
+        clicked(48) ||
+        clicked(49) ||
+        clicked(50) ||
+        clicked(51)
+          ? "Remove"
+          : "שני"
+      }}
+    </button>
+    <button class="btn btn-primary" (click)="clickweek(4)" id="52">
+      {{
+        clicked(52) ||
+        clicked(53) ||
+        clicked(54) ||
+        clicked(55) ||
+        clicked(56) ||
+        clicked(57) ||
+        clicked(58) ||
+        clicked(59) ||
+        clicked(60) ||
+        clicked(61) ||
+        clicked(62) ||
+        clicked(63) ||
+        clicked(64)
+          ? "Remove"
+          : "ראשון"
+      }}
+    </button>
 
-  <button class="btn btn-primary" (click)="onclick(0)" id="0">
-    {{ clicked(0) ? "Remove" : "8:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(13)" id="13">
-    {{ clicked(13) ? "Remove" : "8:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(26)" id="26">
-    {{ clicked(26) ? "Remove" : "8:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(39)" id="39">
-    {{ clicked(39) ? "Remove" : "8:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(52)" id="52">
-    {{ clicked(52) ? "Remove" : "8:30" }}
-  </button>
+    <br />
+    <div class="8:30">
+      <button class="btn btn-primary" (click)="onclick(0)" id="0">
+        {{ clicked(0) ? "Remove" : "8:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(13)" id="13">
+        {{ clicked(13) ? "Remove" : "8:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(26)" id="26">
+        {{ clicked(26) ? "Remove" : "8:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(39)" id="39">
+        {{ clicked(39) ? "Remove" : "8:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(52)" id="52">
+        {{ clicked(52) ? "Remove" : "8:30" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(1)" id="1">
-    {{ clicked(1) ? "Remove" : "9:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(14)" id="14">
-    {{ clicked(14) ? "Remove" : "9:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(27)" id="27">
-    {{ clicked(27) ? "Remove" : "9:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(40)" id="40">
-    {{ clicked(40) ? "Remove" : "9:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(53)" id="53">
-    {{ clicked(53) ? "Remove" : "9:30" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(1)" id="1">
+        {{ clicked(1) ? "Remove" : "9:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(14)" id="14">
+        {{ clicked(14) ? "Remove" : "9:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(27)" id="27">
+        {{ clicked(27) ? "Remove" : "9:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(40)" id="40">
+        {{ clicked(40) ? "Remove" : "9:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(53)" id="53">
+        {{ clicked(53) ? "Remove" : "9:30" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(2)" id="2">
-    {{ clicked(2) ? "Remove" : "10:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(15)" id="15">
-    {{ clicked(15) ? "Remove" : "10:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(28)" id="28">
-    {{ clicked(28) ? "Remove" : "10:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(41)" id="41">
-    {{ clicked(41) ? "Remove" : "10:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(54)" id="54">
-    {{ clicked(54) ? "Remove" : "10:30" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(2)" id="2">
+        {{ clicked(2) ? "Remove" : "10:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(15)" id="15">
+        {{ clicked(15) ? "Remove" : "10:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(28)" id="28">
+        {{ clicked(28) ? "Remove" : "10:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(41)" id="41">
+        {{ clicked(41) ? "Remove" : "10:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(54)" id="54">
+        {{ clicked(54) ? "Remove" : "10:30" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(3)" id="3">
-    {{ clicked(3) ? "Remove" : "11:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(16)" id="16">
-    {{ clicked(16) ? "Remove" : "11:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(29)" id="29">
-    {{ clicked(29) ? "Remove" : "11:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(42)" id="42">
-    {{ clicked(42) ? "Remove" : "11:30" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(55)" id="55">
-    {{ clicked(55) ? "Remove" : "11:30" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(3)" id="3">
+        {{ clicked(3) ? "Remove" : "11:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(16)" id="16">
+        {{ clicked(16) ? "Remove" : "11:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(29)" id="29">
+        {{ clicked(29) ? "Remove" : "11:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(42)" id="42">
+        {{ clicked(42) ? "Remove" : "11:30" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(55)" id="55">
+        {{ clicked(55) ? "Remove" : "11:30" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(4)" id="4">
-    {{ clicked(4) ? "Remove" : "12:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(17)" id="17">
-    {{ clicked(17) ? "Remove" : "12:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(30)" id="30">
-    {{ clicked(30) ? "Remove" : "12:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(43)" id="43">
-    {{ clicked(43) ? "Remove" : "12:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(56)" id="56">
-    {{ clicked(56) ? "Remove" : "12:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(4)" id="4">
+        {{ clicked(4) ? "Remove" : "12:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(17)" id="17">
+        {{ clicked(17) ? "Remove" : "12:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(30)" id="30">
+        {{ clicked(30) ? "Remove" : "12:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(43)" id="43">
+        {{ clicked(43) ? "Remove" : "12:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(56)" id="56">
+        {{ clicked(56) ? "Remove" : "12:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(5)" id="5">
-    {{ clicked(5) ? "Remove" : "13:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(18)" id="18">
-    {{ clicked(18) ? "Remove" : "13:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(31)" id="31">
-    {{ clicked(31) ? "Remove" : "13:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(44)" id="44">
-    {{ clicked(44) ? "Remove" : "13:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(57)" id="57">
-    {{ clicked(57) ? "Remove" : "13:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(5)" id="5">
+        {{ clicked(5) ? "Remove" : "13:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(18)" id="18">
+        {{ clicked(18) ? "Remove" : "13:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(31)" id="31">
+        {{ clicked(31) ? "Remove" : "13:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(44)" id="44">
+        {{ clicked(44) ? "Remove" : "13:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(57)" id="57">
+        {{ clicked(57) ? "Remove" : "13:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(6)" id="6">
-    {{ clicked(6) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(19)" id="19">
-    {{ clicked(19) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(32)" id="32">
-    {{ clicked(32) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(45)" id="45">
-    {{ clicked(45) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(58)" id="58">
-    {{ clicked(58) ? "Remove" : "14:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(6)" id="6">
+        {{ clicked(6) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(19)" id="19">
+        {{ clicked(19) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(32)" id="32">
+        {{ clicked(32) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(45)" id="45">
+        {{ clicked(45) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(58)" id="58">
+        {{ clicked(58) ? "Remove" : "14:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(7)" id="7">
-    {{ clicked(7) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(20)" id="20">
-    {{ clicked(20) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(33)" id="33">
-    {{ clicked(33) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(46)" id="46">
-    {{ clicked(46) ? "Remove" : "14:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(59)" id="59">
-    {{ clicked(59) ? "Remove" : "14:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(7)" id="7">
+        {{ clicked(7) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(20)" id="20">
+        {{ clicked(20) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(33)" id="33">
+        {{ clicked(33) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(46)" id="46">
+        {{ clicked(46) ? "Remove" : "14:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(59)" id="59">
+        {{ clicked(59) ? "Remove" : "14:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(8)" id="8">
-    {{ clicked(8) ? "Remove" : "15:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(21)" id="21">
-    {{ clicked(21) ? "Remove" : "15:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(34)" id="34">
-    {{ clicked(34) ? "Remove" : "15:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(47)" id="47">
-    {{ clicked(47) ? "Remove" : "15:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(60)" id="60">
-    {{ clicked(60) ? "Remove" : "15:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(8)" id="8">
+        {{ clicked(8) ? "Remove" : "15:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(21)" id="21">
+        {{ clicked(21) ? "Remove" : "15:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(34)" id="34">
+        {{ clicked(34) ? "Remove" : "15:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(47)" id="47">
+        {{ clicked(47) ? "Remove" : "15:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(60)" id="60">
+        {{ clicked(60) ? "Remove" : "15:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(9)" id="9">
-    {{ clicked(9) ? "Remove" : "16:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(22)" id="22">
-    {{ clicked(22) ? "Remove" : "16:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(35)" id="35">
-    {{ clicked(35) ? "Remove" : "16:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(48)" id="48">
-    {{ clicked(48) ? "Remove" : "16:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(61)" id="61">
-    {{ clicked(61) ? "Remove" : "16:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(9)" id="9">
+        {{ clicked(9) ? "Remove" : "16:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(22)" id="22">
+        {{ clicked(22) ? "Remove" : "16:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(35)" id="35">
+        {{ clicked(35) ? "Remove" : "16:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(48)" id="48">
+        {{ clicked(48) ? "Remove" : "16:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(61)" id="61">
+        {{ clicked(61) ? "Remove" : "16:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(10)" id="10">
-    {{ clicked(10) ? "Remove" : "17:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(23)" id="23">
-    {{ clicked(23) ? "Remove" : "17:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(36)" id="36">
-    {{ clicked(36) ? "Remove" : "17:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(49)" id="49">
-    {{ clicked(49) ? "Remove" : "17:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(62)" id="62">
-    {{ clicked(62) ? "Remove" : "17:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(10)" id="10">
+        {{ clicked(10) ? "Remove" : "17:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(23)" id="23">
+        {{ clicked(23) ? "Remove" : "17:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(36)" id="36">
+        {{ clicked(36) ? "Remove" : "17:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(49)" id="49">
+        {{ clicked(49) ? "Remove" : "17:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(62)" id="62">
+        {{ clicked(62) ? "Remove" : "17:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(11)" id="11">
-    {{ clicked(11) ? "Remove" : "18:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(24)" id="24">
-    {{ clicked(24) ? "Remove" : "18:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(37)" id="37">
-    {{ clicked(37) ? "Remove" : "18:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(50)" id="50">
-    {{ clicked(50) ? "Remove" : "18:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(63)" id="63">
-    {{ clicked(63) ? "Remove" : "18:50" }}
-  </button>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(11)" id="11">
+        {{ clicked(11) ? "Remove" : "18:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(24)" id="24">
+        {{ clicked(24) ? "Remove" : "18:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(37)" id="37">
+        {{ clicked(37) ? "Remove" : "18:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(50)" id="50">
+        {{ clicked(50) ? "Remove" : "18:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(63)" id="63">
+        {{ clicked(63) ? "Remove" : "18:50" }}
+      </button>
 
-  <br />
-  <button class="btn btn-primary" (click)="onclick(12)" id="12">
-    {{ clicked(12) ? "Remove" : "19:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(25)" id="25">
-    {{ clicked(25) ? "Remove" : "19:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(38)" id="38">
-    {{ clicked(38) ? "Remove" : "19:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(51)" id="51">
-    {{ clicked(51) ? "Remove" : "19:50" }}
-  </button>
-  <button class="btn btn-primary" (click)="onclick(64)" id="64">
-    {{ clicked(64) ? "Remove" : "19:50" }}
-  </button>
-</p>
+      <br />
+      <button class="btn btn-primary" (click)="onclick(12)" id="12">
+        {{ clicked(12) ? "Remove" : "19:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(25)" id="25">
+        {{ clicked(25) ? "Remove" : "19:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(38)" id="38">
+        {{ clicked(38) ? "Remove" : "19:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(51)" id="51">
+        {{ clicked(51) ? "Remove" : "19:50" }}
+      </button>
+      <button class="btn btn-primary" (click)="onclick(64)" id="64">
+        {{ clicked(64) ? "Remove" : "19:50" }}
+      </button>
+    </div>
+    <div class="next_button">
+      <button type="button" class="btn btn-success" (click)="next_step()">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

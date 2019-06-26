@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "../../Services/course.service";
-import { FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -10,7 +9,6 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class Step3Component implements OnInit {
   constructor(
-    private fb: FormBuilder,
     public courseService: CourseService,
     private route: ActivatedRoute,
     private router: Router
@@ -42,5 +40,8 @@ export class Step3Component implements OnInit {
     for (var i = 0; i < 13; i++) {
       this.courseService.set_window_bool(day * 13 + i, true);
     }
+  }
+  next_step() {
+    this.router.navigate(["/step-4"]);
   }
 }

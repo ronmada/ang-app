@@ -9,8 +9,9 @@ import { WindowsDaysOffService } from "../../Services/windows-days-off.service";
   styleUrls: ["./step4.component.css"]
 })
 export class Step4Component implements OnInit {
-  step3: boolean = false;
-  windowsPriority: Array<string> = ["2", "4"];
+  windows: boolean = false;
+  days_off: boolean = false;
+
   constructor(
     public courseService: CourseService,
     public preflectService: PreflectService,
@@ -18,22 +19,39 @@ export class Step4Component implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log("STRUCT:",this.courseService.getstruct())
     this.check_for_windows();
+    this.check_for_daysoff();
+  }
+  check_for_windows() {
+    for (let i = 0; i < 5; i++) {
+      let dayoff = true;
+      for (let j = 0; j < 13; j++) {
+        if (this.courseService.clicked[i * 13 + j] === false) dayoff = false;
+      }
+      if (dayoff === false) {
+        for (var j = 0; j < 13; j++) {
+          if (this.courseService.clicked[i * 13 + j] === true) {
+            this.windows = true;
+            break;
+          }
+        }
+      }
+    }
+  }
+  check_for_daysoff() {
+    for (let i = 0; i < 5; i++) {
+      let dayoff = true;
+      for (let j = 0; j < 13; j++) {
+        if (this.courseService.clicked[i * 13 + j] === false) dayoff = false;
+      }
+      if (dayoff == true) this.days_off = true;
+    }
   }
   onSelectLectImportance(val: string) {
     let value = Number(val);
     this.preflectService.set_importance(value);
   }
-  check_for_windows() {
-    let arrayCheck: Array<boolean> = this.courseService.clicked;
-    for (let checker of arrayCheck) {
-      if (checker === true) {
-        this.step3 = true;
-        break;
-      }
-    }
-  }
+
   onSelectWindowImportance(val: string) {
     let value = Number(val);
     this.windowsDaysOffService.set_windows_importance(value);

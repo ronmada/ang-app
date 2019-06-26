@@ -1,25 +1,33 @@
 @media (min-width: 768px) {
-  .item2 {
+  .main {
+    display: grid;
     grid-area: main;
+    grid-template-areas: "nav sub_button";
+    /* justify-items: center; */
   }
-  .item3 {
+  ._content_ {
     grid-area: _content_;
   }
-  .item4 {
+  .sub_button {
     grid-area: sub_button;
   }
-  .item5 {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 4;
-  }
+  .nav {
+    grid-area: nav;
 
+    justify-self: end;
+  }
+  .picture {
+    grid-area: picture;
+    /* margin-left: auto;
+    margin-right: auto; */
+  }
   .grid-container {
-    display: grid;
-    grid-template-rows: 5% auto auto;
+    display: inline-grid;
+    /* grid-template-rows: 5% auto auto; */
     grid-template-areas:
+      "picture"
       "main"
-      "_content_"
-      "sub_button";
+      "_content_";
     grid-gap: 10px;
 
     /* background-color: #2196F3; */
@@ -31,8 +39,17 @@
 
   .grid-container > div {
     /* background-color: rgba(255, 255, 255, 0.8); */
-    text-align: auto;
+    /* text-align: auto; */
     padding: 20px 0;
     font-size: auto;
+  }
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: rgb(229, 229, 229) !important;
+    opacity: 0.2;
+  }
+  button:disabled {
+    opacity: 0.2;
   }
 }

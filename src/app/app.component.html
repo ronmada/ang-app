@@ -1,6 +1,6 @@
 <!-- [svgStyle]="{ 'width.px':90 , 'height.px':90} -->
 <!-- <svg-icon src="assets/images/infplus_image.svg" ></svg-icon> -->
-<img src="assets/images/infoplus_image.PNG" alt="infoplus Image" width="440" height="222">
+
 <div
   *ngIf="
     !courseService.finished_fetch_booly;
@@ -9,36 +9,57 @@
   "
 ></div>
 <ng-template #loadScreenBlock>
-  <div class="grid-container">
-    <div class="item5">
-      <app-load-screen></app-load-screen>
-    </div>
-  </div>
+  <app-load-screen></app-load-screen>
 </ng-template>
 <ng-template #getSiteBlock>
   <div class="grid-container">
-    <div class="item2">
-      <nav>
-        <a routerLink="step-1" routerLinkActive="active">Courses</a>
-        <a routerLink="step-2" routerLinkActive="active">Lectures</a>
-        <a routerLink="step-3" routerLinkActive="active">Windows & Daysoff</a>
-        <a routerLink="step-4" routerLinkActive="active">Priorities</a>
-        <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
-      </nav>
+    <img
+      class="picture"
+      src="assets/images/infoplus_image.PNG"
+      alt="infoplus Image"
+      width="440"
+      height="222"
+    />
+    <div class="main">
+      <div class="nav">
+        <nav>
+          <a routerLink="step-1" routerLinkActive="active">Courses</a>
+          <a
+            routerLink="step-2"
+            [class.disabled]="
+              !(
+                courseService.struct.courses.length ||
+                courseService.struct.clusters.length
+              )
+                ? true
+                : null
+            "
+            routerLinkActive="active"
+            >Lecturers</a
+          >
+          <a routerLink="step-3" routerLinkActive="active">Windows & Daysoff</a>
+          <a routerLink="step-4" routerLinkActive="active">Priorities</a>
+          <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
+        </nav>
+      </div>
+      <div class="sub_button">
+        <button
+          type="submit"
+          [disabled]="
+            !(
+              courseService.struct.courses.length ||
+              courseService.struct.clusters.length
+            )
+          "
+          class="btn btn-primary btn-lg"
+          (click)="onSubmitGA()"
+        >
+          Submit
+        </button>
+      </div>
     </div>
-    <div class="item3">
+    <div class="_content_">
       <router-outlet></router-outlet>
-    </div>
-    <div class="item4">
-      <button
-        type="submit"
-        [disabled]="!(this.courseService.struct.courses.length ||
-        this.courseService.struct.clusters.length) "
-        class="btn btn-primary btn-lg"
-        (click)="onSubmitGA()"
-      >
-        Submit to GA
-      </button>
     </div>
   </div>
 </ng-template>
