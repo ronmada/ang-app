@@ -13,57 +13,54 @@
 </ng-template>
 <ng-template #getSiteBlock>
   <div class="grid-container">
-    <img
-      class="picture"
-      src="assets/images/infoplus_image.PNG"
-      alt="infoplus Image"
-      width="440"
-      height="222"
-    />
+    <div class="picture">
+      <img
+        src="assets/images/infoplus_image.PNG"
+        alt="infoplus Image"
+        width="440"
+        height="222"
+      />
+    </div>
     <div *ngIf="courseService.ga_processing">
       <app-load-screen></app-load-screen>
     </div>
 
-    <div class="main">
-      <div class="nav">
-        <nav>
-          <a routerLink="step-1" routerLinkActive="active">Courses</a>
-          <a
-            routerLink="step-2"
-            [class.disabled]="
-              !(
-                courseService.struct.courses.length ||
-                courseService.struct.clusters.length
-              )
-                ? true
-                : null
-            "
-            routerLinkActive="active"
-            >Lecturers</a
-          >
-          <a routerLink="step-3" routerLinkActive="active">Windows & Daysoff</a>
-          <a routerLink="step-4" routerLinkActive="active">Priorities</a>
-          <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
-        </nav>
-      </div>
-      <div class="sub_button">
-        <button
-          type="submit"
-          [ngStyle]="{
-            display: router.url == [ga_results_path] ? 'none' : 'block'
-          }"
-          [disabled]="
+    <div class="nav">
+      <nav>
+        <a routerLink="step-1" routerLinkActive="active">Courses</a>
+        <a
+          routerLink="step-2"
+          [class.disabled]="
             !(
               courseService.struct.courses.length ||
               courseService.struct.clusters.length
             )
+              ? true
+              : null
           "
-          class="btn btn-primary btn-lg"
-          (click)="onSubmitGA()"
+          routerLinkActive="active"
+          >Lecturers</a
         >
-          Submit
-        </button>
-      </div>
+        <a routerLink="step-3" routerLinkActive="active">Windows & Daysoff</a>
+        <a routerLink="step-4" routerLinkActive="active">Priorities</a>
+        <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
+      </nav>
+      <button
+        type="submit"
+        [ngStyle]="{
+          display: router.url == [ga_results_path] ? 'none' : 'block'
+        }"
+        [disabled]="
+          !(
+            courseService.struct.courses.length ||
+            courseService.struct.clusters.length
+          )
+        "
+        class="btn btn-primary btn-lg"
+        (click)="onSubmitGA()"
+      >
+        Submit
+      </button>
     </div>
     <div *ngIf="!courseService.hide_content">
       <div class="_content_">

@@ -24,7 +24,7 @@
     placeholder="Select a course..."
     [ngClass]="{ error: showError }"
   />
-  <span *ngIf="showError" class="error-text"><i>ALREADY PICKED!
+  <span *ngIf="showError" class="error-text"><br/><i>ALREADY PICKED!
     <div *ngFor="let dup of errorMsg">
     {{ dup.__Course__.id  }} {{ dup.__Course__.course_name  }}</div></i></span>
   <div class="combobox-options" *ngIf="!listHidden">

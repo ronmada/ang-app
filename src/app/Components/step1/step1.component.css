@@ -14,7 +14,7 @@
     "single_cluster results_form"
     "next_button next_button"; */
   /* grid-gap: 5px; */
-  grid-gap: 1.5rem 4rem;
+  grid-gap: 1.6rem 6.6rem;
   /* background-color: rgb(11, 224, 239); */
   /* padding: 2rem; */
   /* align-items: center; */
@@ -24,14 +24,14 @@
   /* padding: 20px; */
   font-size: auto;
 }
-.single_cluster_grid {
+/* .single_cluster_grid {
   display: grid;
   grid-area: single_cluster;
   grid-template-areas:
     "nothing1 single_course_combo nothing3"
     "nothing2 cluster_combo nothing4"
     "cluster_temp cluster_group_button nothing5";
-}
+} */
 
 .next_button {
   grid-area: next_button;
@@ -42,7 +42,10 @@
 }
 .item2 {
   grid-area: cluster_temp;
+  white-space: normal;
+
   align-self: end;
+  min-width: 20rem;
 }
 /* .item10 {
   grid-area: editors;
@@ -143,10 +146,12 @@ h2 {
 }
 .table-success {
   text-align: center;
+  max-width: 15rem;
 }
 .table-success tr {
   font-size: 1.1rem;
   text-align: center;
+
 }
 
 [hidden] {

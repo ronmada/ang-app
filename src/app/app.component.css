@@ -1,10 +1,5 @@
 @media (min-width: 768px) {
-  .main {
-    display: grid;
-    grid-area: main;
-    grid-template-areas: "nav sub_button";
-    /* justify-items: center; */
-  }
+
   ._content_ {
     grid-area: _content_;
   }
@@ -14,7 +9,7 @@
   .nav {
     grid-area: nav;
 
-    justify-self: end;
+    /* justify-self: end; */
   }
   .picture {
     grid-area: picture;
@@ -26,7 +21,7 @@
     /* grid-template-rows: 5% auto auto; */
     grid-template-areas:
       "picture"
-      "main"
+      "nav"
       "_content_";
     grid-gap: 10px;
 
