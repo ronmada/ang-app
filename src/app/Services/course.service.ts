@@ -29,8 +29,8 @@ export class CourseService implements OnInit {
   courseitem_Name: any[] = [];
   weight: number[] = [2, 8, 3];
   // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
-  //[2,8,3] defult values
-  //[4,16,6] high values
+  //[3,8,8] defult values
+  //[6,16,16] high values
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
   //readonly ROOT_URL_local = "http://127.0.0.1:5000";
@@ -233,6 +233,8 @@ export class CourseService implements OnInit {
     this.cluster_show_booly.pop();
   }
   async submitGA(struct: Struct) {
+    this.ga_processing = true;
+    this.hide_content = true;
     let params = new HttpParams();
     for (let cluster of struct.clusters) {
       let clus = "";
@@ -330,7 +332,7 @@ export class CourseService implements OnInit {
       params.getAll("specific_lecturer_weight")
     );
 
-    let promise = new Promise((resolve, reject) => {
+    let promise = await new Promise((resolve, reject) => {
       this.http
         .get(this.ROOT_URL_local + "/start_ga", { params })
         .toPromise()
@@ -338,6 +340,12 @@ export class CourseService implements OnInit {
           // Success
           this.putGAresult(res);
           resolve();
+        })
+        .catch(error => {
+          console.log(error.message);
+          this.ga_ready = true;
+          this.ga_processing = false;
+          this.hide_content = false;
         });
     });
     await promise;

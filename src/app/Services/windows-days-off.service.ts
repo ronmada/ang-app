@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class WindowsDaysOffService {
-  windows_importance: number = 2;
+  windows_importance: number = 3;
   windows_string: string = String(this.windows_importance);
   days_off_importance: number = 8;
   days_off_string: string = String(this.days_off_importance);

@@ -6,7 +6,7 @@ import * as _ from "underscore";
 })
 export class PreflectService {
   pref_lecturers: Array<any> = [];
-  lect_importance: number = 3;
+  lect_importance: number = 8;
   lect_string: string = String(this.lect_importance);
   constructor() {}
 
