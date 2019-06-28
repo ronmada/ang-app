@@ -26,6 +26,7 @@ export class GaResultsComponent implements OnInit, OnChanges {
     this.ngOnInit();
   }
   ngOnInit() {
+    this.anycourse()
     console.log("started on init of ga result");
     var res_counter = 0;
     var one = new MatTableDataSource(this.test);
@@ -92,5 +93,12 @@ export class GaResultsComponent implements OnInit, OnChanges {
     this.dataSource2 = two;
     this.dataSource3 = three;
     console.log("results are: ", this.courseService.getGAresults().results);
+  }
+  anycourse(){
+    if(!(this.courseService.struct.courses.length || this.courseService.struct.clusters.length)){
+      console.log("No Courses")
+      this.router.navigate(["/step-1"]);
+      }
+      return false
   }
 }

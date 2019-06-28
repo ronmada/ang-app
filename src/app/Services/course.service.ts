@@ -11,6 +11,8 @@ import "rxjs/add/operator/toPromise";
   providedIn: "root"
 })
 export class CourseService implements OnInit {
+  hide_content: boolean = false;
+  ga_processing: boolean = false;
   search_option: string = "ID";
   search_optio_cluster: string = "ID";
   check: string[] = [];
@@ -193,34 +195,6 @@ export class CourseService implements OnInit {
     }
   }
 
-  async getoneCourse(courseid) {
-    let courseres: any;
-    let promise = new Promise((resolve, reject) => {
-      let params = new HttpParams().set("courseid", courseid);
-      this.http
-        .get(this.ROOT_URL_local + "/getcorjs", { params })
-        .toPromise()
-        .then(
-          res => {
-            // Success
-            courseres = res;
-            console.log("course object to be inserted: ", courseres);
-            resolve();
-          },
-          msg => {
-            // Error
-            reject(msg);
-          }
-        );
-    });
-    await promise;
-    return courseres;
-  }
-
-  get_ga_ready() {
-    return this.ga_ready;
-  }
-
   getGAresults() {
     console.log("returner:", this.ga_result);
     return this.ga_result;
@@ -371,5 +345,7 @@ export class CourseService implements OnInit {
     //console.log(someresult)
     //console.log(someresult.classes[1]["Class type"])
     this.ga_ready = true;
+    this.ga_processing = false;
+    this.hide_content = false;
   }
 }

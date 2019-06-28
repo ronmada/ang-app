@@ -37,10 +37,7 @@ export class Step1Component implements OnInit {
     this.courseService.check = [];
   }
 
-  async onSubmit() {
-    await this.courseService.submitGA(this.courseService.getstruct());
-    this.router.navigate(["/ga-results"]);
-  }
+
 
   next_step() {
     this.router.navigate(["/step-2"]);

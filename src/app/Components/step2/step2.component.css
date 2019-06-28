@@ -18,6 +18,7 @@
 
 .coursetype {
   grid-area: coursetype;
+  margin-top: 3rem;
 }
 .preflecturer {
   grid-area: preflecturer;
@@ -51,7 +52,7 @@ h4 {
   width: 15em;
 }
 .heroes li {
-  white-space: nowrap;
+  /* white-space: nowrap; */
   color: black;
   cursor: pointer;
   position: relative;

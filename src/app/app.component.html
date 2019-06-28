@@ -20,6 +20,10 @@
       width="440"
       height="222"
     />
+    <div *ngIf="courseService.ga_processing">
+      <app-load-screen></app-load-screen>
+    </div>
+
     <div class="main">
       <div class="nav">
         <nav>
@@ -61,8 +65,10 @@
         </button>
       </div>
     </div>
-    <div class="_content_">
-      <router-outlet></router-outlet>
+    <div *ngIf="!courseService.hide_content">
+      <div class="_content_">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </ng-template>

@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
   }
 
   async onSubmitGA() {
+    this.courseService.ga_processing = true;
+    this.courseService.hide_content=true
     await this.courseService.submitGA(this.courseService.getstruct());
+    this.courseService.hide_content=false
     console.log("transition");
     if (this.router.url === "/ga-results") {
       this.router.navigate(["/step-1"]);

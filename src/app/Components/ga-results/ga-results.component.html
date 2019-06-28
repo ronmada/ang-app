@@ -1,3 +1,18 @@
+<div *ngIf="anycourse()"></div>
+<div
+*ngIf="
+  !courseService.ga_ready;
+  then loadScreenBlock;
+  else getSiteBlock
+"
+></div>
+<ng-template #loadScreenBlock>
+<app-load-screen></app-load-screen>
+</ng-template>
+
+<ng-template #getSiteBlock>
+
+
 <h2>Schedule 1</h2>
 <mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
   <ng-container matColumnDef="0">
@@ -108,17 +123,20 @@
 
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
-
+</ng-template>
 <!-- <div *ngFor="let res of courseService.getGAresults().results">
   score : {{ res.Score }}
 </div> -->
-
+<!--
 <div
   *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"
 ></div>
+-->
 <!--true statement-->
 
 <!--else statement-->
+<!--
 <ng-template #ga_not_ready>
   <div>GA is not ready</div>
 </ng-template>
+-->
