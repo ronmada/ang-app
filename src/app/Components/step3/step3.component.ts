@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "../../Services/course.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-step3",
@@ -10,12 +10,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class Step3Component implements OnInit {
   constructor(
     public courseService: CourseService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.courseService.set_clicked_array_to_false();
   }
 
   clicked(id) {

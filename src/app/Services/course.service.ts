@@ -1,16 +1,14 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Struct } from "../models/Struct";
 import { PreflectService } from "./preflect.service";
 import { WindowsDaysOffService } from "./windows-days-off.service";
-import { Router } from "@angular/router";
-
 import "rxjs/add/operator/toPromise";
 
 @Injectable({
   providedIn: "root"
 })
-export class CourseService implements OnInit {
+export class CourseService {
   hide_content: boolean = false;
   ga_processing: boolean = false;
   search_option: string = "ID";
@@ -25,8 +23,8 @@ export class CourseService implements OnInit {
   clicked_was_set: boolean = false;
   ga_result: any;
   course_id_name: any[] = [];
-  courseitem_ID: any[] = [];
-  courseitem_Name: any[] = [];
+  courseitem_ID: Array<string> = [];
+  courseitem_Name: Array<string> = [];
   weight: number[] = [2, 8, 3];
   // weight = [specific_windows_weight,spesific_days_off_weight,specific_lecturers_weight]
   //[3,8,8] defult values
@@ -39,24 +37,18 @@ export class CourseService implements OnInit {
   constructor(
     private http: HttpClient,
     private preflectService: PreflectService,
-    private windowsDaysOffService: WindowsDaysOffService,
-    private router: Router
+    private windowsDaysOffService: WindowsDaysOffService
   ) {
     this.struct = new Struct();
+    this.set_clicked_array_to_false();
   }
 
-  ngOnInit() {
-    for (var i = 0; i < this.clicked.length; i++) {
-      this.clicked[i] = false;
-    }
-  }
-  send_search_option(id, name) {
+  send_search_option(id: Array<string>, name: Array<string>) {
     this.courseitem_ID = id;
     this.courseitem_Name = name;
   }
 
-  add_singl_cor_to_struct(single_course) {
-    console.log("the single course:", single_course);
+  add_singl_cor_to_struct(single_course: string) {
     let result = this.search_Course(single_course);
     if (result === 0) {
       return false;
@@ -66,8 +58,8 @@ export class CourseService implements OnInit {
     return true;
   }
 
-  search_Course(single_course) {
-    let result;
+  search_Course(single_course: any) {
+    let result: string;
     if (!isNaN(single_course.split(" ", 1)[0])) {
       single_course = single_course.split(" ", 1)[0];
       result = this.courseDB.filter(
@@ -88,7 +80,7 @@ export class CourseService implements OnInit {
     }
   }
 
-  check_duplicate(result) {
+  check_duplicate(result: string) {
     for (let iter of this.struct.courses) {
       if (result === iter) {
         console.log("duplicate found", result);
@@ -111,7 +103,7 @@ export class CourseService implements OnInit {
     }
   }
 
-  add_single_course_to_cluster_struct(item) {
+  add_single_course_to_cluster_struct(item: string) {
     let result = this.search_Course(item);
     if (result === 0) {
       return false;
@@ -133,7 +125,7 @@ export class CourseService implements OnInit {
     this.group_submit_button_booly = false;
   }
 
-  setSearch_Option(option) {
+  setSearch_Option(option: string) {
     this.search_option = option;
   }
 
@@ -146,13 +138,13 @@ export class CourseService implements OnInit {
     }
   }
 
-  get_window(id) {
+  get_window(id: number) {
     return this.clicked[id];
   }
-  set_window(id) {
+  set_window(id: number) {
     this.clicked[id] = !this.clicked[id];
   }
-  set_window_bool(id, bool) {
+  set_window_bool(id: number, bool: boolean) {
     this.clicked[id] = bool;
   }
 
@@ -196,10 +188,9 @@ export class CourseService implements OnInit {
   }
 
   getGAresults() {
-    console.log("returner:", this.ga_result);
     return this.ga_result;
   }
-  putGAresult(garesult) {
+  putGAresult(garesult: any) {
     this.ga_result = garesult;
     console.log("PUTGARESULT", this.ga_result);
   }
@@ -308,7 +299,6 @@ export class CourseService implements OnInit {
         } else {
           full_lect_string += ")";
         }
-        console.log("full lect string", full_lect_string);
         params = params.append("lecturer", full_lect_string);
       }
     }
@@ -350,8 +340,6 @@ export class CourseService implements OnInit {
     });
     await promise;
     console.log("ga_result:  ", this.getGAresults());
-    //console.log(someresult)
-    //console.log(someresult.classes[1]["Class type"])
     this.ga_ready = true;
     this.ga_processing = false;
     this.hide_content = false;

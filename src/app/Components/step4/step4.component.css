@@ -4,12 +4,10 @@
 .mat-button-toggle-group {
   margin: 1.2rem;
 }
-
 h2 {
   color: rgb(93, 66, 214);
   margin: 1rem;
 }
-
 .grid_container {
   display: grid;
   grid-template-areas:

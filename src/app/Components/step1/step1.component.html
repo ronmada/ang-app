@@ -53,22 +53,18 @@
       <tbody>
         <tr *ngFor="let course of courseService.smgroup; let n = index">
           <td>
-          {{
-            course.__Course__.id
-          }}
-          {{
-            course.__Course__.course_name
-          }}
-        </td>
-        <td>
-          <button
-            type="button"
-            (click)="remove_temp_course_from_cluster(n)"
-            class="btn btn-danger"
-          >
-            -
-          </button>
-        </td>
+            {{ course.__Course__.id }}
+            {{ course.__Course__.course_name }}
+          </td>
+          <td>
+            <button
+              type="button"
+              (click)="remove_temp_course_from_cluster(n)"
+              class="btn btn-danger"
+            >
+              -
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -149,15 +145,7 @@
       </table>
     </div>
   </div>
-  <!-- <div class="item6">
-    <button
-      type="submit"
-      class="btn btn-primary btn-lg"
-      [disabled]="!chooseCourseForm.valid"
-    >
-      Submit to GA
-    </button>
-  </div> -->
+
   <div class="next_button">
     <button
       type="button"
@@ -174,12 +162,3 @@
     </button>
   </div>
 </div>
-
-<!--
-<div class="main_grid">
-  <div class="single_cluster_grid">
-    <div class="item1">
-      hello
-    </div>
-  </div>
-</div> -->

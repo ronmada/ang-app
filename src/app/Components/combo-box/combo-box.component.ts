@@ -27,7 +27,6 @@ export class ComboBoxComponent implements OnInit {
 
   ngOnInit() {
     this.filteredList = this.list;
-    // console.log("filterd list", this.filteredList);
   }
   handleChange(option: string) {
     // this.showError = false;
@@ -38,7 +37,6 @@ export class ComboBoxComponent implements OnInit {
     } else if (this.select_option === "Name") {
       this.list = this.courseService.courseitem_Name;
     }
-    // this.filteredList = this.list;
   }
 
   // modifies the filtered list as per input
@@ -52,16 +50,14 @@ export class ComboBoxComponent implements OnInit {
   }
 
   // select highlighted item when enter is pressed or any item that is clicked
-  selectItem(ind) {
-    console.log("Selected", this.filteredList[ind]);
+  selectItem(ind: number) {
     this.inputItem = this.filteredList[ind];
     this.listHidden = true;
     this.selectedIndex = ind;
   }
 
   // navigate through the list of items
-  onKeyPress(event) {
-    console.log("keyPress:", event);
+  onKeyPress(event: any) {
     this.showError = false;
     if (!this.listHidden) {
       if (event.key === "Escape") {
@@ -100,7 +96,6 @@ export class ComboBoxComponent implements OnInit {
 
   // show or hide the dropdown list when input is focused or moves out of focus
   toggleListDisplay(sender: number) {
-    // this.showError = false;
     let dup_check: boolean = true;
     if (sender === 1) {
       this.selectedIndex = -1;
@@ -133,13 +128,6 @@ export class ComboBoxComponent implements OnInit {
         this.inputItem = undefined;
         this.listHidden = true;
         this.filteredList = this.list;
-        /*
-        if (!this.list.includes(this.inputItem)) {
-          this.showError = true;
-          this.filteredList = this.list;
-        } else {
-          this.showError = false;
-        }*/
       }, 100);
     }
   }

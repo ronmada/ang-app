@@ -1,142 +1,119 @@
-<div *ngIf="anycourse()"></div>
 <div
-*ngIf="
-  !courseService.ga_ready;
-  then loadScreenBlock;
-  else getSiteBlock
-"
+  *ngIf="!courseService.ga_ready; then loadScreenBlock; else getSiteBlock"
 ></div>
 <ng-template #loadScreenBlock>
-<app-load-screen></app-load-screen>
+  <app-load-screen></app-load-screen>
 </ng-template>
 
 <ng-template #getSiteBlock>
+  <h2>Schedule 1</h2>
+  <mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+    <ng-container matColumnDef="0">
+      <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
+    </ng-container>
 
+    <ng-container matColumnDef="1">
+      <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
+    </ng-container>
 
-<h2>Schedule 1</h2>
-<mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
-  <ng-container matColumnDef="0">
-    <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="2">
+      <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="1">
-    <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="3">
+      <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="2">
-    <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="4">
+      <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="3">
-    <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="hour">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="4">
-    <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
-  </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-  <ng-container matColumnDef="hour">
-    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
-  </ng-container>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <h2>Schedule 2</h2>
+  <mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+    <ng-container matColumnDef="0">
+      <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
+    </ng-container>
 
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+    <ng-container matColumnDef="1">
+      <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
+    </ng-container>
 
-<h2>Schedule 2</h2>
-<mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-  <ng-container matColumnDef="0">
-    <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="2">
+      <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="1">
-    <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="3">
+      <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="2">
-    <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="4">
+      <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="3">
-    <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="hour">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="4">
-    <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
-  </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-  <ng-container matColumnDef="hour">
-    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
-  </ng-container>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <h2>Schedule 3</h2>
+  <mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+    <ng-container matColumnDef="0">
+      <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
+    </ng-container>
 
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+    <ng-container matColumnDef="1">
+      <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
+    </ng-container>
 
-<h2>Schedule 3</h2>
-<mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
-  <ng-container matColumnDef="0">
-    <mat-header-cell *matHeaderCellDef> חמישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[0] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="2">
+      <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="1">
-    <mat-header-cell *matHeaderCellDef> רביעי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[1] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="3">
+      <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="2">
-    <mat-header-cell *matHeaderCellDef> שלישי </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[2] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="4">
+      <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="3">
-    <mat-header-cell *matHeaderCellDef> שני </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[3] }}</mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="hour">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="4">
-    <mat-header-cell *matHeaderCellDef> ראשון </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[4] }}</mat-cell>
-  </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-  <ng-container matColumnDef="hour">
-    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let lesson">{{ lesson[5] }}</mat-cell>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 </ng-template>
-<!-- <div *ngFor="let res of courseService.getGAresults().results">
-  score : {{ res.Score }}
-</div> -->
-<!--
-<div
-  *ngIf="courseService.get_ga_ready(); then ga_ready; else ga_not_ready"
-></div>
--->
-<!--true statement-->
-
-<!--else statement-->
-<!--
-<ng-template #ga_not_ready>
-  <div>GA is not ready</div>
-</ng-template>
--->

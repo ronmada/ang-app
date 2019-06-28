@@ -1,5 +1,4 @@
 @media (min-width: 768px) {
-
   ._content_ {
     grid-area: _content_;
   }
@@ -8,13 +7,9 @@
   }
   .nav {
     grid-area: nav;
-
-    /* justify-self: end; */
   }
   .picture {
     grid-area: picture;
-    /* margin-left: auto;
-    margin-right: auto; */
   }
   .grid-container {
     display: inline-grid;

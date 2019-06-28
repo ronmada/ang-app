@@ -5,7 +5,7 @@ import * as _ from "underscore";
   providedIn: "root"
 })
 export class PreflectService {
-  pref_lecturers: Array<any> = [];
+  pref_lecturers: Array<object> = [];
   lect_importance: number = 8;
   lect_string: string = String(this.lect_importance);
   constructor() {}
@@ -29,7 +29,7 @@ export class PreflectService {
   set_importance(importance: number) {
     this.lect_importance = importance;
     this.lect_string = String(importance);
-    console.log("importance:", this.lect_importance);
+    console.log("Lecturers importance:", this.lect_importance);
   }
   remove_Pref_Lect_By_Removing_Course(single_course: any) {
     console.log("single_course", single_course);

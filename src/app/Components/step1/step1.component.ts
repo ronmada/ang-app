@@ -1,7 +1,6 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CourseService } from "../../Services/course.service";
-import { FormBuilder } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-step1",
@@ -12,15 +11,9 @@ export class Step1Component implements OnInit {
   courseitem_ID: string[] = [];
   courseitem_Name: string[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    public courseService: CourseService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(public courseService: CourseService, private router: Router) {}
 
   ngOnInit() {
-    this.courseService.set_clicked_array_to_false();
     let res = this.courseService.course_id_name;
     for (let itemlist of res) {
       this.courseitem_Name.push(itemlist.course_name + "   " + itemlist.id);
@@ -37,25 +30,23 @@ export class Step1Component implements OnInit {
     this.courseService.check = [];
   }
 
-
-
   next_step() {
     this.router.navigate(["/step-2"]);
   }
 
-  remove_singlecourse_fromlist(index) {
+  remove_singlecourse_fromlist(index: number) {
     this.courseService.remove_single_Course(index);
   }
 
-  remove_clusterfromlist(index) {
+  remove_clusterfromlist(index: number) {
     this.courseService.remove_cluster_from_list(index);
   }
 
-  remove_coursefromcluster(index, course) {
+  remove_coursefromcluster(index: number, course: number) {
     this.courseService.remove_one_course_from_cluster(index, course);
   }
 
-  remove_temp_course_from_cluster(index) {
+  remove_temp_course_from_cluster(index: number) {
     this.courseService.remove_temp_course_from_cluster(index);
   }
 }

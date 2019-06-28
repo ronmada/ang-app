@@ -44,7 +44,7 @@ export class Step4Component implements OnInit {
       for (let j = 0; j < 13; j++) {
         if (this.courseService.clicked[i * 13 + j] === false) dayoff = false;
       }
-      if (dayoff == true) this.days_off = true;
+      if (dayoff === true) this.days_off = true;
     }
   }
   onSelectLectImportance(val: string) {

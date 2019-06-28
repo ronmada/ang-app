@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "./Services/course.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 export type EditorType = "name";
 
@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   ga_results_path: string = "/ga-results";
   constructor(
     public courseService: CourseService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
 

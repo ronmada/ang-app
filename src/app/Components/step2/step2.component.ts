@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CourseService } from "../../Services/course.service";
 import { PreflectService } from "../../Services/preflect.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { Struct } from "../../models/Struct";
 import { FormControl } from "@angular/forms";
 
@@ -23,7 +23,7 @@ export class Step2Component implements OnInit {
   nones: string = "None";
   class_type: string = "";
   lecturers: Array<any>;
-  selected_course: any;
+  selected_course: object;
   classes: Set<string>;
   chosen_course: any[] = [];
   names: any[] = [
@@ -36,15 +36,28 @@ export class Step2Component implements OnInit {
   constructor(
     public courseService: CourseService,
     public preflectService: PreflectService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.struct = this.courseService.getstruct();
-    this.array = this.preflectService.get_Pref_Lect();
+    if (this.check_for_courses()) {
+      this.struct = this.courseService.getstruct();
+      this.array = this.preflectService.get_Pref_Lect();
+    }
   }
-
+  check_for_courses() {
+    if (
+      !(
+        this.courseService.struct.courses.length ||
+        this.courseService.struct.clusters.length
+      )
+    ) {
+      console.log("No Courses");
+      this.router.navigate(["/step-1"]);
+      return false;
+    }
+    return true;
+  }
   resetItems(course: object) {
     this.lecturers = new Array();
     this.names[0].lab = new Set();
@@ -130,7 +143,6 @@ export class Step2Component implements OnInit {
       classtype: class_type,
       lecturer: lecturer
     };
-    // this.class_type_chosen = false;
 
     this.check_chosen_lect(obj);
   }
