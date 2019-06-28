@@ -5,7 +5,7 @@
         class="col-form-label col-form-label-lg"
         style="color:rgb(102, 0, 255)"
         for="inputLarge"
-        >Search Course by:</label
+        >Add to Courses:</label
       >
       <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
         <app-combo-box
@@ -27,7 +27,7 @@
         class="col-form-label col-form-label-lg"
         style="color:rgb(116, 35, 52)"
         for="inputLarge"
-        >Search Cluster by:</label
+        >Add to cluster:</label
       >
       <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
         <app-combo-box

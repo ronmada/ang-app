@@ -1,7 +1,6 @@
 <div *ngIf="struct">
   <div class="grid-container">
     <div class="courselist">
-      <div class="numberCircle">1</div>
       <h4>Choose Course</h4>
       <ul class="heroes">
         <li
@@ -28,7 +27,6 @@
       class="coursetype"
       [ngStyle]="{ display: course_chosen === false ? 'none' : 'block' }"
     >
-      <div class="numberCircle">2</div>
       <mat-form-field>
         <mat-select
           placeholder="Choose Class type"
@@ -52,7 +50,6 @@
       class="preflecturer"
       [ngStyle]="{ display: class_type_chosen === false ? 'none' : 'block' }"
     >
-      <div class="numberCircle">3</div>
       <mat-form-field>
         <mat-select
           placeholder="Choose Lecturer"

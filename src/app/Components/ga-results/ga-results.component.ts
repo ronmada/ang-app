@@ -20,8 +20,7 @@ export class GaResultsComponent implements OnInit, OnChanges {
     public courseService: CourseService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
   ngOnChanges() {
     console.log("Changes");
     this.ngOnInit();
@@ -74,6 +73,10 @@ export class GaResultsComponent implements OnInit, OnChanges {
                 " " +
                 clas.Class_type +
                 " " +
+                lect.Class_location +
+                " " +
+                `
+                ` +
                 lect.Lecturer_name;
             }
           });
@@ -88,5 +91,6 @@ export class GaResultsComponent implements OnInit, OnChanges {
     this.dataSource1 = one;
     this.dataSource2 = two;
     this.dataSource3 = three;
+    console.log("results are: ", this.courseService.getGAresults().results);
   }
 }

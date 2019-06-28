@@ -53,6 +53,7 @@ export class ComboBoxComponent implements OnInit {
 
   // select highlighted item when enter is pressed or any item that is clicked
   selectItem(ind) {
+    console.log("Selected", this.filteredList[ind]);
     this.inputItem = this.filteredList[ind];
     this.listHidden = true;
     this.selectedIndex = ind;
@@ -60,6 +61,7 @@ export class ComboBoxComponent implements OnInit {
 
   // navigate through the list of items
   onKeyPress(event) {
+    console.log("keyPress:", event);
     this.showError = false;
     if (!this.listHidden) {
       if (event.key === "Escape") {
