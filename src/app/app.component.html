@@ -45,6 +45,9 @@
       <div class="sub_button">
         <button
           type="submit"
+          [ngStyle]="{
+            display: router.url == [ga_results_path] ? 'none' : 'block'
+          }"
           [disabled]="
             !(
               courseService.struct.courses.length ||

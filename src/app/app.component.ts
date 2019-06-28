@@ -11,6 +11,7 @@ export type EditorType = "name";
 })
 export class AppComponent implements OnInit {
   title = "InfoPlus+";
+  ga_results_path: string = "/ga-results";
   constructor(
     public courseService: CourseService,
     private route: ActivatedRoute,
