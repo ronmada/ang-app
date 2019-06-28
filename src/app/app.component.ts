@@ -25,6 +25,11 @@ export class AppComponent implements OnInit {
   async onSubmitGA() {
     await this.courseService.submitGA(this.courseService.getstruct());
     console.log("transition");
-    this.router.navigate(["/ga-results"]);
+    if (this.router.url === "/ga-results") {
+      this.router.navigate(["/step-1"]);
+      this.router.navigate(["/ga-results"]);
+    } else {
+      this.router.navigate(["/ga-results"]);
+    }
   }
 }

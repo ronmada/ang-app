@@ -7,7 +7,7 @@
 
   grid-template-areas:
     "cluster_temp single_course_combo results_form"
-    "cluster_temp cluster_combo result_form"
+    "cluster_temp cluster_combo results_form"
     "cluster_group_button nothing nothing"
     "not next_button next_button";
   /* grid-template-areas:
@@ -130,6 +130,25 @@
 nav a.active {
   color: #039be5;
 }
+
+h2 {
+  color: rgb(62, 152, 168);
+  font-size: 2rem;
+  text-align: center;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+  width: fit-content;
+  /* background-color: rgb(89, 67, 151); */
+}
+.table-success {
+  text-align: center;
+}
+.table-success tr {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
 [hidden] {
   display: none !important;
 }

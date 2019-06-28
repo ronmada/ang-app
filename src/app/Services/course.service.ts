@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Struct } from "../models/Struct";
 import { PreflectService } from "./preflect.service";
 import { WindowsDaysOffService } from "./windows-days-off.service";
+import { Router } from "@angular/router";
 
 import "rxjs/add/operator/toPromise";
 
@@ -36,7 +37,8 @@ export class CourseService implements OnInit {
   constructor(
     private http: HttpClient,
     private preflectService: PreflectService,
-    private windowsDaysOffService: WindowsDaysOffService
+    private windowsDaysOffService: WindowsDaysOffService,
+    private router: Router
   ) {
     this.struct = new Struct();
   }
@@ -228,6 +230,34 @@ export class CourseService implements OnInit {
     console.log("PUTGARESULT", this.ga_result);
   }
 
+  remove_single_Course(index: number) {
+    this.preflectService.remove_Pref_Lect_By_Removing_Course(
+      this.struct.courses[index]
+    );
+    this.struct.courses.splice(index, 1);
+  }
+
+  remove_one_course_from_cluster(index: number, course: number) {
+    this.preflectService.remove_Pref_Lect_By_Removing_Course(
+      this.struct.clusters[index][course]
+    );
+    this.struct.clusters[index].splice(course, 1);
+    if (!this.struct.clusters[index].length) {
+      this.cluster_show_booly.pop();
+      this.struct.clusters.splice(index, 1);
+    }
+  }
+  remove_temp_course_from_cluster(index: number) {
+    this.smgroup.splice(index, 1);
+    if (!this.smgroup.length) this.group_submit_button_booly = false;
+  }
+  remove_cluster_from_list(index: number) {
+    this.preflectService.remove_Pref_Lect_By_Removing_Cluster(
+      this.struct.clusters[index]
+    );
+    this.struct.clusters.splice(index, 1);
+    this.cluster_show_booly.pop();
+  }
   async submitGA(struct: Struct) {
     let params = new HttpParams();
     for (let cluster of struct.clusters) {
@@ -341,34 +371,5 @@ export class CourseService implements OnInit {
     //console.log(someresult)
     //console.log(someresult.classes[1]["Class type"])
     this.ga_ready = true;
-  }
-
-  remove_single_Course(index: number) {
-    this.preflectService.remove_Pref_Lect_By_Removing_Course(
-      this.struct.courses[index]
-    );
-    this.struct.courses.splice(index, 1);
-  }
-
-  remove_one_course_from_cluster(index: number, course: number) {
-    this.preflectService.remove_Pref_Lect_By_Removing_Course(
-      this.struct.clusters[index][course]
-    );
-    this.struct.clusters[index].splice(course, 1);
-    if (!this.struct.clusters[index].length) {
-      this.cluster_show_booly.pop();
-      this.struct.clusters.splice(index, 1);
-    }
-  }
-  remove_temp_course_from_cluster(index: number) {
-    this.smgroup.splice(index, 1);
-    if (!this.smgroup.length) this.group_submit_button_booly = false;
-  }
-  remove_cluster_from_list(index: number) {
-    this.preflectService.remove_Pref_Lect_By_Removing_Cluster(
-      this.struct.clusters[index]
-    );
-    this.struct.clusters.splice(index, 1);
-    this.cluster_show_booly.pop();
   }
 }

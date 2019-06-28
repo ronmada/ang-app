@@ -1,38 +1,47 @@
-<h2>Lectures priority</h2>
-<mat-button-toggle-group
-  #group1="matButtonToggleGroup"
-  name="fontStyle"
-  aria-label="Font Style"
-  [disabled]="!preflectService.pref_lecturers.length"
-  [value]="preflectService.lect_string"
-  (change)="onSelectLectImportance(group1.value)"
->
-  <mat-button-toggle value="3">Default</mat-button-toggle>
-  <mat-button-toggle value="6">High</mat-button-toggle>
-</mat-button-toggle-group>
-
-<h2>Windows priority</h2>
-<mat-button-toggle-group
-  #group2="matButtonToggleGroup"
-  name="fontStyle"
-  aria-label="Font Style"
-  [disabled]="!windows"
-  [value]="windowsDaysOffService.windows_string"
-  (change)="onSelectWindowImportance(group2.value)"
->
-  <mat-button-toggle value="2">Default</mat-button-toggle>
-  <mat-button-toggle value="4">High</mat-button-toggle>
-</mat-button-toggle-group>
-
-<h2>Days-off priority</h2>
-<mat-button-toggle-group
-  #group3="matButtonToggleGroup"
-  name="fontStyle"
-  aria-label="Font Style"
-  [disabled]="!days_off"
-  [value]="windowsDaysOffService.days_off_string"
-  (change)="onSelectDaysoffImportance(group3.value)"
->
-  <mat-button-toggle value="8">Default</mat-button-toggle>
-  <mat-button-toggle value="16">High</mat-button-toggle>
-</mat-button-toggle-group>
+<div class="grid_container">
+  <div class="priorities">
+    <h1>Priorities</h1>
+  </div>
+  <div class="lecturers">
+    <h2>Lecturers</h2>
+    <mat-button-toggle-group
+      #group1="matButtonToggleGroup"
+      name="fontStyle"
+      aria-label="Font Style"
+      [disabled]="!preflectService.pref_lecturers.length"
+      [value]="preflectService.lect_string"
+      (change)="onSelectLectImportance(group1.value)"
+    >
+      <mat-button-toggle value="3">Default</mat-button-toggle>
+      <mat-button-toggle value="6">High</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="windows">
+    <h2>Windows</h2>
+    <mat-button-toggle-group
+      #group2="matButtonToggleGroup"
+      name="fontStyle"
+      aria-label="Font Style"
+      [disabled]="!windows"
+      [value]="windowsDaysOffService.windows_string"
+      (change)="onSelectWindowImportance(group2.value)"
+    >
+      <mat-button-toggle value="2">Default</mat-button-toggle>
+      <mat-button-toggle value="4">High</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="Days-off">
+    <h2>Days-off</h2>
+    <mat-button-toggle-group
+      #group3="matButtonToggleGroup"
+      name="fontStyle"
+      aria-label="Font Style"
+      [disabled]="!days_off"
+      [value]="windowsDaysOffService.days_off_string"
+      (change)="onSelectDaysoffImportance(group3.value)"
+    >
+      <mat-button-toggle value="8">Default</mat-button-toggle>
+      <mat-button-toggle value="16">High</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

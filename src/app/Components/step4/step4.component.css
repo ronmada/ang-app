@@ -4,3 +4,30 @@
 .mat-button-toggle-group {
   margin: 1.2rem;
 }
+
+h2 {
+  color: rgb(93, 66, 214);
+  margin: 1rem;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-areas:
+    "priorities priorities priorities"
+    "lecturers windows days-off";
+}
+
+.lecturers {
+  grid-area: lecturers;
+}
+.windows {
+  grid-area: windows;
+}
+
+.days-off {
+  grid-area: days-off;
+}
+.priorities {
+  grid-area: priorities;
+  text-align: center;
+}

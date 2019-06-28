@@ -46,6 +46,9 @@
     </div>
   </div>
   <div class="item2">
+    <div *ngIf="courseService.smgroup.length">
+      <h2>Cluster Group</h2>
+    </div>
     <table class="table-success">
       <tbody>
         <tr *ngFor="let course of courseService.smgroup; let n = index">
@@ -77,62 +80,70 @@
     </button>
   </div>
   <div class="item5">
-    <table class="table table-hover">
-      <tbody>
-        <tr
-          *ngFor="
-            let course of courseService.getstruct().courses;
-            let i = index
-          "
-        >
-          <td>
-            {{ course.__Course__.id }} {{ course.__Course__.course_name }}
-            <button
-              type="button"
-              (click)="remove_singlecourse_fromlist(i)"
-              class="btn btn-danger"
-            >
-              -
-            </button>
-          </td>
-        </tr>
-
-        <tr
-          *ngFor="
-            let cluster of courseService.getstruct().clusters;
-            let j = index
-          "
-        >
-          <td>
-            <div class="dropdown">
-              <span class="btn btn-info dropdown-toggle"
-                >Cluster {{ j + 1 }}</span
-              >
+    <div
+      *ngIf="
+        courseService.struct.courses.length ||
+        courseService.struct.clusters.length
+      "
+    >
+      <h1>Courses & Clusters</h1>
+      <table class="table table-hover">
+        <tbody>
+          <tr
+            *ngFor="
+              let course of courseService.getstruct().courses;
+              let i = index
+            "
+          >
+            <td>
+              {{ course.__Course__.id }} {{ course.__Course__.course_name }}
               <button
                 type="button"
-                (click)="remove_clusterfromlist(j)"
+                (click)="remove_singlecourse_fromlist(i)"
                 class="btn btn-danger"
               >
                 -
               </button>
-              <div class="dropdown-content">
-                <div *ngFor="let course of cluster; let k = index">
-                  {{ course.__Course__.id }}
-                  {{ course.__Course__.course_name }}
-                  <button
-                    type="button"
-                    (click)="remove_coursefromcluster(j, k)"
-                    class="btn btn-danger"
-                  >
-                    -
-                  </button>
+            </td>
+          </tr>
+
+          <tr
+            *ngFor="
+              let cluster of courseService.getstruct().clusters;
+              let j = index
+            "
+          >
+            <td>
+              <div class="dropdown">
+                <span class="btn btn-info dropdown-toggle"
+                  >Cluster {{ j + 1 }}</span
+                >
+                <button
+                  type="button"
+                  (click)="remove_clusterfromlist(j)"
+                  class="btn btn-danger"
+                >
+                  -
+                </button>
+                <div class="dropdown-content">
+                  <div *ngFor="let course of cluster; let k = index">
+                    {{ course.__Course__.id }}
+                    {{ course.__Course__.course_name }}
+                    <button
+                      type="button"
+                      (click)="remove_coursefromcluster(j, k)"
+                      class="btn btn-danger"
+                    >
+                      -
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <!-- <div class="item6">
     <button
