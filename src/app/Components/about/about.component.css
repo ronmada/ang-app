@@ -1,6 +1,10 @@
-i {
+p i {
   color: blue;
 }
-b {
+p b {
   font-size: 1.5rem;
+}
+p {
+  max-width: 66rem;
+  line-height: 2rem;
 }
