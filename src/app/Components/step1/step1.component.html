@@ -1,51 +1,50 @@
-<div class="main_grid">
-  <div *ngIf="courseService.finished_fetch_booly">
-    <div class="item1">
-      <label
-        class="col-form-label col-form-label-lg"
-        style="color:rgb(102, 0, 255)"
-        for="inputLarge"
-        >Add to Courses:</label
-      >
-      <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
+<div class="main_grid" *ngIf="courseService.finished_fetch_booly">
+  <div class="single_course_combo">
+    <label
+      class="col-form-label col-form-label-lg"
+      style="color:rgb(102, 0, 255) ;font-size: 2rem"
+      for="inputLarge"
+      >Add to Courses:</label
+    >
+    <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
+      <app-combo-box
+        [list]="courseitem_ID"
+        type_of_search="single"
+      ></app-combo-box>
+    </div>
+    <ng-template #elseBlock>
+      <div *ngIf="courseService.search_option === 'Name'">
         <app-combo-box
-          [list]="courseitem_ID"
+          [list]="courseitem_Name"
           type_of_search="single"
         ></app-combo-box>
       </div>
-      <ng-template #elseBlock>
-        <div *ngIf="courseService.search_option === 'Name'">
-          <app-combo-box
-            [list]="courseitem_Name"
-            type_of_search="single"
-          ></app-combo-box>
-        </div>
-      </ng-template>
+    </ng-template>
+  </div>
+  <div class="cluster_combo">
+    <label
+      class="col-form-label col-form-label-lg"
+      style="color:#21bb21 ;font-size: 2rem"
+      for="inputLarge"
+      >Add to Cluster:</label
+    >
+    <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
+      <app-combo-box
+        [list]="courseitem_ID"
+        type_of_search="cluster"
+      ></app-combo-box>
     </div>
-    <div class="item3">
-      <label
-        class="col-form-label col-form-label-lg"
-        style="color:rgb(116, 35, 52)"
-        for="inputLarge"
-        >Add to cluster:</label
-      >
-      <div *ngIf="courseService.search_option === 'ID'; else elseBlock">
+    <ng-template #elseBlock>
+      <div *ngIf="courseService.search_option === 'Name'">
         <app-combo-box
-          [list]="courseitem_ID"
+          [list]="courseitem_Name"
           type_of_search="cluster"
         ></app-combo-box>
       </div>
-      <ng-template #elseBlock>
-        <div *ngIf="courseService.search_option === 'Name'">
-          <app-combo-box
-            [list]="courseitem_Name"
-            type_of_search="cluster"
-          ></app-combo-box>
-        </div>
-      </ng-template>
-    </div>
+    </ng-template>
   </div>
-  <div class="item2">
+
+  <div class="cluster_temp">
     <div *ngIf="courseService.smgroup.length">
       <h2>Cluster Group</h2>
     </div>
@@ -68,18 +67,18 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="item4">
     <button
       type="button"
       class="btn btn-info"
+      style="text-align: center"
       [hidden]="!courseService.group_submit_button_booly"
       (click)="onSubmit_selfmadeform()"
     >
       submit cluster
     </button>
   </div>
-  <div class="item5">
+
+  <div class="results_form">
     <div
       *ngIf="
         courseService.struct.courses.length ||
@@ -90,6 +89,7 @@
       <table class="table table-hover">
         <tbody>
           <tr
+            class="table-light"
             *ngFor="
               let course of courseService.getstruct().courses;
               let i = index
@@ -97,6 +97,8 @@
           >
             <td>
               {{ course.__Course__.id }} {{ course.__Course__.course_name }}
+            </td>
+            <td>
               <button
                 type="button"
                 (click)="remove_singlecourse_fromlist(i)"
@@ -113,11 +115,13 @@
               let j = index
             "
           >
-            <td>
-              <div class="dropdown">
+            <div class="dropdown">
+              <td>
                 <span class="btn btn-info dropdown-toggle"
                   >Cluster {{ j + 1 }}</span
                 >
+              </td>
+              <td>
                 <button
                   type="button"
                   (click)="remove_clusterfromlist(j)"
@@ -125,10 +129,14 @@
                 >
                   -
                 </button>
-                <div class="dropdown-content">
-                  <div *ngFor="let course of cluster; let k = index">
+              </td>
+              <div class="dropdown-content">
+                <div *ngFor="let course of cluster; let k = index">
+                  <td>
                     {{ course.__Course__.id }}
                     {{ course.__Course__.course_name }}
+                  </td>
+                  <td>
                     <button
                       type="button"
                       (click)="remove_coursefromcluster(j, k)"
@@ -136,10 +144,10 @@
                     >
                       -
                     </button>
-                  </div>
+                  </td>
                 </div>
               </div>
-            </td>
+            </div>
           </tr>
         </tbody>
       </table>

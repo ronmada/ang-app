@@ -11,16 +11,12 @@ h2 {
   font-weight: bold;
 }
 .mat-cell {
-  /* min-width: 150px;
-  width: fit-content; */
-  /* overflow: hidden; */
   font-size: 17px;
   min-width: 180px;
   min-height: 90px;
-  /* text-overflow: ellipsis; */
-  /* white-space: nowrap; */
 }
 .mat-table {
   width: 100%;
   table-layout: fixed;
+  text-align: right;
 }

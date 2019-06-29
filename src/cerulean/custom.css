@@ -24,3 +24,7 @@
   min-width: 100px;
   width: 100%;
 }
+.table th,
+.table td {
+  vertical-align: baseline;
+}
