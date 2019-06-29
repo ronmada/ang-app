@@ -132,7 +132,7 @@ nav a.active {
   margin-left: auto;
   margin-right: auto;
   border-spacing: 1rem 0.1rem;
-  border: 0.2rem solid rgba(26, 35, 158, 0.89);
+  /* border: 0.2rem solid rgba(26, 35, 158, 0.89); */
 }
 .table-hover tr {
   font-size: 1.1rem;
@@ -140,9 +140,9 @@ nav a.active {
   padding: 0.5rem;
   border-bottom: 2px solid #e50329;
 }
-.table-hover td {
+/* .table-hover td {
   border-top: 1px solid rgb(105, 103, 103);
-}
+} */
 .table-hover td .btn .btn-danger {
   text-align: center;
 }

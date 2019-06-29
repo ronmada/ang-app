@@ -2,6 +2,9 @@ h2 {
   text-align: center;
   margin: 1.3rem;
   color: rgb(43, 20, 170);
+  border-bottom: 1px solid black;
+  width: fit-content;
+  margin: 2rem auto;
 }
 
 .mat-header-cell {
@@ -20,6 +23,14 @@ h2 {
   table-layout: fixed;
   text-align: right;
 }
-.mat-header-row{
+.mat-header-row {
   min-height: 2rem;
+}
+
+.mat-column-hour {
+  max-width: 3rem;
+}
+.mat-header-cell {
+  min-width: 10rem;
+  /* min-height: 4rem; */
 }
