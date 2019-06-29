@@ -11,6 +11,7 @@
   .picture {
     grid-area: picture;
   }
+
   .grid-container {
     display: inline-grid;
     /* grid-template-rows: 5% auto auto; */

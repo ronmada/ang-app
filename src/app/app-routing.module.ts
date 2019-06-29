@@ -6,6 +6,7 @@ import { Step1Component } from "./Components/step1/step1.component";
 import { Step2Component } from "./Components/step2/step2.component";
 import { Step3Component } from "./Components/step3/step3.component";
 import { Step4Component } from "./Components/step4/step4.component";
+import { AboutComponent } from "./Components/about/about.component";
 
 const routes: Routes = [
   { path: "step-1", component: Step1Component },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "ga-results", component: GaResultsComponent },
   { path: "step-3", component: Step3Component },
   { path: "step-4", component: Step4Component },
+  { path: "about", component: AboutComponent },
   { path: "**", component: PageNotFoundComponent }
 ];
 
@@ -28,5 +30,6 @@ export const routingComponents = [
   GaResultsComponent,
   PageNotFoundComponent,
   Step3Component,
-  Step4Component
+  Step4Component,
+  AboutComponent
 ];

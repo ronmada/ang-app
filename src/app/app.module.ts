@@ -21,7 +21,7 @@ import { MatListModule } from "@angular/material/list";
     AppComponent,
     routingComponents,
     ComboBoxComponent,
-    LoadScreenComponent
+    LoadScreenComponent,
   ],
   imports: [
     BrowserModule,
