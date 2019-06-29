@@ -164,18 +164,25 @@ export class CourseService {
             console.log("all courses: ", this.courseDB);
             this.fill_course_id_name();
             resolve();
-          },
-          msg => {
-            // Error
-            reject(msg);
           }
-        );
+          // msg => {
+          //   // Error
+          //   reject(msg);
+          // }
+        )
+        .catch(error => {
+          console.log(error.message);
+          this.finished_fetch_booly = true;
+          alert(
+            "An error has occured while fetching data from server, watch the console log for more information"
+          );
+        });
     });
     await promise;
     setTimeout(() => {
       this.finished_fetch_booly = true;
+      console.log("Finished fetch data from server");
     }, 500);
-    // return this.course_id_name
   }
 
   fill_course_id_name() {
@@ -336,6 +343,9 @@ export class CourseService {
           this.ga_ready = true;
           this.ga_processing = false;
           this.hide_content = false;
+          alert(
+            "An error has occured, watch the console log for more information"
+          );
         });
     });
     await promise;
