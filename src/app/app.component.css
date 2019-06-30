@@ -34,13 +34,54 @@
     padding: 20px 0;
     font-size: auto;
   }
-  a.disabled {
-    pointer-events: none;
-    cursor: default;
-    background-color: rgb(229, 229, 229) !important;
-    opacity: 0.2;
+
+  input[text] {
+    color: #888;
+    font-family: Cambria, Georgia;
+  }
+  a {
+    cursor: pointer;
+    cursor: hand;
+  }
+
+  button:hover {
+    background-color: #cfd8dc;
   }
   button:disabled {
-    opacity: 0.2;
+    /* background-color: #eee; */
+    color: #aaa;
+    cursor: auto;
+    background-color: rgb(229, 229, 229) !important;
+    opacity: 0.25;
+  }
+
+  /* Navigation link styles */
+  nav a {
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    margin-right: 2rem;
+    margin-top: 0.8rem;
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 0.5rem;
+    font-size: 1.12rem;
+  }
+  nav a:visited,
+  a:link {
+    color: #607d8b;
+  }
+  nav a:hover {
+    color: #039be5;
+    background-color: #cfd8dc;
+  }
+  nav a.active {
+    color: #039be5;
+  }
+  .btn-primary {
+    margin-top: 0.58rem;
+  }
+  .picture a {
+    padding: 0.35rem 0.78rem;
+    font-size: 0.9rem;
   }
 }

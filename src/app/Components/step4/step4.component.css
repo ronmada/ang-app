@@ -29,3 +29,18 @@ h2 {
   grid-area: priorities;
   text-align: center;
 }
+.mat-button-toggle-disabled {
+  /* background-color: #eee; */
+  /* color: #aaa; */
+  cursor: auto;
+  background-color: rgb(229, 229, 229) !important;
+  color: none;
+  /* opacity: 0.25; */
+}
+button:disabled {
+  /* background-color: #eee; */
+  color: #aaa;
+  cursor: auto;
+  background-color: rgb(229, 229, 229) !important;
+  opacity: 0.25;
+}
