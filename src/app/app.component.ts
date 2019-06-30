@@ -12,10 +12,7 @@ export type EditorType = "name";
 export class AppComponent implements OnInit {
   title = "InfoPlus+";
   ga_results_path: string = "/ga-results";
-  constructor(
-    public courseService: CourseService,
-    private router: Router
-  ) {}
+  constructor(public courseService: CourseService, private router: Router) {}
 
   ngOnInit() {
     console.log("Server running on IP: ", this.courseService.ROOT_URL_local);
@@ -23,8 +20,6 @@ export class AppComponent implements OnInit {
   }
 
   async onSubmitGA() {
-    // this.courseService.ga_processing = true;
-    // this.courseService.hide_content=true
     await this.courseService.submitGA(this.courseService.getstruct());
     console.log("transition");
     this.router.navigate(["/ga-results"]);

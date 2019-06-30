@@ -46,7 +46,14 @@
         >
         <a routerLink="step-3" routerLinkActive="active">Windows & Daysoff</a>
         <a routerLink="step-4" routerLinkActive="active">Priorities</a>
-        <!--<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>-->
+        <a
+          routerLink="ga-results"
+          routerLinkActive="active"
+          [ngStyle]="{
+            display: courseService.ga_ready == false ? 'none' : 'inline-block'
+          }"
+          >Results</a
+        >
       </nav>
       <button
         type="submit"

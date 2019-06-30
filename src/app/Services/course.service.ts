@@ -199,7 +199,6 @@ export class CourseService {
   }
   putGAresult(garesult: any) {
     this.ga_result = garesult;
-    console.log("PUTGARESULT", this.ga_result);
   }
 
   remove_single_Course(index: number) {

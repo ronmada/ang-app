@@ -14,7 +14,6 @@ export class GaResultsComponent implements OnInit {
   dataSource1 = new MatTableDataSource(this.test);
   dataSource2 = new MatTableDataSource(this.test);
   dataSource3 = new MatTableDataSource(this.test);
-  ga_ready: boolean = false;
 
   constructor(public courseService: CourseService, private router: Router) {}
 
@@ -93,10 +92,9 @@ export class GaResultsComponent implements OnInit {
   }
   anycourse() {
     if (
-      !(
-        this.courseService.struct.courses.length ||
-        this.courseService.struct.clusters.length
-      )
+      this.courseService.struct.courses.length === 0 &&
+      this.courseService.struct.clusters.length === 0 &&
+      this.courseService.ga_ready === false
     ) {
       console.log("No Courses");
       this.router.navigate(["/step-1"]);
