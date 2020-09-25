@@ -4,6 +4,7 @@ import { Struct } from "../models/Struct";
 import { PreflectService } from "./preflect.service";
 import { WindowsDaysOffService } from "./windows-days-off.service";
 import "rxjs/add/operator/toPromise";
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: "root"
@@ -32,14 +33,15 @@ export class CourseService {
   ga_ready: boolean = false;
   clicked: boolean[] = new Array(64);
   //for local host>
-  //readonly ROOT_URL_local = "http://127.0.0.1:5000";
-  readonly ROOT_URL_local = "https://braudeinfoplus.azurewebsites.net";
-
+  //readonly _URL = "http://127.0.0.1:5000";
+  // _URL = "https://braudeinfoplus.azurewebsites.net";
+  private _URL :string;
   constructor(
     private http: HttpClient,
     private preflectService: PreflectService,
-    private windowsDaysOffService: WindowsDaysOffService
+    private windowsDaysOffService: WindowsDaysOffService,
   ) {
+    this._URL = environment._URL;
     this.struct = new Struct();
     this.set_clicked_array_to_false();
   }
@@ -156,7 +158,7 @@ export class CourseService {
   async get__all_courses() {
     let promise = new Promise((resolve, reject) => {
       this.http
-        .get(this.ROOT_URL_local + "/getallcor")
+        .get(this._URL + "/getallcor")
         .toPromise()
         .then(
           res => {
@@ -331,7 +333,7 @@ export class CourseService {
 
     let promise = await new Promise((resolve, reject) => {
       this.http
-        .get(this.ROOT_URL_local + "/start_ga", { params })
+        .get(this._URL + "/start_ga", { params })
         .toPromise()
         .then(res => {
           // Success
